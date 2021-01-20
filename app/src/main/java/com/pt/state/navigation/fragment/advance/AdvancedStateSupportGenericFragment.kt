@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import com.pt.state.navigation.Navigation
 
 
-abstract class SupportNavigationFragmentBase<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
+abstract class AdvancedStateSupportGenericFragment<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
     Fragment(),
     Navigation<State, Event, SideEffect> {
         protected abstract val TAG : String

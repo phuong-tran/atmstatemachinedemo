@@ -11,8 +11,8 @@ import com.pt.state.navigation.STATE
 import com.pt.state.navigation.TRANSITION_DATA
 import java.util.concurrent.atomic.AtomicReference
 
-abstract class SupportNavigationStandAloneFragment :
-    SupportNavigationFragmentSimpleBase<State, Event, SideEffect>() {
+abstract class BasicStateSupportBaseFragment :
+    BasicStateSupportGenericFragment<State, Event, SideEffect>() {
     override val TAG = "SupportNavigationStandAloneFragment"
     /**
      * The state may be changed in some cases, such as using the same fragment (screen), but not same state

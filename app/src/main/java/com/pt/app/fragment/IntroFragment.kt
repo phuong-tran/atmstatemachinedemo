@@ -11,9 +11,9 @@ import com.pt.state.data.Event
 import com.pt.state.data.SideEffect
 import com.pt.state.data.State
 import com.pt.state.manager.StateMachine
-import com.pt.state.navigation.fragment.advance.SupportNavigationFragmentWithViewModelBase
+import com.pt.state.navigation.fragment.advance.AdvancedStateSupportBaseFragment
 
-class IntroFragment : SupportNavigationFragmentWithViewModelBase() {
+class IntroFragment : AdvancedStateSupportBaseFragment() {
 
     override val viewModel: SupportNavigationViewModelWithSavedHandler by activityViewModels() {
         SupportNavigationViewModelWithSavedHandler.Factory(navigation = this, this)

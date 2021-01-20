@@ -7,15 +7,14 @@ import com.pt.state.data.Event
 import com.pt.state.data.SideEffect
 import com.pt.state.data.State
 import com.pt.state.data.transition.TransitionData
-import com.pt.state.manager.StateMachine
 import com.pt.state.navigation.Navigation
 import com.pt.state.navigation.TransitionHandler
-import com.pt.state.navigation.viewmodel.SupportNavigationViewModelWithSavedHandlerBase
+import com.pt.state.navigation.viewmodel.AdvancedSupportStateBaseViewModel
 
 class SupportNavigationViewModelWithSavedHandler(
     navigation: Navigation<State, Event, SideEffect>,
     savedStateHandle: SavedStateHandle
-) : SupportNavigationViewModelWithSavedHandlerBase(navigation, savedStateHandle),
+) : AdvancedSupportStateBaseViewModel(navigation, savedStateHandle),
     TransitionHandler {
     private val transitionMutableLiveData: MutableLiveData<TransitionData> = MutableLiveData()
     override val TAG = "SupportNavigationViewModelWithSavedHandler"

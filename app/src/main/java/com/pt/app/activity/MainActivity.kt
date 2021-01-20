@@ -13,9 +13,9 @@ import com.pt.state.data.SideEffect
 import com.pt.state.data.State
 import com.pt.state.data.transition.TransitionData
 import com.pt.state.manager.StateMachine
-import com.pt.state.navigation.activity.advance.SupportNavigationWithViewModelActivityBase
+import com.pt.state.navigation.activity.advance.AdvancedStateSupportBaseActivity
 
-class MainActivity : SupportNavigationWithViewModelActivityBase() {
+class MainActivity : AdvancedStateSupportBaseActivity() {
     // ViewModel Activity Scope
     override val viewModel: SupportNavigationViewModelWithSavedHandler by viewModels {
         SupportNavigationViewModelWithSavedHandler.Factory(navigation = this, this)
@@ -51,6 +51,5 @@ class MainActivity : SupportNavigationWithViewModelActivityBase() {
         }
         givenState(States.IDLE.get())
         transition(Events.InsertCard.get())
-
     }
 }

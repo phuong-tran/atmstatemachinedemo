@@ -4,13 +4,12 @@ import com.pt.state.data.Event
 import com.pt.state.data.SideEffect
 import com.pt.state.data.State
 import com.pt.state.data.transition.TransitionDataBase
-import com.pt.state.navigation.fragment.advance.SupportNavigationFragmentBase
-import com.pt.state.navigation.viewmodel.SupportNavigationViewModelBase
+import com.pt.state.navigation.viewmodel.SupportStateGenericViewModel
 
-abstract class SupportNavigationFragmentWithViewModelBase :
-    SupportNavigationFragmentBase<State, Event, SideEffect>() {
+abstract class AdvancedStateSupportBaseFragment :
+    AdvancedStateSupportGenericFragment<State, Event, SideEffect>() {
     override val TAG: String = "SupportNavigationFragmentWithViewModelBase"
-    protected abstract val viewModel: SupportNavigationViewModelBase<State, Event, SideEffect>
+    protected abstract val viewModel: SupportStateGenericViewModel<State, Event, SideEffect>
 
     final override fun saveTransitionData(transitionData: TransitionDataBase<State, Event, State, SideEffect>) {
         viewModel.saveTransitionData(transitionData)
