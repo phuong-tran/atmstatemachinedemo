@@ -10,6 +10,8 @@ interface TransitionHandler {
 }
 
 interface StateMachineProvider<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> {
+    // Expose this, due to we can not initialize this in interface
+    // this'll be initialized like this stateMachine = createStateMachine()
     val stateMachine: StateMachine<State, Event, SideEffect>
     fun provideGraphBuilder(): StateMachine.GraphBuilder<State, Event, SideEffect>
 
@@ -24,9 +26,6 @@ interface StateMachineProvider<State : Parcelable, Event : Parcelable, SideEffec
 
 interface StateTransitionProvider<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
     StateMachineProvider<State, Event, SideEffect> {
-    // Expose this, due to we can not initialize this in interface
-    // this'll be initialized like this stateMachine = createStateMachine()
-
     fun givenState(
         state: State
     ): StateMachine<State, Event, SideEffect> {
@@ -45,7 +44,7 @@ interface CurrentStateProvider<State : Parcelable, Event : Parcelable, SideEffec
     fun getCurrentTransitionData(): TransitionDataBase<State, Event, State, SideEffect>
 }
 
-interface StateStorageManager<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
+interface StateSavedStateHandler<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
     CurrentStateProvider<State, Event, SideEffect> {
     fun saveState(state: State)
     fun saveTransitionData(transitionData: TransitionDataBase<State, Event, State, SideEffect>)
@@ -53,7 +52,7 @@ interface StateStorageManager<State : Parcelable, Event : Parcelable, SideEffect
 
 interface Navigation<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
     StateTransitionProvider<State, Event, SideEffect>,
-    StateStorageManager<State, Event, SideEffect>
+    StateSavedStateHandler<State, Event, SideEffect>
 
 interface NavigationSimple<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
     StateTransitionProvider<State, Event, SideEffect>, CurrentStateProvider<State, Event, SideEffect>

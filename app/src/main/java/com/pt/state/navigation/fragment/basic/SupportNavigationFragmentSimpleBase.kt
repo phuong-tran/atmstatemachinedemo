@@ -1,9 +1,8 @@
-package com.pt.state.navigation.fragment
+package com.pt.state.navigation.fragment.basic
 
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import com.pt.state.navigation.NavigationSimple
-import com.pt.state.navigation.StateTransitionProvider
 
 
 abstract class SupportNavigationFragmentSimpleBase<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :

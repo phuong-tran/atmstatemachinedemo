@@ -1,10 +1,10 @@
-package com.pt.state.navigation.fragment
+package com.pt.state.navigation.fragment.advance
 
 import com.pt.state.data.Event
 import com.pt.state.data.SideEffect
 import com.pt.state.data.State
 import com.pt.state.data.transition.TransitionDataBase
-import com.pt.state.manager.StateMachine
+import com.pt.state.navigation.fragment.advance.SupportNavigationFragmentBase
 import com.pt.state.navigation.viewmodel.SupportNavigationViewModelBase
 
 abstract class SupportNavigationFragmentWithViewModelBase :

@@ -11,7 +11,7 @@ import com.pt.state.data.Event
 import com.pt.state.data.SideEffect
 import com.pt.state.data.State
 import com.pt.state.manager.StateMachine
-import com.pt.state.navigation.fragment.SupportNavigationFragmentWithViewModelBase
+import com.pt.state.navigation.fragment.advance.SupportNavigationFragmentWithViewModelBase
 
 class IntroFragment : SupportNavigationFragmentWithViewModelBase() {
 

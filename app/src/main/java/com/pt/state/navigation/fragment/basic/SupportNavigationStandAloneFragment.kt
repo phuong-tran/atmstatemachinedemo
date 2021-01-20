@@ -1,4 +1,4 @@
-package com.pt.state.navigation.fragment
+package com.pt.state.navigation.fragment.basic
 
 import android.content.Context
 import android.os.Bundle

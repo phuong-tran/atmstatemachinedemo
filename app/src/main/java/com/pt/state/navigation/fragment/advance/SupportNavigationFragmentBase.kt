@@ -1,4 +1,4 @@
-package com.pt.state.navigation.fragment
+package com.pt.state.navigation.fragment.advance
 
 import android.os.Parcelable
 import androidx.fragment.app.Fragment

@@ -13,7 +13,7 @@ import com.pt.state.data.SideEffect
 import com.pt.state.data.State
 import com.pt.state.data.transition.TransitionData
 import com.pt.state.manager.StateMachine
-import com.pt.state.navigation.activity.SupportNavigationWithViewModelActivityBase
+import com.pt.state.navigation.activity.advance.SupportNavigationWithViewModelActivityBase
 
 class MainActivity : SupportNavigationWithViewModelActivityBase() {
     // ViewModel Activity Scope

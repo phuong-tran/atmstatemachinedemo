@@ -1,4 +1,4 @@
-package com.pt.state.navigation.activity
+package com.pt.state.navigation.activity.advance
 
 import com.pt.state.data.Event
 import com.pt.state.data.SideEffect
