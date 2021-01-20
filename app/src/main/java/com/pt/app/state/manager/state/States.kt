@@ -1,7 +1,7 @@
 package com.pt.app.state.manager.state
 
-import com.pt.state.create
-import com.pt.state.data.StateBase
+import com.pt.core.create
+import com.pt.core.data.StateBase
 import kotlinx.android.parcel.Parcelize
 
 class States {

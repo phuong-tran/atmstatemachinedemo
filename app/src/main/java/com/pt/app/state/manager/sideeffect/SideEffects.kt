@@ -1,7 +1,7 @@
 package com.pt.app.state.manager.sideeffect
 
-import com.pt.state.create
-import com.pt.state.data.SideEffectBase
+import com.pt.core.create
+import com.pt.core.data.SideEffectBase
 import kotlinx.android.parcel.Parcelize
 
 class SideEffects {

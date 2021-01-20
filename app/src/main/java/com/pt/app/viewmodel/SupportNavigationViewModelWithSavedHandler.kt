@@ -3,13 +3,13 @@ package com.pt.app.viewmodel
 import android.os.Bundle
 import androidx.lifecycle.*
 import androidx.savedstate.SavedStateRegistryOwner
-import com.pt.state.data.Event
-import com.pt.state.data.SideEffect
-import com.pt.state.data.State
-import com.pt.state.data.transition.TransitionData
-import com.pt.state.navigation.state.advance.NavigationAdvancedHandler
-import com.pt.state.navigation.state.advance.TransitionHandler
-import com.pt.state.navigation.viewmodel.AdvancedSupportStateBaseViewModel
+import com.pt.core.data.Event
+import com.pt.core.data.SideEffect
+import com.pt.core.data.State
+import com.pt.core.data.transition.TransitionData
+import com.pt.core.state.advance.NavigationAdvancedHandler
+import com.pt.core.state.advance.TransitionHandler
+import com.pt.core.navigation.viewmodel.AdvancedSupportStateBaseViewModel
 
 class SupportNavigationViewModelWithSavedHandler(
     navigation: NavigationAdvancedHandler<State, Event, SideEffect>,

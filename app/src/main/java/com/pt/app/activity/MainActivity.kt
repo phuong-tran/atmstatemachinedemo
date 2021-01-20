@@ -8,12 +8,12 @@ import com.pt.app.state.manager.provideGraph
 import com.pt.app.state.manager.state.States
 import com.pt.app.viewmodel.SupportNavigationViewModelWithSavedHandler
 import com.pt.dig.atm.R
-import com.pt.state.data.Event
-import com.pt.state.data.SideEffect
-import com.pt.state.data.State
-import com.pt.state.data.transition.TransitionData
-import com.pt.state.manager.StateMachine
-import com.pt.state.navigation.activity.advance.AdvancedStateSupportBaseActivity
+import com.pt.core.data.Event
+import com.pt.core.data.SideEffect
+import com.pt.core.data.State
+import com.pt.core.data.transition.TransitionData
+import com.pt.core.state.manager.StateMachine
+import com.pt.core.navigation.activity.advance.AdvancedStateSupportBaseActivity
 
 class MainActivity : AdvancedStateSupportBaseActivity() {
     // ViewModel Activity Scope
