@@ -8,6 +8,8 @@ import com.pt.state.data.State
 import com.pt.state.data.transition.TransitionDataBase
 import com.pt.state.manager.StateMachine
 import com.pt.state.navigation.Navigation
+import com.pt.state.navigation.STATE
+import com.pt.state.navigation.TRANSITION_DATA
 
 
 abstract class SupportNavigationViewModelWithSavedHandlerBase(
@@ -15,13 +17,15 @@ abstract class SupportNavigationViewModelWithSavedHandlerBase(
     private val savedStateHandle: SavedStateHandle
 ) : SupportNavigationViewModelBase<State, Event, SideEffect>(navigation) {
 
+    override val TAG = "SupportNavigationViewModelWithSavedHandlerBase"
+
     override fun saveState(state: State) {
         savedStateHandle.set(STATE, state)
         Log.d(TAG, "saveState $state")
     }
 
     override fun getCurrentState(): State =
-        savedStateHandle.get(STATE) ?: providerStateComposer().state
+        savedStateHandle.get(STATE) ?: stateMachine.state
 
     override fun saveTransitionData(transitionData: TransitionDataBase<State, Event, State, SideEffect>) {
         savedStateHandle.set(TRANSITION_DATA, transitionData)
@@ -32,9 +36,4 @@ abstract class SupportNavigationViewModelWithSavedHandlerBase(
         return savedStateHandle.get(TRANSITION_DATA)!!
     }
 
-    companion object {
-        const val STATE = "STATE"
-        const val TRANSITION_DATA = "TRANSITION_DATA"
-        const val TAG = "StateMachineViewModel"
-    }
 }

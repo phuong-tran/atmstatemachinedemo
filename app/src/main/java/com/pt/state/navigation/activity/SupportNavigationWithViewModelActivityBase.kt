@@ -7,7 +7,8 @@ import com.pt.state.data.transition.TransitionDataBase
 import com.pt.state.navigation.viewmodel.SupportNavigationViewModelBase
 
 
-abstract class SupportNavigationWithViewModelActivityBase : SupportNavigationActivityBase<State, Event, SideEffect>() {
+abstract class SupportNavigationWithViewModelActivityBase :
+    SupportNavigationActivityBase<State, Event, SideEffect>() {
     // ViewModel Activity Scope
     protected abstract val viewModel: SupportNavigationViewModelBase<State, Event, SideEffect>
 
@@ -23,4 +24,15 @@ abstract class SupportNavigationWithViewModelActivityBase : SupportNavigationAct
 
     override fun getCurrentTransitionData(): TransitionDataBase<State, Event, State, SideEffect> =
         viewModel.getCurrentTransitionData()
+
+
+    override val stateMachine =
+        createStateMachine { fromState: State, event: Event, toState: State, sideEffect: SideEffect? ->
+            onTransaction(
+                fromState = fromState,
+                event = event,
+                toState = toState,
+                sideEffect = sideEffect
+            )
+        }
 }

@@ -1,10 +1,15 @@
 package com.pt.app.state.manager.event
 
+import com.pt.app.state.singleton.createObjectLazy
+import com.pt.app.state.singleton.singletonLazy
 import com.pt.state.create
 import com.pt.state.data.EventBase
 import kotlinx.android.parcel.Parcelize
 
 class Events {
+    val x : InsertCard by singletonLazy {
+        InsertCard()
+    }
     @Parcelize
     class InsertCard : EventBase() {
         override fun toString(): String {

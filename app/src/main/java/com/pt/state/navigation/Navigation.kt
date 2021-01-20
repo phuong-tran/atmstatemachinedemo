@@ -1,79 +1,59 @@
 package com.pt.state.navigation
 
 import android.os.Parcelable
-import androidx.annotation.CallSuper
+import com.pt.state.data.transition.TransitionData
 import com.pt.state.data.transition.TransitionDataBase
 import com.pt.state.manager.StateMachine
 
-interface StateProvider<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> {
-    fun providerStateComposer(): StateMachine<State, Event, SideEffect>
+interface TransitionHandler {
+    fun onTransit(data: TransitionData)
 }
 
-interface StateStorageManager<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> {
+interface StateMachineProvider<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> {
+    val stateMachine: StateMachine<State, Event, SideEffect>
+    fun provideGraphBuilder(): StateMachine.GraphBuilder<State, Event, SideEffect>
 
-    fun saveState(state: State)
-
-    fun saveTransitionData(transitionData: TransitionDataBase<State, Event, State, SideEffect>)
-
-    fun getCurrentState(): State
-
-    fun getCurrentTransitionData(): TransitionDataBase<State, Event, State, SideEffect>
+    fun createStateMachine(onTransaction: (fromState: State, event: Event, toState: State, sideEffect: SideEffect?) -> Unit): StateMachine<State, Event, SideEffect> {
+        return StateMachine.createWithDelegate(
+            provideGraphBuilder()
+        ) { fromState, event, toState, sideEffect ->
+            onTransaction(fromState, event, toState, sideEffect)
+        }
+    }
 }
 
-interface TransitionAction<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
-    StateProvider<State, Event, SideEffect> {
+interface StateTransitionProvider<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
+    StateMachineProvider<State, Event, SideEffect> {
+    // Expose this, due to we can not initialize this in interface
+    // this'll be initialized like this stateMachine = createStateMachine()
 
     fun givenState(
         state: State
     ): StateMachine<State, Event, SideEffect> {
-        return providerStateComposer().with { initialState(state) }
+        return stateMachine.with { initialState(state) }
     }
 
     fun transition(event: Event) {
-        providerStateComposer().transition(event)
+        stateMachine.transition(event)
     }
+
+    fun onTransaction(fromState: State, event: Event, toState: State, sideEffect: SideEffect?)
 }
 
-interface OnTransitAction<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
-    StateStorageManager<State, Event, SideEffect> {
+interface CurrentStateProvider<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> {
+    fun getCurrentState(): State
+    fun getCurrentTransitionData(): TransitionDataBase<State, Event, State, SideEffect>
+}
 
-    @CallSuper
-    fun doOnTransition(transitionData: TransitionDataBase<State, Event, State, SideEffect>) {
-        saveState(transitionData.toState)
-        saveTransitionData(transitionData)
-    }
+interface StateStorageManager<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
+    CurrentStateProvider<State, Event, SideEffect> {
+    fun saveState(state: State)
+    fun saveTransitionData(transitionData: TransitionDataBase<State, Event, State, SideEffect>)
 }
 
 interface Navigation<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
-    StateProvider<State, Event, SideEffect>,
-    OnTransitAction<State, Event, SideEffect>,
-    TransitionAction<State, Event, SideEffect>
+    StateTransitionProvider<State, Event, SideEffect>,
+    StateStorageManager<State, Event, SideEffect>
 
-
-/*
-interface Navigation<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> {
-    fun providerStateComposer(): StateMachine<State, Event, SideEffect>
-
-    fun givenState(state: State): StateMachine<State, Event, SideEffect> {
-        return providerStateComposer().with { initialState(state) }
-    }
-
-    fun transitTo(event: Event) {
-        providerStateComposer().transition(event)
-    }
-
-    fun saveState(state: State)
-
-    fun saveTransitionData(transitionData: TransitionDataBase<State, Event, State, SideEffect>)
-
-    fun getCurrentState(): State
-
-    @CallSuper
-    fun doOnTransition(transitionData: TransitionDataBase<State, Event, State, SideEffect>) {
-        saveState(transitionData.toState)
-        saveTransitionData(transitionData)
-    }
-
-    fun getCurrentTransitionData(): TransitionDataBase<State, Event, State, SideEffect>
-}
-*/
+interface NavigationSimple<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
+    StateTransitionProvider<State, Event, SideEffect>, CurrentStateProvider<State, Event, SideEffect>

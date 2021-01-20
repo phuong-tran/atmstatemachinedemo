@@ -9,6 +9,7 @@ import com.pt.state.navigation.viewmodel.SupportNavigationViewModelBase
 
 abstract class SupportNavigationFragmentWithViewModelBase :
     SupportNavigationFragmentBase<State, Event, SideEffect>() {
+    override val TAG: String = "SupportNavigationFragmentWithViewModelBase"
     protected abstract val viewModel: SupportNavigationViewModelBase<State, Event, SideEffect>
 
     final override fun saveTransitionData(transitionData: TransitionDataBase<State, Event, State, SideEffect>) {
@@ -23,7 +24,4 @@ abstract class SupportNavigationFragmentWithViewModelBase :
 
     final override fun getCurrentTransitionData(): TransitionDataBase<State, Event, State, SideEffect> =
         viewModel.getCurrentTransitionData()
-
-    override fun providerStateComposer(): StateMachine<State, Event, SideEffect> =
-        viewModel.providerStateComposer()
 }

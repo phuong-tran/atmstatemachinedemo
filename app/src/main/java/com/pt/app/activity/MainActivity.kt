@@ -4,17 +4,16 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import com.pt.app.state.manager.event.Events
+import com.pt.app.state.manager.provideGraph
 import com.pt.app.state.manager.state.States
-import com.pt.app.state.manager.stateMachineProvider
+import com.pt.app.viewmodel.SupportNavigationViewModelWithSavedHandler
 import com.pt.dig.atm.R
 import com.pt.state.data.Event
 import com.pt.state.data.SideEffect
 import com.pt.state.data.State
-import com.pt.state.data.transition.TransitionDataBase
+import com.pt.state.data.transition.TransitionData
 import com.pt.state.manager.StateMachine
 import com.pt.state.navigation.activity.SupportNavigationWithViewModelActivityBase
-import com.pt.app.viewmodel.SupportNavigationViewModelWithSavedHandler
-import com.pt.state.data.transition.TransitionData
 
 class MainActivity : SupportNavigationWithViewModelActivityBase() {
     // ViewModel Activity Scope
@@ -22,14 +21,23 @@ class MainActivity : SupportNavigationWithViewModelActivityBase() {
         SupportNavigationViewModelWithSavedHandler.Factory(navigation = this, this)
     }
 
-    override fun providerStateComposer(): StateMachine<State, Event, SideEffect> = stateMachineProvider {
-        doOnTransition(it)
-    }
+    override fun provideGraphBuilder(): StateMachine.GraphBuilder<State, Event, SideEffect> =
+        provideGraph()
 
-    override fun doOnTransition(transitionData: TransitionDataBase<State, Event, State, SideEffect>) {
-        super.doOnTransition(transitionData)
-        Log.d("PHUONGTRAN", "transitionData = $transitionData")
-        viewModel.onTransit(transitionData as TransitionData)
+    override fun onTransaction(
+        fromState: State,
+        event: Event,
+        toState: State,
+        sideEffect: SideEffect?
+    ) {
+        viewModel.onTransit(
+            TransitionData(
+                fromState = fromState,
+                event = event,
+                toState = toState,
+                sideEffect = sideEffect
+            )
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,5 +51,6 @@ class MainActivity : SupportNavigationWithViewModelActivityBase() {
         }
         givenState(States.IDLE.get())
         transition(Events.InsertCard.get())
+
     }
 }

@@ -9,20 +9,21 @@ import com.pt.state.data.State
 import com.pt.state.data.transition.TransitionData
 import com.pt.state.manager.StateMachine
 import com.pt.state.navigation.Navigation
+import com.pt.state.navigation.TransitionHandler
 import com.pt.state.navigation.viewmodel.SupportNavigationViewModelWithSavedHandlerBase
-
-interface TransitionHandler {
-    fun onTransit(data: TransitionData)
-}
 
 class SupportNavigationViewModelWithSavedHandler(
     navigation: Navigation<State, Event, SideEffect>,
     savedStateHandle: SavedStateHandle
-) : SupportNavigationViewModelWithSavedHandlerBase(navigation, savedStateHandle), TransitionHandler {
+) : SupportNavigationViewModelWithSavedHandlerBase(navigation, savedStateHandle),
+    TransitionHandler {
     private val transitionMutableLiveData: MutableLiveData<TransitionData> = MutableLiveData()
+    override val TAG = "SupportNavigationViewModelWithSavedHandler"
     val transitionData: LiveData<TransitionData> = transitionMutableLiveData
 
     override fun onTransit(data: TransitionData) {
+        saveState(data.toState)
+        saveTransitionData(data)
         transitionMutableLiveData.postValue(data)
     }
 

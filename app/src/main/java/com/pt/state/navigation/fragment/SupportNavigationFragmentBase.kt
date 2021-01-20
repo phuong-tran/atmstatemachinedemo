@@ -7,7 +7,9 @@ import com.pt.state.navigation.Navigation
 
 abstract class SupportNavigationFragmentBase<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
     Fragment(),
-    Navigation<State, Event, SideEffect>
+    Navigation<State, Event, SideEffect> {
+        protected abstract val TAG : String
+    }
 
 
 /*
