@@ -6,13 +6,13 @@ import com.pt.state.data.Event
 import com.pt.state.data.SideEffect
 import com.pt.state.data.State
 import com.pt.state.data.transition.TransitionGenericData
-import com.pt.state.navigation.Navigation
-import com.pt.state.navigation.STATE
-import com.pt.state.navigation.TRANSITION_DATA
+import com.pt.state.navigation.state.advance.NavigationAdvancedHandler
+import com.pt.state.navigation.state.STATE
+import com.pt.state.navigation.state.TRANSITION_DATA
 
 
 abstract class AdvancedSupportStateBaseViewModel(
-    navigation: Navigation<State, Event, SideEffect>,
+    navigation: NavigationAdvancedHandler<State, Event, SideEffect>,
     private val savedStateHandle: SavedStateHandle
 ) : SupportStateGenericViewModel<State, Event, SideEffect>(navigation) {
 

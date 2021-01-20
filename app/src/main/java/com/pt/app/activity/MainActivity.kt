@@ -42,14 +42,19 @@ class MainActivity : AdvancedStateSupportBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.transitionData.observe(this, {
+        /*viewModel.transitionData.observe(this, {
             Log.d("PHUONGTRAN", "transitionData Api = $it")
-        })
+
+        })*/
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
-
+            givenState(States.IDLE.get())
+            transition(Events.InsertCard.get())
+            Log.d("PHUONGTRAN", "currentStateA = ${viewModel.getCurrentState()}")
+            Log.d("PHUONGTRAN", "currentTransactionDataA = ${viewModel.getCurrentTransitionData()}")
+        } else {
+            Log.d("PHUONGTRAN", "currentStateB = ${viewModel.getCurrentState()}")
+            Log.d("PHUONGTRAN", "currentTransactionDataB = ${viewModel.getCurrentTransitionData()}")
         }
-        givenState(States.IDLE.get())
-        transition(Events.InsertCard.get())
     }
 }

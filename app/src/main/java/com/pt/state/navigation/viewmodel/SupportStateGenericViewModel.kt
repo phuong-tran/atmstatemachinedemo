@@ -2,10 +2,10 @@ package com.pt.state.navigation.viewmodel
 
 import android.os.Parcelable
 import androidx.lifecycle.ViewModel
-import com.pt.state.navigation.Navigation
+import com.pt.state.navigation.state.advance.NavigationAdvancedHandler
 
 abstract class SupportStateGenericViewModel<State : Parcelable, Event : Parcelable, SideEffect : Parcelable>(
-    navigation: Navigation<State, Event, SideEffect>
-) : ViewModel(), Navigation<State, Event, SideEffect> by navigation {
+    navigation: NavigationAdvancedHandler<State, Event, SideEffect>
+) : ViewModel(), NavigationAdvancedHandler<State, Event, SideEffect> by navigation {
     protected abstract val TAG: String
 }

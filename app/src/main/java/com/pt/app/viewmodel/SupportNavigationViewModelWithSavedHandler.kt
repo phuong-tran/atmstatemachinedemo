@@ -7,12 +7,12 @@ import com.pt.state.data.Event
 import com.pt.state.data.SideEffect
 import com.pt.state.data.State
 import com.pt.state.data.transition.TransitionData
-import com.pt.state.navigation.Navigation
-import com.pt.state.navigation.TransitionHandler
+import com.pt.state.navigation.state.advance.NavigationAdvancedHandler
+import com.pt.state.navigation.state.advance.TransitionHandler
 import com.pt.state.navigation.viewmodel.AdvancedSupportStateBaseViewModel
 
 class SupportNavigationViewModelWithSavedHandler(
-    navigation: Navigation<State, Event, SideEffect>,
+    navigation: NavigationAdvancedHandler<State, Event, SideEffect>,
     savedStateHandle: SavedStateHandle
 ) : AdvancedSupportStateBaseViewModel(navigation, savedStateHandle),
     TransitionHandler {
@@ -27,7 +27,7 @@ class SupportNavigationViewModelWithSavedHandler(
     }
 
     class Factory(
-        private val navigation: Navigation<State, Event, SideEffect>,
+        private val navigation: NavigationAdvancedHandler<State, Event, SideEffect>,
         owner: SavedStateRegistryOwner,
         defaultArgs: Bundle? = null
     ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {

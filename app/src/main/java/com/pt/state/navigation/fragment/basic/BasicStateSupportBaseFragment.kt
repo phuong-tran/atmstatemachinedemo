@@ -7,14 +7,16 @@ import com.pt.state.data.Event
 import com.pt.state.data.SideEffect
 import com.pt.state.data.State
 import com.pt.state.data.transition.TransitionData
-import com.pt.state.navigation.ManualSavedStateHandler
-import com.pt.state.navigation.STATE
-import com.pt.state.navigation.TRANSITION_DATA
+import com.pt.state.navigation.state.restoreState
+import com.pt.state.navigation.state.saveState
+import com.pt.state.navigation.state.setDefaultState
+import com.pt.state.navigation.state.manual.ManualSavedStateHandler
+import com.pt.state.navigation.state.manual.update.UpdateStateHandler
 import java.util.concurrent.atomic.AtomicReference
 
 abstract class BasicStateSupportBaseFragment :
     BasicStateSupportGenericFragment<State, Event, SideEffect>(),
-    ManualSavedStateHandler {
+    ManualSavedStateHandler, UpdateStateHandler {
     override val TAG = "SupportNavigationStandAloneFragment"
 
     /**
@@ -24,16 +26,16 @@ abstract class BasicStateSupportBaseFragment :
     override val currentState: AtomicReference<State> = AtomicReference(defaultState)
     override val currentTransitionData: AtomicReference<TransitionData> = AtomicReference()
 
-    private fun setCurrentState(state: State) = currentState.set(state)
+    override fun setCurrentState(state: State) = currentState.set(state)
 
+    override fun setCurrentTransitionData(transitionData: TransitionData) =
+        currentTransitionData.set(transitionData)
 
     override fun getCurrentState(): State = currentState.get()
 
     override fun getCurrentTransitionData(): TransitionData =
         currentTransitionData.get()
 
-    private fun setCurrentTransitionData(transitionData: TransitionData) =
-        currentTransitionData.set(transitionData)
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -71,29 +73,16 @@ abstract class BasicStateSupportBaseFragment :
     override fun onSaveInstanceState(outState: Bundle) {
         with(outState) {
             super.onSaveInstanceState(this)
-            putParcelable(STATE, defaultState)
-            putParcelable(TRANSITION_DATA, getCurrentTransitionData())
+            saveState(defaultState = defaultState, transitionData = getCurrentTransitionData())
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState != null) {
-            with(savedInstanceState) {
-                setCurrentState((getParcelable(STATE) ?: defaultState).also {
-                    setCurrentState(it)
-                })
-                getParcelable<TransitionData>(TRANSITION_DATA)?.let {
-                    setCurrentTransitionData(it)
-                }
-            }
+            savedInstanceState.restoreState(this, defaultState)
         } else {
-            setDefaultState()
+            setDefaultState(this, defaultState, this)
         }
-    }
-
-    private fun setDefaultState() {
-        setCurrentState(defaultState)
-        givenState(state = defaultState)
     }
 }

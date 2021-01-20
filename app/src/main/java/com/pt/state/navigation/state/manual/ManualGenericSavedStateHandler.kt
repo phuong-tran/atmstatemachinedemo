@@ -1,10 +1,10 @@
-package com.pt.state.navigation
+package com.pt.state.navigation.state.manual
 
 import android.os.Parcelable
+import com.pt.state.navigation.state.common.SavedStateGenericHandler
 import java.util.concurrent.atomic.AtomicReference
 
 interface ManualGenericSavedStateHandler<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
-    StateSavedStateHandler<State, Event, SideEffect> {
+    SavedStateGenericHandler<State, Event, SideEffect>, DefaultGenericStateProvider<State> {
     val currentState: AtomicReference<State>
-    val defaultState: State
 }
