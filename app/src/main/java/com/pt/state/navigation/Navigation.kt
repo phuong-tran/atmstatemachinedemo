@@ -2,7 +2,7 @@ package com.pt.state.navigation
 
 import android.os.Parcelable
 import com.pt.state.data.transition.TransitionData
-import com.pt.state.data.transition.TransitionDataBase
+import com.pt.state.data.transition.TransitionGenericData
 import com.pt.state.manager.StateMachine
 
 interface TransitionHandler {
@@ -41,13 +41,13 @@ interface StateTransitionProvider<State : Parcelable, Event : Parcelable, SideEf
 
 interface CurrentStateProvider<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> {
     fun getCurrentState(): State
-    fun getCurrentTransitionData(): TransitionDataBase<State, Event, State, SideEffect>
+    fun getCurrentTransitionData(): TransitionGenericData<State, Event, State, SideEffect>
 }
 
 interface StateSavedStateHandler<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
     CurrentStateProvider<State, Event, SideEffect> {
     fun saveState(state: State)
-    fun saveTransitionData(transitionData: TransitionDataBase<State, Event, State, SideEffect>)
+    fun saveTransitionData(transitionData: TransitionGenericData<State, Event, State, SideEffect>)
 }
 
 interface Navigation<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :

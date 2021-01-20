@@ -12,4 +12,4 @@ data class TransitionData(
     override val event: Event,
     override val toState: State,
     override val sideEffect: SideEffect?
-) : TransitionDataBase<State, Event, State, SideEffect>, Parcelable
+) : TransitionGenericData<State, Event, State, SideEffect>, Parcelable

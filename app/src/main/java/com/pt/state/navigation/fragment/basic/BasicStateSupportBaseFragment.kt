@@ -7,23 +7,25 @@ import com.pt.state.data.Event
 import com.pt.state.data.SideEffect
 import com.pt.state.data.State
 import com.pt.state.data.transition.TransitionData
+import com.pt.state.navigation.ManualSavedStateHandler
 import com.pt.state.navigation.STATE
 import com.pt.state.navigation.TRANSITION_DATA
 import java.util.concurrent.atomic.AtomicReference
 
 abstract class BasicStateSupportBaseFragment :
-    BasicStateSupportGenericFragment<State, Event, SideEffect>() {
+    BasicStateSupportGenericFragment<State, Event, SideEffect>(),
+    ManualSavedStateHandler {
     override val TAG = "SupportNavigationStandAloneFragment"
+
     /**
      * The state may be changed in some cases, such as using the same fragment (screen), but not same state
      */
-    protected abstract val defaultState: State
 
-    private val currentTransitionData =
-        AtomicReference<TransitionData>()
-    private val currentState = AtomicReference<State>()
+    override val currentState: AtomicReference<State> = AtomicReference(defaultState)
+    override val currentTransitionData: AtomicReference<TransitionData> = AtomicReference()
 
     private fun setCurrentState(state: State) = currentState.set(state)
+
 
     override fun getCurrentState(): State = currentState.get()
 
