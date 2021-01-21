@@ -1,5 +1,6 @@
 package com.pt.app.state.singleton
 
+import java.util.concurrent.ConcurrentHashMap
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
@@ -18,13 +19,37 @@ class SingletonLazy<T : Any>(val initBlock: () -> T, val clazz: Class<T>) {
     }
 
     companion object {
-        private val singletonsCache = HashMap<Int, Any>()
-        fun <T> clearSingleton(clazz: Class<T>): Boolean {
+        private val singletonsCache = ConcurrentHashMap<Int, Any>()
+
+        fun <T> remove(clazz: Class<T>): Boolean {
             val hash = clazz.hashCode()
             val result = singletonsCache[hash]
             if (result?.javaClass != clazz) return false
             singletonsCache.remove(hash)
             return true
         }
+
+        fun clearAll() {
+            singletonsCache.clear()
+        }
+
+        @Suppress("UNCHECKED_CAST")
+        fun <T> get(clazz: Class<T>): T? {
+            return singletonsCache[clazz.hashCode()] as? T
+        }
+
+        @Suppress("UNCHECKED_CAST")
+        fun <T> update(clazz: Class<T>, initBlock: () -> T) {
+            remove(clazz)
+            val value: T = initBlock()
+            val hash = clazz.hashCode()
+            initBlock().apply {
+                singletonsCache[hash] = value as Any
+            }
+        }
+
+        fun size(): Int = singletonsCache.size
+
+        fun getAll(): List<Any> = singletonsCache.values.toList()
     }
 }
