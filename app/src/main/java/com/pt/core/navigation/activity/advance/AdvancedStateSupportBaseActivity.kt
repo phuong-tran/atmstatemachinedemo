@@ -9,6 +9,7 @@ import com.pt.core.navigation.viewmodel.SupportStateGenericViewModel
 
 abstract class AdvancedStateSupportBaseActivity :
     AdvancedStateSupportGenericActivity<State, Event, SideEffect>() {
+    override val TAG = "AdvancedStateSupportBaseActivity"
     // ViewModel Activity Scope
     protected abstract val viewModel: SupportStateGenericViewModel<State, Event, SideEffect>
 

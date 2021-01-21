@@ -1,7 +1,9 @@
 package com.pt.core.state.advance
 
-import com.pt.core.data.Event
-import com.pt.core.data.SideEffect
-import com.pt.core.data.State
+import android.os.Parcelable
+import com.pt.core.state.common.SavedStateGenericHandler
+import com.pt.core.state.common.StateTransitionGenericProvider
 
-interface NavigationAdvancedHandler : NavigationAdvancedGenericHandler<State, Event, SideEffect>
+interface NavigationAdvancedHandler<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
+    StateTransitionGenericProvider<State, Event, SideEffect>,
+    SavedStateGenericHandler<State, Event, SideEffect>
