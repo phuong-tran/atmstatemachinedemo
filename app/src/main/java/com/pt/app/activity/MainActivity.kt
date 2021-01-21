@@ -16,7 +16,8 @@ import com.pt.core.state.manager.StateMachine
 import com.pt.core.navigation.activity.advance.AdvancedStateSupportBaseActivity
 
 class MainActivity : AdvancedStateSupportBaseActivity() {
-    // ViewModel Activity Scope
+    override val TAG = "MainActivity"
+
     override val viewModel: SupportNavigationViewModelWithSavedHandler by viewModels {
         SupportNavigationViewModelWithSavedHandler.Factory(navigation = this, this)
     }
@@ -38,23 +39,43 @@ class MainActivity : AdvancedStateSupportBaseActivity() {
                 sideEffect = sideEffect
             )
         )
+        when (fromState) {
+            is States.IDLE -> {
+                Log.d(TAG, "from $fromState")
+            }
+            else -> {
+                Log.d(TAG, "fromState Not Handle")
+            }
+        }
+
+        when (toState) {
+            is States.VerifyCart -> {
+                Log.d(TAG, "from $toState")
+            }
+            else -> {
+                Log.d(TAG, "toState Not Handle")
+            }
+        }
+    }
+
+    private fun registerTransitionObserver() {
+        viewModel.transitionData.observe(this, {
+            Log.d(TAG, "at registerTransitionObserver = $it")
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        /*viewModel.transitionData.observe(this, {
-            Log.d("PHUONGTRAN", "transitionData Api = $it")
-
-        })*/
+        registerTransitionObserver()
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
-            givenState(States.IDLE.get())
-            transition(Events.InsertCard.get())
-            Log.d("PHUONGTRAN", "currentStateA = ${viewModel.getCurrentState()}")
-            Log.d("PHUONGTRAN", "currentTransactionDataA = ${viewModel.getCurrentTransitionData()}")
+            givenState(States.IDLE)
+            transition(Events.InsertCard)
+            Log.d(TAG, "currentStateA = ${viewModel.getCurrentState()}")
+            Log.d(TAG, "currentTransactionDataA = ${viewModel.getCurrentTransitionData()}")
         } else {
-            Log.d("PHUONGTRAN", "currentStateB = ${viewModel.getCurrentState()}")
-            Log.d("PHUONGTRAN", "currentTransactionDataB = ${viewModel.getCurrentTransitionData()}")
+            Log.d(TAG, "currentStateB = ${viewModel.getCurrentState()}")
+            Log.d(TAG, "currentTransactionDataB = ${viewModel.getCurrentTransitionData()}")
         }
     }
 }

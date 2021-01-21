@@ -1,69 +1,34 @@
 package com.pt.app.state.manager.event
 
-import com.pt.app.state.singleton.singletonLazy
-import com.pt.core.create
 import com.pt.core.data.EventBase
 import kotlinx.android.parcel.Parcelize
 
 class Events {
-    val x : InsertCard by singletonLazy {
-        InsertCard()
-    }
     @Parcelize
-    class InsertCard : EventBase() {
+    object InsertCard : EventBase() {
         override fun toString(): String {
             return "Event InsertCard"
         }
-
-        companion object {
-            private val insertCard: InsertCard by lazy {
-                create { InsertCard() }
-            }
-
-            fun get(): InsertCard = insertCard
-        }
     }
 
     @Parcelize
-    class EjectCart : EventBase() {
+    object EjectCart : EventBase() {
         override fun toString(): String {
             return "Event EjectCart"
         }
+    }
 
-        companion object {
-            private val ejectCart: EjectCart by lazy {
-                create { EjectCart() }
-            }
-
-            fun get(): EjectCart = ejectCart
+    @Parcelize
+    object VerifyCartSuccess : EventBase() {
+        override fun toString(): String {
+            return "Event VerifyCartSuccess"
         }
     }
 
     @Parcelize
-    class VerifyCartSuccess : EventBase() {
+    object VerifyCartFailure : EventBase() {
         override fun toString(): String {
-            return "Event InsertCard"
-        }
-        companion object {
-            private val verifyCartSuccess: VerifyCartSuccess by lazy {
-                create { VerifyCartSuccess() }
-            }
-
-            fun get(): VerifyCartSuccess = verifyCartSuccess
-        }
-    }
-
-    @Parcelize
-    class VerifyCartFailure : EventBase() {
-        override fun toString(): String {
-            return "Event InsertCard"
-        }
-        companion object {
-            private val verifyCartFailure: VerifyCartFailure by lazy {
-                create { VerifyCartFailure() }
-            }
-
-            fun get(): VerifyCartFailure = verifyCartFailure
+            return "Event VerifyCartFailure"
         }
     }
 }
