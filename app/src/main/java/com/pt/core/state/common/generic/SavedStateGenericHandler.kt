@@ -1,4 +1,4 @@
-package com.pt.core.state.common
+package com.pt.core.state.common.generic
 
 import android.os.Parcelable
 import com.pt.core.data.transition.TransitionGenericData

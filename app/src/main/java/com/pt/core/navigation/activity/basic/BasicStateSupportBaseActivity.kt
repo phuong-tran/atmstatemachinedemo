@@ -7,7 +7,7 @@ import com.pt.core.data.State
 import com.pt.core.data.transition.TransitionData
 import com.pt.core.state.*
 import com.pt.core.state.manual.ManualSavedStateHandler
-import com.pt.core.state.manual.update.UpdateStateHandler
+import com.pt.core.state.manual.generic.update.UpdateStateHandler
 import java.util.concurrent.atomic.AtomicReference
 
 abstract class BasicStateSupportBaseActivity :

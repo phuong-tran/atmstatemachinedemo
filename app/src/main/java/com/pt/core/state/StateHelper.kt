@@ -5,8 +5,8 @@ import com.pt.core.data.Event
 import com.pt.core.data.SideEffect
 import com.pt.core.data.State
 import com.pt.core.data.transition.TransitionData
-import com.pt.core.state.common.StateTransitionGenericProvider
-import com.pt.core.state.manual.update.UpdateStateHandler
+import com.pt.core.state.common.generic.StateTransitionGenericProvider
+import com.pt.core.state.manual.generic.update.UpdateStateHandler
 
 fun Bundle.restoreState(updateStateHandler: UpdateStateHandler, defaultState: State) {
     with(updateStateHandler) {
