@@ -5,13 +5,14 @@ import com.pt.core.data.SideEffect
 import com.pt.core.data.State
 import com.pt.core.data.transition.TransitionGenericData
 import com.pt.core.navigation.viewmodel.generic.SupportStateGenericViewModel
+import com.pt.core.navigation.viewmodel.statebase.AdvancedSupportStateBaseViewModel
 
 
-abstract class AdvancedStateSupportBaseActivity :
-    AdvancedStateSupportGenericActivity<State, Event, SideEffect>() {
+abstract class AdvancedStateSupportBaseActivity : AdvancedStateBaseSupportActivity() {
     override val TAG = "AdvancedStateSupportBaseActivity"
+
     // ViewModel Activity Scope
-    protected abstract val viewModel: SupportStateGenericViewModel<State, Event, SideEffect>
+    protected abstract val viewModel: AdvancedSupportStateBaseViewModel
 
     override fun saveTransitionData(transitionData: TransitionGenericData<State, Event, State, SideEffect>) {
         viewModel.saveTransitionData(transitionData)

@@ -7,13 +7,13 @@ import com.pt.app.state.manager.event.Events
 import com.pt.app.state.manager.provideGraph
 import com.pt.app.state.manager.state.States
 import com.pt.app.viewmodel.SupportNavigationViewModelWithSavedHandler
-import com.pt.dig.atm.R
 import com.pt.core.data.Event
 import com.pt.core.data.SideEffect
 import com.pt.core.data.State
 import com.pt.core.data.transition.TransitionData
-import com.pt.core.state.manager.StateMachine
 import com.pt.core.navigation.activity.advance.AdvancedStateSupportBaseActivity
+import com.pt.core.state.manager.StateMachine
+import com.pt.dig.atm.R
 
 class MainActivity : AdvancedStateSupportBaseActivity() {
     override val TAG = "MainActivity"

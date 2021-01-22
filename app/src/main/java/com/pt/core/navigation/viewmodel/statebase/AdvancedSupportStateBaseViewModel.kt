@@ -6,18 +6,17 @@ import com.pt.core.data.Event
 import com.pt.core.data.SideEffect
 import com.pt.core.data.State
 import com.pt.core.data.transition.TransitionGenericData
-import com.pt.core.navigation.viewmodel.generic.SupportStateGenericViewModel
 import com.pt.core.state.STATE
 import com.pt.core.state.TRANSITION_DATA
-import com.pt.core.state.advance.NavigationAdvancedHandler
+import com.pt.core.state.advance.statebase.NavigationAdvancedHandler
 
 
 abstract class AdvancedSupportStateBaseViewModel(
-    navigation: NavigationAdvancedHandler<State, Event, SideEffect>,
-    private val savedStateHandle: SavedStateHandle
-) : SupportStateGenericViewModel<State, Event, SideEffect>(navigation) {
+    navigation: NavigationAdvancedHandler,
+    savedStateHandle: SavedStateHandle
+) : SavedStateHandlerBaseViewModel(savedStateHandle), NavigationAdvancedHandler by navigation {
 
-    override val TAG = "SupportNavigationViewModelWithSavedHandlerBase"
+    protected abstract val TAG: String
 
     override fun saveState(state: State) {
         savedStateHandle.set(STATE, state)

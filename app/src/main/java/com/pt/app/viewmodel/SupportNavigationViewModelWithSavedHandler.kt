@@ -3,16 +3,13 @@ package com.pt.app.viewmodel
 import android.os.Bundle
 import androidx.lifecycle.*
 import androidx.savedstate.SavedStateRegistryOwner
-import com.pt.core.data.Event
-import com.pt.core.data.SideEffect
-import com.pt.core.data.State
 import com.pt.core.data.transition.TransitionData
 import com.pt.core.state.advance.TransitionHandler
 import com.pt.core.navigation.viewmodel.statebase.AdvancedSupportStateBaseViewModel
-import com.pt.core.state.advance.NavigationAdvancedHandler
+import com.pt.core.state.advance.statebase.NavigationAdvancedHandler
 
 class SupportNavigationViewModelWithSavedHandler(
-    navigation: NavigationAdvancedHandler<State, Event, SideEffect>,
+    navigation: NavigationAdvancedHandler,
     savedStateHandle: SavedStateHandle
 ) : AdvancedSupportStateBaseViewModel(navigation, savedStateHandle),
     TransitionHandler {
@@ -27,7 +24,7 @@ class SupportNavigationViewModelWithSavedHandler(
     }
 
     class Factory(
-        private val navigation: NavigationAdvancedHandler<State, Event, SideEffect>,
+        private val navigation: NavigationAdvancedHandler,
         owner: SavedStateRegistryOwner,
         defaultArgs: Bundle? = null
     ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
