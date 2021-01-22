@@ -50,6 +50,7 @@ class IntroFragment : AdvancedStateSupportBaseFragment() {
     }
 
 
-    override val stateMachine: StateMachine<State, Event, SideEffect>
-        get() = TODO("Not yet implemented")
+    override fun provideStateMachine(): StateMachine<State, Event, SideEffect> {
+        TODO("Not yet implemented")
+    }
 }

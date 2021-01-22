@@ -1,4 +1,4 @@
-package com.pt.core.navigation.activity.basic
+package com.pt.core.navigation.activity.basic.statebase
 
 import android.os.Parcelable
 import com.pt.core.navigation.activity.BaseAppCompatActivity

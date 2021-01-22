@@ -6,7 +6,10 @@ import com.pt.core.state.manager.StateMachine
 interface StateMachineGenericProvider<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> {
     // Expose this, due to we can not initialize this in interface
     // this'll be initialized like this stateMachine = createStateMachine()
-    val stateMachine: StateMachine<State, Event, SideEffect>
+    //val stateMachine: StateMachine<State, Event, SideEffect>
+
+    fun provideStateMachine(): StateMachine<State, Event, SideEffect>
+
     fun provideGraphBuilder(): StateMachine.GraphBuilder<State, Event, SideEffect>
 
     fun createStateMachine(onTransaction: (fromState: State, event: Event, toState: State, sideEffect: SideEffect?) -> Unit): StateMachine<State, Event, SideEffect> {

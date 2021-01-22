@@ -11,7 +11,7 @@ import com.pt.core.data.Event
 import com.pt.core.data.SideEffect
 import com.pt.core.data.State
 import com.pt.core.data.transition.TransitionData
-import com.pt.core.navigation.activity.advance.AdvancedStateSupportBaseActivity
+import com.pt.core.navigation.activity.advance.statebase.AdvancedStateSupportBaseActivity
 import com.pt.core.state.manager.StateMachine
 import com.pt.dig.atm.R
 
@@ -23,7 +23,9 @@ class MainActivity : AdvancedStateSupportBaseActivity() {
     }
 
     override fun provideGraphBuilder(): StateMachine.GraphBuilder<State, Event, SideEffect> =
-        provideGraph()
+        provideGraph().apply {
+            initialState(States.IDLE)
+        }
 
     override fun onTransaction(
         fromState: State,
@@ -76,6 +78,11 @@ class MainActivity : AdvancedStateSupportBaseActivity() {
         } else {
             Log.d(TAG, "currentStateB = ${viewModel.getCurrentState()}")
             Log.d(TAG, "currentTransactionDataB = ${viewModel.getCurrentTransitionData()}")
+           /* stateMachine = stateMachine.with {
+                initialState(viewModel.getCurrentTransitionData().fromState)
+            }*/
+            setStateWith(viewModel.getCurrentTransitionData().fromState)
+            transition(Events.InsertCard)
         }
     }
 }

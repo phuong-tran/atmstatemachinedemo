@@ -43,16 +43,6 @@ abstract class BasicStateSupportBaseFragment :
         givenState(state = defaultState)
     }
 
-    override val stateMachine =
-        createStateMachine { fromState: State, event: Event, toState: State, sideEffect: SideEffect? ->
-            onTransaction(
-                fromState = fromState,
-                event = event,
-                toState = toState,
-                sideEffect = sideEffect
-            )
-        }
-
     @CallSuper
     override fun onTransaction(
         fromState: State,

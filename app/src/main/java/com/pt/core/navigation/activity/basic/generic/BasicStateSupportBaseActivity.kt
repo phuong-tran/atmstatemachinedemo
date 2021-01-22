@@ -1,10 +1,11 @@
-package com.pt.core.navigation.activity.basic
+package com.pt.core.navigation.activity.basic.generic
 
 import android.os.Bundle
 import com.pt.core.data.Event
 import com.pt.core.data.SideEffect
 import com.pt.core.data.State
 import com.pt.core.data.transition.TransitionData
+import com.pt.core.navigation.activity.basic.statebase.BasicStateSupportGenericActivity
 import com.pt.core.state.*
 import com.pt.core.state.manual.statebase.ManualSavedStateHandler
 import com.pt.core.state.manual.statebase.update.UpdateStateHandler
@@ -26,16 +27,6 @@ abstract class BasicStateSupportBaseActivity :
     override fun setCurrentTransitionData(transitionData: TransitionData) =
         currentTransitionData.set(transitionData)
 
-
-    override val stateMachine =
-        createStateMachine { fromState: State, event: Event, toState: State, sideEffect: SideEffect? ->
-            onTransaction(
-                fromState = fromState,
-                event = event,
-                toState = toState,
-                sideEffect = sideEffect
-            )
-        }
 
     override fun onTransaction(
         fromState: State,

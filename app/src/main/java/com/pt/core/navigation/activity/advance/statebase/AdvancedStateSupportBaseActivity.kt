@@ -1,10 +1,9 @@
-package com.pt.core.navigation.activity.advance
+package com.pt.core.navigation.activity.advance.statebase
 
 import com.pt.core.data.Event
 import com.pt.core.data.SideEffect
 import com.pt.core.data.State
 import com.pt.core.data.transition.TransitionGenericData
-import com.pt.core.navigation.viewmodel.generic.SupportStateGenericViewModel
 import com.pt.core.navigation.viewmodel.statebase.AdvancedSupportStateBaseViewModel
 
 
@@ -26,15 +25,4 @@ abstract class AdvancedStateSupportBaseActivity : AdvancedStateBaseSupportActivi
 
     override fun getCurrentTransitionData(): TransitionGenericData<State, Event, State, SideEffect> =
         viewModel.getCurrentTransitionData()
-
-
-    override var stateMachine =
-        createStateMachine { fromState: State, event: Event, toState: State, sideEffect: SideEffect? ->
-            onTransaction(
-                fromState = fromState,
-                event = event,
-                toState = toState,
-                sideEffect = sideEffect
-            )
-        }
 }

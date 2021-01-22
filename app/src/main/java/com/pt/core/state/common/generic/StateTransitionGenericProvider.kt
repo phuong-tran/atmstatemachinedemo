@@ -8,11 +8,11 @@ interface StateTransitionGenericProvider<State : Parcelable, Event : Parcelable,
     fun givenState(
         state: State
     ): StateMachine<State, Event, SideEffect> {
-        return stateMachine.with { initialState(state) }
+        return provideStateMachine().with { initialState(state) }
     }
 
     fun transition(event: Event) {
-        stateMachine.transition(event)
+        provideStateMachine().transition(event)
     }
 
     fun onTransaction(fromState: State, event: Event, toState: State, sideEffect: SideEffect?)

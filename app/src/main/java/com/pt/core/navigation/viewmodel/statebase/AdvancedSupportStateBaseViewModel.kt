@@ -24,7 +24,7 @@ abstract class AdvancedSupportStateBaseViewModel(
     }
 
     override fun getCurrentState(): State =
-        savedStateHandle.get(STATE) ?: stateMachine.state
+        savedStateHandle.get(STATE) ?: provideStateMachine().state
 
     override fun saveTransitionData(transitionData: TransitionGenericData<State, Event, State, SideEffect>) {
         savedStateHandle.set(TRANSITION_DATA, transitionData)
