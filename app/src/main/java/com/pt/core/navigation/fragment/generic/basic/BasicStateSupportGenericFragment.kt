@@ -1,4 +1,4 @@
-package com.pt.core.navigation.fragment.basic
+package com.pt.core.navigation.fragment.generic.basic
 
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
