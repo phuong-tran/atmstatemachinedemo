@@ -8,7 +8,7 @@ import com.pt.core.navigation.fragment.generic.advance.AdvancedStateSupportGener
 import com.pt.core.navigation.viewmodel.SupportStateGenericViewModel
 
 abstract class AdvancedStateSupportBaseFragment :
-    AdvancedStateSupportGenericFragment<State, Event, SideEffect>() {
+    AdvancedStateBaseSupportFragment() {
     override val TAG: String = "SupportNavigationFragmentWithViewModelBase"
     protected abstract val viewModel: SupportStateGenericViewModel<State, Event, SideEffect>
 
