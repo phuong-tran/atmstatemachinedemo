@@ -1,12 +1,10 @@
-package com.pt.core.navigation
+package com.pt.core.navigation.stateholder.generic
 
-import com.pt.core.data.Event
-import com.pt.core.data.SideEffect
-import com.pt.core.data.State
+import android.os.Parcelable
 import com.pt.core.state.manager.StateMachine
 import java.util.concurrent.atomic.AtomicReference
 
-interface StateHolder {
+interface StateGenericHolder<State: Parcelable, Event: Parcelable, SideEffect: Parcelable> {
     fun initializeStateMachine(): StateMachine<State, Event, SideEffect>
     val stateMachineHolder: AtomicReference<StateMachine<State, Event, SideEffect>>
 
