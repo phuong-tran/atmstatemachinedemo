@@ -1,9 +1,8 @@
 package com.pt.core.state.manual.statebase
 
-import android.os.Parcelable
-import com.pt.core.state.common.generic.CurrentStateGenericProvider
-import com.pt.core.state.common.generic.StateTransitionGenericProvider
+import com.pt.core.data.Event
+import com.pt.core.data.SideEffect
+import com.pt.core.data.State
+import com.pt.core.state.manual.generic.NavigationSimpleGenericHandler
 
-interface NavigationSimpleHandler<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
-    StateTransitionGenericProvider<State, Event, SideEffect>,
-    CurrentStateGenericProvider<State, Event, SideEffect>
+interface NavigationSimpleHandler : NavigationSimpleGenericHandler<State, Event, SideEffect>

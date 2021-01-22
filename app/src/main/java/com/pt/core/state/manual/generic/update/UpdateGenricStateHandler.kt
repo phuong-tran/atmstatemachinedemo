@@ -1,5 +1,5 @@
 package com.pt.core.state.manual.generic.update
 
-interface UpdateGenericState<State> {
+interface UpdateGenericStateHandler<State> {
     fun setCurrentState(state: State)
 }
