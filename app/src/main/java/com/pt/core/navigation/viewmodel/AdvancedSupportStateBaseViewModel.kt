@@ -6,6 +6,7 @@ import com.pt.core.data.Event
 import com.pt.core.data.SideEffect
 import com.pt.core.data.State
 import com.pt.core.data.transition.TransitionGenericData
+import com.pt.core.navigation.viewmodel.generic.SupportStateGenericViewModel
 import com.pt.core.state.STATE
 import com.pt.core.state.TRANSITION_DATA
 import com.pt.core.state.advance.NavigationAdvancedHandler

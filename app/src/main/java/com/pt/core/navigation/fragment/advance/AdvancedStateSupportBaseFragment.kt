@@ -4,8 +4,7 @@ import com.pt.core.data.Event
 import com.pt.core.data.SideEffect
 import com.pt.core.data.State
 import com.pt.core.data.transition.TransitionGenericData
-import com.pt.core.navigation.fragment.generic.advance.AdvancedStateSupportGenericFragment
-import com.pt.core.navigation.viewmodel.SupportStateGenericViewModel
+import com.pt.core.navigation.viewmodel.generic.SupportStateGenericViewModel
 
 abstract class AdvancedStateSupportBaseFragment :
     AdvancedStateBaseSupportFragment() {

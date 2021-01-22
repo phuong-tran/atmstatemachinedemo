@@ -1,4 +1,4 @@
-package com.pt.core.navigation.viewmodel
+package com.pt.core.navigation.viewmodel.generic
 
 import android.os.Parcelable
 import androidx.lifecycle.ViewModel
