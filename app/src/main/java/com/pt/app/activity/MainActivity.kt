@@ -22,6 +22,17 @@ class MainActivity : AdvancedStateSupportBaseActivity() {
         SupportNavigationViewModelWithSavedHandler.Factory(navigation = this, this)
     }
 
+    override fun initializeStateMachine(): StateMachine<State, Event, SideEffect> {
+        return createStateMachine { fromState: State, event: Event, toState: State, sideEffect: SideEffect? ->
+            onTransaction(
+                fromState = fromState,
+                event = event,
+                toState = toState,
+                sideEffect = sideEffect
+            )
+        }
+    }
+
     override fun provideGraphBuilder(): StateMachine.GraphBuilder<State, Event, SideEffect> =
         provideGraph().apply {
             initialState(States.IDLE)
@@ -78,9 +89,6 @@ class MainActivity : AdvancedStateSupportBaseActivity() {
         } else {
             Log.d(TAG, "currentStateB = ${viewModel.getCurrentState()}")
             Log.d(TAG, "currentTransactionDataB = ${viewModel.getCurrentTransitionData()}")
-           /* stateMachine = stateMachine.with {
-                initialState(viewModel.getCurrentTransitionData().fromState)
-            }*/
             setStateWith(viewModel.getCurrentTransitionData().fromState)
             transition(Events.InsertCard)
         }

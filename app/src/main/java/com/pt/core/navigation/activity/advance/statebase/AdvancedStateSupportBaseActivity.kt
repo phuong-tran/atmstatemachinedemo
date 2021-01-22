@@ -25,4 +25,5 @@ abstract class AdvancedStateSupportBaseActivity : AdvancedStateBaseSupportActivi
 
     override fun getCurrentTransitionData(): TransitionGenericData<State, Event, State, SideEffect> =
         viewModel.getCurrentTransitionData()
+
 }
