@@ -10,7 +10,7 @@ import com.pt.core.state.manager.StateMachine
 
 fun provideGraph(): StateMachine.GraphBuilder<State, Event, SideEffect> {
     return StateMachine.GraphBuilder<State, Event, SideEffect>().apply {
-        initialState(States.IDLE)
+       initialState(States.IDLE)
         state<States.IDLE> {
             on<Events.InsertCard> {
                 transitionTo(States.VerifyCart)

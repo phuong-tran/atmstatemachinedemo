@@ -1,9 +1,6 @@
 package com.pt.core.navigation.fragment.basic
 
-import com.pt.core.data.Event
-import com.pt.core.data.SideEffect
-import com.pt.core.data.State
-import com.pt.core.navigation.fragment.generic.basic.BasicStateSupportGenericFragment
+import com.pt.core.navigation.fragment.FragmentBase
+import com.pt.core.state.manual.statebase.NavigationSimpleHandler
 
-abstract class BasicStateBaseSupportFragment :
-    BasicStateSupportGenericFragment<State, Event, SideEffect>()
+abstract class BasicStateBaseSupportFragment : FragmentBase(),  NavigationSimpleHandler

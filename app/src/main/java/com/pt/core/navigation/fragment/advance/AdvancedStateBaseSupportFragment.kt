@@ -1,8 +1,6 @@
 package com.pt.core.navigation.fragment.advance
 
-import com.pt.core.data.Event
-import com.pt.core.data.SideEffect
-import com.pt.core.data.State
-import com.pt.core.navigation.fragment.generic.advance.AdvancedStateSupportGenericFragment
+import com.pt.core.navigation.fragment.FragmentBase
+import com.pt.core.state.advance.statebase.NavigationAdvancedHandler
 
-abstract class AdvancedStateBaseSupportFragment: AdvancedStateSupportGenericFragment<State, Event, SideEffect>()
+abstract class AdvancedStateBaseSupportFragment: FragmentBase(), NavigationAdvancedHandler

@@ -28,7 +28,7 @@ abstract class AdvancedStateSupportBaseActivity : AdvancedStateBaseSupportActivi
         viewModel.getCurrentTransitionData()
 
 
-    override val stateMachine =
+    override var stateMachine =
         createStateMachine { fromState: State, event: Event, toState: State, sideEffect: SideEffect? ->
             onTransaction(
                 fromState = fromState,
