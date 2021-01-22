@@ -8,7 +8,7 @@ import com.pt.core.data.SideEffect
 import com.pt.core.data.State
 import com.pt.core.data.transition.TransitionData
 import com.pt.core.state.advance.TransitionHandler
-import com.pt.core.navigation.viewmodel.AdvancedSupportStateBaseViewModel
+import com.pt.core.navigation.viewmodel.statebase.AdvancedSupportStateBaseViewModel
 import com.pt.core.state.advance.NavigationAdvancedHandler
 
 class SupportNavigationViewModelWithSavedHandler(

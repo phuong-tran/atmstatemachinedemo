@@ -1,4 +1,4 @@
-package com.pt.core.navigation.viewmodel
+package com.pt.core.navigation.viewmodel.statebase
 
 import android.util.Log
 import androidx.lifecycle.SavedStateHandle
