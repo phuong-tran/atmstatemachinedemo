@@ -23,7 +23,7 @@ class MainActivity : AdvancedStateSupportBaseActivity() {
     }
 
     override fun initializeStateMachine(): StateMachine<State, Event, SideEffect> {
-        return createStateMachine { fromState: State, event: Event, toState: State, sideEffect: SideEffect? ->
+        return createStateMachine(States.IDLE) { fromState: State, event: Event, toState: State, sideEffect: SideEffect? ->
             onTransaction(
                 fromState = fromState,
                 event = event,

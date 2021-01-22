@@ -35,22 +35,12 @@ class IntroFragment : AdvancedStateSupportBaseFragment() {
         })
     }
 
-
     override fun onTransaction(
         fromState: State,
         event: Event,
         toState: State,
         sideEffect: SideEffect?
     ) {
-        TODO("Not yet implemented")
-    }
 
-    override fun provideGraphBuilder(): StateMachine.GraphBuilder<State, Event, SideEffect> {
-        TODO("Not yet implemented")
-    }
-
-
-    override fun provideStateMachine(): StateMachine<State, Event, SideEffect> {
-        TODO("Not yet implemented")
     }
 }
