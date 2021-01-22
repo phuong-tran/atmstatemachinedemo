@@ -1,4 +1,4 @@
-package com.pt.core.state.manual
+package com.pt.core.state.manual.statebase
 
 import com.pt.core.data.Event
 import com.pt.core.data.SideEffect

@@ -1,4 +1,4 @@
-package com.pt.core.state.manual
+package com.pt.core.state.manual.statebase
 
 import android.os.Parcelable
 import com.pt.core.state.common.generic.CurrentStateGenericProvider
