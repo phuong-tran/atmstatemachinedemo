@@ -1,11 +1,11 @@
-package com.pt.core1.state.controller.navigation.activity
+package com.pt.core1.controller.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.pt.core1.state.controller.provider.DefaultStateProvider
-import com.pt.core1.state.controller.provider.manager.GraphBuilderProvider
-import com.pt.core1.state.controller.provider.manager.StateContextProvider
-import com.pt.core1.state.controller.provider.manager.TransactionActionProvider
+import com.pt.core1.state.provider.DefaultStateProvider
+import com.pt.core1.state.provider.GraphBuilderProvider
+import com.pt.core1.state.provider.StateContextProvider
+import com.pt.core1.state.provider.TransactionActionProvider
 import com.pt.core1.state.helper.getStateFromBundle
 
 abstract class BasicStateActivity : AppCompatActivity(), GraphBuilderProvider,
@@ -26,7 +26,7 @@ abstract class BasicStateActivity : AppCompatActivity(), GraphBuilderProvider,
         if (savedInstanceState != null) {
             //val transitionData = savedInstanceState.getTransitionDataFromBundle()
             savedInstanceState.getStateFromBundle()?.let {
-                stateContextProvider.newState(it)
+                stateContextProvider.setNewState(it)
             }
         }
     }

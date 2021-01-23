@@ -1,28 +1,9 @@
 package com.pt.core1.state.helper
 
-
 import android.os.Bundle
 import androidx.lifecycle.SavedStateHandle
 import com.pt.core1.data.State
 import com.pt.core1.data.TransitionData
-import com.pt.core1.state.controller.provider.RestoreStateProvider
-
-/*
-fun Bundle.restoreCurrentStateFromBundle(
-    restoreStateProvider: RestoreStateProvider,
-    defaultState: State
-) {
-    with(restoreStateProvider) {
-        val currentState: State = getParcelable(STATE) ?: defaultState
-        restoreCurrentState(currentState)
-
-        val currentTransitionData: TransitionData? = getParcelable(TRANSITION_DATA)
-        if (currentTransitionData != null) {
-            restoreCurrentTransitionData(currentTransitionData)
-        }
-    }
-}
-*/
 
 fun Bundle.saveCurrentStateToBundle(state: State) {
     putParcelable(STATE, state)

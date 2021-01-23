@@ -1,10 +1,13 @@
-package com.pt.core1.state.controller.provider.manager
+package com.pt.core1.state.manager
 
 import com.pt.core1.data.Event
 import com.pt.core1.data.SideEffect
 import com.pt.core1.data.State
 import com.pt.core1.data.TransitionData
-import com.pt.core1.state.controller.provider.DefaultStateProvider
+import com.pt.core1.state.provider.DefaultStateProvider
+import com.pt.core1.state.provider.GraphBuilderProvider
+import com.pt.core1.state.provider.StateContextProvider
+import com.pt.core1.state.provider.TransactionActionProvider
 import java.util.concurrent.atomic.AtomicReference
 
 class StateContextProviderImpl(
@@ -38,8 +41,6 @@ class StateContextProviderImpl(
     override fun setTransitionData(transitionData: TransitionData) {
         dataTransitionDataHolder.set(transitionData)
     }
-
-    override fun graphBuilderProvider(): GraphBuilderProvider = graphBuilderProvider
 
     override fun transactionActionProvider() = transactionActionProvider
 
@@ -76,11 +77,11 @@ class StateContextProviderImpl(
         stateMachineHolder.set(createStateMachineDefaultState())
     }
 
-
-    override fun newState(state: State) {
+    override fun setNewState(state: State) {
         getStateMachine().with {
             initialState(state)
         }.also {
+            setCurrentState(state)
             stateMachineHolder.set(it)
         }
     }

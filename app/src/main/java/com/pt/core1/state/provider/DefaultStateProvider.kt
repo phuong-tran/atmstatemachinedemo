@@ -1,4 +1,4 @@
-package com.pt.core1.state.controller.provider
+package com.pt.core1.state.provider
 
 import com.pt.core1.data.State
 

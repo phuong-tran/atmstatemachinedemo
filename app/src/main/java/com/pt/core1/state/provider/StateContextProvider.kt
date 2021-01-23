@@ -1,5 +1,4 @@
-package com.pt.core1.state.controller.provider.manager
-
+package com.pt.core1.state.provider
 
 import android.os.Bundle
 import androidx.lifecycle.SavedStateHandle
@@ -8,13 +7,11 @@ import com.pt.core.state.TRANSITION_DATA
 import com.pt.core1.data.Event
 import com.pt.core1.data.State
 import com.pt.core1.data.TransitionData
-import com.pt.core1.state.controller.provider.StateMachineCreator
 import com.pt.core1.state.helper.saveAllCurrentStateToBundle
 import com.pt.core1.state.helper.saveCurrentStateToBundle
 import com.pt.core1.state.helper.saveCurrentTransitionDataToBundle
 
-interface StateContextProvider : StateMachineCreator {
-    fun graphBuilderProvider(): GraphBuilderProvider
+interface StateContextProvider : StateMachineCreatorProvider {
     fun transactionActionProvider(): TransactionActionProvider
 
     fun getCurrentState(): State
@@ -46,7 +43,7 @@ interface StateContextProvider : StateMachineCreator {
         savedStateHandle.set(TRANSITION_DATA, transitionData)
     }
 
-    fun newState(state: State)
+    fun setNewState(state: State)
 
     fun transition(event: Event)
 }

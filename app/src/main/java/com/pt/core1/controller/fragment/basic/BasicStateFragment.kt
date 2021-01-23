@@ -1,12 +1,12 @@
-package com.pt.core1.state.controller.navigation.fragment.basic
+package com.pt.core1.controller.fragment.basic
 
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.pt.core1.state.controller.provider.DefaultStateProvider
-import com.pt.core1.state.controller.provider.manager.GraphBuilderProvider
-import com.pt.core1.state.controller.provider.manager.StateContextProvider
-import com.pt.core1.state.controller.provider.manager.TransactionActionProvider
+import com.pt.core1.state.provider.DefaultStateProvider
+import com.pt.core1.state.provider.GraphBuilderProvider
+import com.pt.core1.state.provider.StateContextProvider
+import com.pt.core1.state.provider.TransactionActionProvider
 import com.pt.core1.state.helper.getStateFromBundle
 
 abstract class BasicStateFragment : Fragment(),
@@ -26,7 +26,7 @@ abstract class BasicStateFragment : Fragment(),
         if (savedInstanceState != null) {
             //val transitionData = savedInstanceState.getTransitionDataFromBundle()
             savedInstanceState.getStateFromBundle()?.let {
-                stateContextProvider.newState(it)
+                stateContextProvider.setNewState(it)
             }
         }
     }

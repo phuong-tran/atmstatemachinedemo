@@ -1,4 +1,4 @@
-package com.pt.core1.state.controller.provider.manager
+package com.pt.core1.state.manager
 
 import com.pt.core1.data.Event
 import com.pt.core1.data.SideEffect
