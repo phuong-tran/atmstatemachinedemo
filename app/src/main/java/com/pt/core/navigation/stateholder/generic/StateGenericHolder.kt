@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicReference
 
 interface StateGenericHolder<State: Parcelable, Event: Parcelable, SideEffect: Parcelable> {
     fun initializeStateMachine(): StateMachine<State, Event, SideEffect>
+
     val stateMachineHolder: AtomicReference<StateMachine<State, Event, SideEffect>>
 
     fun setStateWith(state: State) {

@@ -5,6 +5,7 @@ import com.pt.core.state.manager.StateMachine
 
 interface StateTransitionGenericProvider<State : Parcelable, Event : Parcelable, SideEffect : Parcelable> :
     StateMachineGenericProvider<State, Event, SideEffect> {
+
     fun givenState(
         state: State
     ): StateMachine<State, Event, SideEffect> {
