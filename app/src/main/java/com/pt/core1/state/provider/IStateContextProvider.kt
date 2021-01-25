@@ -7,43 +7,46 @@ import com.pt.core.state.TRANSITION_DATA
 import com.pt.core1.data.Event
 import com.pt.core1.data.State
 import com.pt.core1.data.TransitionData
-import com.pt.core1.state.helper.saveAllCurrentStateToBundle
-import com.pt.core1.state.helper.saveCurrentStateToBundle
-import com.pt.core1.state.helper.saveCurrentTransitionDataToBundle
+import com.pt.core1.state.helper.*
+import com.pt.core1.state.helper.saveTransitionDataToToSavedStateHandler
 
-interface IStateContextProvider : IStateMachineCreatorProvider {
-    fun transactionActionProvider(): ITransactionActionProvider
+interface IStateContextProvider : IStateMachineCreatorProvider, ISaveStateToBundleProvider,
+    ISaveStateToSavedHandlerProvider, IStateTransitionProvider, ICurrentStateGetter, ICurrentStateSetter {
 
-    fun getCurrentState(): State
-    fun getCurrentTransitionData(): TransitionData
+    //fun transactionActionProvider(): ITransactionActionProvider
 
-    fun setCurrentState(state: State)
-    fun setTransitionData(transitionData: TransitionData)
-
-    fun saveStateToBundle(bundle: Bundle, state: State) {
+    override fun saveStateToBundle(bundle: Bundle, state: State) {
         bundle.saveCurrentStateToBundle(state)
     }
 
-    fun saveTransitionDataToBundle(bundle: Bundle, transitionData: TransitionData) {
+    override fun saveTransitionDataToBundle(bundle: Bundle, transitionData: TransitionData) {
         bundle.saveCurrentTransitionDataToBundle(transitionData)
     }
 
-    fun saveAllCurrentStateToBundle(bundle: Bundle, state: State, transitionData: TransitionData) {
+    override fun saveAllCurrentStateToBundle(
+        bundle: Bundle,
+        state: State,
+        transitionData: TransitionData
+    ) {
         bundle.saveAllCurrentStateToBundle(state, transitionData)
     }
 
-    fun saveStateToSavedStateHandle(savedStateHandle: SavedStateHandle, state: State) {
+    override fun saveStateToSavedStateHandler(savedStateHandle: SavedStateHandle, state: State) {
         savedStateHandle.set(STATE, state)
     }
 
-    fun saveTransitionDataToToSavedStateHandle(
+    override fun saveTransitionDataToSavedStateHandler(
         savedStateHandle: SavedStateHandle,
         transitionData: TransitionData
     ) {
         savedStateHandle.set(TRANSITION_DATA, transitionData)
     }
 
-    fun setNewState(state: State)
-
-    fun transition(event: Event)
+    override fun saveAllCurrentStateToSavedStateHandler(
+        savedStateHandle: SavedStateHandle,
+        state: State,
+        transitionData: TransitionData
+    ) {
+        savedStateHandle.saveAllCurrentStateToSavedStateHandler(getCurrentState(), getCurrentTransitionData())
+    }
 }

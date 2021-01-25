@@ -40,3 +40,9 @@ fun SavedStateHandle.getStateToSavedStateHandler(): State? = get(STATE)
 
 fun SavedStateHandle.saveTransitionDataToToSavedStateHandler(): TransitionData? =
     get(TRANSITION_DATA)
+
+
+fun SavedStateHandle.saveAllCurrentStateToSavedStateHandler(state: State, transitionData: TransitionData) {
+    saveStateToSavedStateHandler(state)
+    saveTransitionDataToSavedStateHandler(transitionData)
+}

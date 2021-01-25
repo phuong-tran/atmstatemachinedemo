@@ -42,7 +42,7 @@ class StateContextProvider private constructor(
         dataTransitionDataHolder.set(transitionData)
     }
 
-    override fun transactionActionProvider() = transactionActionProvider
+    // override fun transactionActionProvider() = transactionActionProvider
 
 
     override fun createStateMachine(
