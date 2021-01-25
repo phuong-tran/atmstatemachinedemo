@@ -1,6 +1,5 @@
 package com.pt.core1.controller.fragment.simple
 
-
 import android.os.Bundle
 import com.pt.core1.controller.fragment.FragmentWithTag
 import com.pt.core1.state.helper.getStateFromBundle
@@ -13,7 +12,6 @@ import com.pt.core1.state.provider.ITransactionActionProvider
 abstract class SimpleStateFragment : FragmentWithTag(),
     IGraphBuilderProvider, ITransactionActionProvider, IDefaultStateProvider {
     abstract val stateContext: IStateContextProvider
-
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

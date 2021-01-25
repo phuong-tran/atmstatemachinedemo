@@ -2,6 +2,7 @@ package com.pt.core1.controller.activity.simple
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.pt.core1.controller.activity.ActivityWithTag
 import com.pt.core1.state.provider.IDefaultStateProvider
 import com.pt.core1.state.provider.IGraphBuilderProvider
 import com.pt.core1.state.provider.IStateContextProvider
@@ -9,10 +10,8 @@ import com.pt.core1.state.provider.ITransactionActionProvider
 import com.pt.core1.state.helper.getStateFromBundle
 import com.pt.core1.state.helper.getTransitionDataFromBundle
 
-abstract class SimpleStateActivity : AppCompatActivity(), IGraphBuilderProvider,
+abstract class SimpleStateActivity : ActivityWithTag(), IGraphBuilderProvider,
     ITransactionActionProvider, IDefaultStateProvider {
-
-    abstract val TAG: String
     abstract val stateContext: IStateContextProvider
 
     override fun onSaveInstanceState(outState: Bundle) {

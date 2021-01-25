@@ -9,7 +9,8 @@ import com.pt.core1.data.TransitionData
 import com.pt.core1.state.helper.*
 
 interface IStateContextProvider : IStateMachineCreatorProvider, ISaveStateToBundleProvider,
-    ISaveStateToSavedHandlerProvider, IStateTransitionProvider, ICurrentStateGetterProvider, ICurrentStateSetterProvider {
+    ISaveStateToSavedHandlerProvider, IStateTransitionProvider, ICurrentStateGetterProvider,
+    ICurrentStateSetterProvider {
 
     fun transactionActionProvider(): ITransactionActionProvider
 
@@ -45,6 +46,9 @@ interface IStateContextProvider : IStateMachineCreatorProvider, ISaveStateToBund
         state: State,
         transitionData: TransitionData
     ) {
-        savedStateHandle.saveAllCurrentStateToSavedStateHandler(getCurrentState(), getCurrentTransitionData())
+        savedStateHandle.saveAllCurrentStateToSavedStateHandler(
+            getCurrentState(),
+            getCurrentTransitionData()
+        )
     }
 }

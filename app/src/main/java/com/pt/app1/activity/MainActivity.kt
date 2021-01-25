@@ -6,6 +6,7 @@ import com.pt.app1.graph.event.Events
 import com.pt.app1.graph.provideGraph
 import com.pt.app1.graph.state.States
 import com.pt.core1.controller.activity.simple.SimpleStateActivity
+import com.pt.core1.controller.activity.simple.SimpleStateActivity2
 import com.pt.core1.data.Event
 import com.pt.core1.data.SideEffect
 import com.pt.core1.data.State
@@ -50,6 +51,10 @@ class MainActivity : SimpleStateActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        test1(savedInstanceState)
+    }
+
+    private fun test1(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             stateContext.transition(Events.InsertCard)
             Log.d(TAG, " currentState = " + stateContext.getCurrentState())
@@ -63,7 +68,6 @@ class MainActivity : SimpleStateActivity() {
                 TAG,
                 " currentStateTransitionDataB = " + stateContext.getCurrentTransitionData()
             )
-
         }
     }
 }
