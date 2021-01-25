@@ -86,6 +86,7 @@ class StateContextProvider private constructor(
 
     override fun defaultState(): State = defaultStateProvider.defaultState()
 
+    // Call this at last moment, don't ever move this to the top
     init {
         createStateMachineDefaultStateThenSetToHolder()
     }
