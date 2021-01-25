@@ -13,42 +13,40 @@ import com.pt.core1.state.provider.ITransactionActionProvider
 abstract class SimpleStateActivity2 : SimpleStateActivity(), IGraphBuilderProvider,
     ITransactionActionProvider, IDefaultStateProvider, IStateContextProvider {
 
-    override fun transactionActionProvider(): ITransactionActionProvider =
+    final override fun transactionActionProvider(): ITransactionActionProvider =
         stateContext.transactionActionProvider()
 
-    override fun createStateMachine(initState: State): StateMachine<State, Event, SideEffect> =
+    final override fun createStateMachine(initState: State): StateMachine<State, Event, SideEffect> =
         stateContext.createStateMachine(initState)
 
-    override fun createStateMachineThenSetToHolder(initState: State) =
+    final override fun createStateMachineThenSetToHolder(initState: State) =
         stateContext.createStateMachineThenSetToHolder(initState)
 
-    override fun createStateMachineDefaultState(): StateMachine<State, Event, SideEffect> =
+    final override fun createStateMachineDefaultState(): StateMachine<State, Event, SideEffect> =
         stateContext.createStateMachineDefaultState()
 
-    override fun createStateMachineDefaultStateThenSetToHolder() =
+    final override fun createStateMachineDefaultStateThenSetToHolder() =
         stateContext.createStateMachineDefaultStateThenSetToHolder()
 
-    override fun defaultState(): State = stateContext.defaultState()
+    final override fun setNewState(state: State) = stateContext.setNewState(state)
 
-    override fun setNewState(state: State) = stateContext.setNewState(state)
-
-    override fun transition(event: Event) {
+    final override fun transition(event: Event) {
         stateContext.transition(event)
     }
 
-    override fun getCurrentState(): State {
+    final override fun getCurrentState(): State {
         return stateContext.getCurrentState()
     }
 
-    override fun getCurrentTransitionData(): TransitionData {
+    final override fun getCurrentTransitionData(): TransitionData {
         return stateContext.getCurrentTransitionData()
     }
 
-    override fun setCurrentState(state: State) {
+    final override fun setCurrentState(state: State) {
         stateContext.setCurrentState(state)
     }
 
-    override fun setTransitionData(transitionData: TransitionData) {
+    final override fun setTransitionData(transitionData: TransitionData) {
         stateContext.setTransitionData(transitionData)
     }
 }

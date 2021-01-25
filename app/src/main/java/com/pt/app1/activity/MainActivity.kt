@@ -15,7 +15,7 @@ import com.pt.core1.state.manager.StateContextProvider
 import com.pt.core1.state.manager.StateMachine
 import com.pt.dig.atm.R
 
-class MainActivity : SimpleStateActivity() {
+class MainActivity : SimpleStateActivity2() {
 
     override val stateContext =
         StateContextProvider.createStateContextProvider(this, this, this)
