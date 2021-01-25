@@ -2,10 +2,12 @@ package com.pt.app1.activity
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import com.pt.app1.graph.event.Events
 import com.pt.app1.graph.provideGraph
 import com.pt.app1.graph.state.States
-import com.pt.core1.controller.activity.simple.SimpleStateActivity
+import com.pt.app1.viewmodel.factory.createViewModelFactory
+import com.pt.app1.viewmodel.template.simple.SimpleStateSupportTemplateViewModel
 import com.pt.core1.controller.activity.simple.SimpleStateActivity2
 import com.pt.core1.data.Event
 import com.pt.core1.data.SideEffect
@@ -16,9 +18,33 @@ import com.pt.core1.state.manager.StateMachine
 import com.pt.dig.atm.R
 
 class MainActivity : SimpleStateActivity2() {
+    override val TAG = "MainActivity"
+
     override val stateContext =
         StateContextProvider.createStateContextProvider(this, this, this)
-    override val TAG = "MainActivity"
+
+/*    val viewModel by viewModels<SimpleStateSupportTemplateViewModel> {
+       createViewModelFactory {
+           SimpleStateSupportTemplateViewModel(stateContext)
+       }
+    }*/
+
+    val viewModel by viewModels<SimpleStateSupportTemplateViewModel> {
+      /*  createViewModelFactory {
+            SimpleStateSupportTemplateViewModel(stateContext)
+        }*/
+
+        createViewModelFactory {
+            SimpleStateSupportTemplateViewModel(stateContext)
+        }
+    }
+
+
+    /*val viewModel2: SimpleStateSupportTemplateViewModel by viewModels {
+        ViewModelFactory1.createFactory<SimpleStateSupportTemplateViewModel> {
+            SimpleStateSupportTemplateViewModel(stateContext)
+        }
+    }*/
 
 
     override fun provideGraphBuilder(): StateMachine.GraphBuilder<State, Event, SideEffect> =

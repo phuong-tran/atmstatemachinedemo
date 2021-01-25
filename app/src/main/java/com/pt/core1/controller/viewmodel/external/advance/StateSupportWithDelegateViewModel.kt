@@ -9,8 +9,8 @@ import com.pt.core1.state.provider.IStateContextProvider
 
 abstract class StateSupportWithDelegateViewModel(
     private val savedStateHandle: SavedStateHandle,
-    stateContextProvider: IStateContextProvider
-) : SimpleStateSupportWithDelegateViewModel(stateContextProvider), ISaveStateViaSavedHandler {
+    stateContext: IStateContextProvider
+) : SimpleStateSupportWithDelegateViewModel(stateContext), ISaveStateViaSavedHandler {
 
     final override fun saveStateToSavedStateHandler(
         savedStateHandle: SavedStateHandle,
