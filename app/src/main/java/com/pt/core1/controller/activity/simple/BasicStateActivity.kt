@@ -1,16 +1,16 @@
-package com.pt.core1.controller.fragment.basic
-
+package com.pt.core1.controller.activity.simple
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import com.pt.core1.state.helper.getStateFromBundle
+import androidx.appcompat.app.AppCompatActivity
 import com.pt.core1.state.provider.IDefaultStateProvider
 import com.pt.core1.state.provider.IGraphBuilderProvider
 import com.pt.core1.state.provider.IStateContextProvider
 import com.pt.core1.state.provider.ITransactionActionProvider
+import com.pt.core1.state.helper.getStateFromBundle
 
-abstract class BasicStateFragment : Fragment(),
-    IGraphBuilderProvider, ITransactionActionProvider, IDefaultStateProvider {
+abstract class BasicStateActivity : AppCompatActivity(), IGraphBuilderProvider,
+    ITransactionActionProvider, IDefaultStateProvider {
+
     abstract val TAG: String
     abstract val stateContextProvider: IStateContextProvider
 

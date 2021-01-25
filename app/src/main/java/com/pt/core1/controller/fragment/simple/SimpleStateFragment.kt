@@ -1,17 +1,17 @@
-package com.pt.core1.controller.activity
+package com.pt.core1.controller.fragment.simple
+
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.pt.core1.controller.fragment.FragmentWithTag
+import com.pt.core1.state.helper.getStateFromBundle
 import com.pt.core1.state.provider.IDefaultStateProvider
 import com.pt.core1.state.provider.IGraphBuilderProvider
 import com.pt.core1.state.provider.IStateContextProvider
 import com.pt.core1.state.provider.ITransactionActionProvider
-import com.pt.core1.state.helper.getStateFromBundle
 
-abstract class BasicStateActivity : AppCompatActivity(), IGraphBuilderProvider,
-    ITransactionActionProvider, IDefaultStateProvider {
-
-    abstract val TAG: String
+abstract class SimpleStateFragment : FragmentWithTag(),
+    IGraphBuilderProvider, ITransactionActionProvider, IDefaultStateProvider {
     abstract val stateContextProvider: IStateContextProvider
 
     override fun onSaveInstanceState(outState: Bundle) {
