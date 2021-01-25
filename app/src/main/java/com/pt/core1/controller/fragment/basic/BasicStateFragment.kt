@@ -3,16 +3,16 @@ package com.pt.core1.controller.fragment.basic
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.pt.core1.state.provider.DefaultStateProvider
-import com.pt.core1.state.provider.GraphBuilderProvider
-import com.pt.core1.state.provider.StateContextProvider
-import com.pt.core1.state.provider.TransactionActionProvider
 import com.pt.core1.state.helper.getStateFromBundle
+import com.pt.core1.state.provider.IDefaultStateProvider
+import com.pt.core1.state.provider.IGraphBuilderProvider
+import com.pt.core1.state.provider.IStateContextProvider
+import com.pt.core1.state.provider.ITransactionActionProvider
 
 abstract class BasicStateFragment : Fragment(),
-    GraphBuilderProvider, TransactionActionProvider, DefaultStateProvider {
+    IGraphBuilderProvider, ITransactionActionProvider, IDefaultStateProvider {
     abstract val TAG: String
-    abstract val stateContextProvider: StateContextProvider
+    abstract val stateContextProvider: IStateContextProvider
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

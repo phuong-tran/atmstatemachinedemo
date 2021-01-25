@@ -5,7 +5,7 @@ import com.pt.core1.data.SideEffect
 import com.pt.core1.data.State
 import com.pt.core1.state.manager.StateMachine
 
-interface StateMachineCreatorProvider: DefaultStateProvider {
+interface IStateMachineCreatorProvider: IDefaultStateProvider {
     fun createStateMachine(initState: State) : StateMachine<State, Event, SideEffect>
     fun createStateMachineThenSetToHolder(initState: State)
     fun createStateMachineDefaultState() : StateMachine<State, Event, SideEffect>

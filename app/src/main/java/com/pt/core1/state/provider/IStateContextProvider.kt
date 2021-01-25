@@ -11,8 +11,8 @@ import com.pt.core1.state.helper.saveAllCurrentStateToBundle
 import com.pt.core1.state.helper.saveCurrentStateToBundle
 import com.pt.core1.state.helper.saveCurrentTransitionDataToBundle
 
-interface StateContextProvider : StateMachineCreatorProvider {
-    fun transactionActionProvider(): TransactionActionProvider
+interface IStateContextProvider : IStateMachineCreatorProvider {
+    fun transactionActionProvider(): ITransactionActionProvider
 
     fun getCurrentState(): State
     fun getCurrentTransitionData(): TransitionData

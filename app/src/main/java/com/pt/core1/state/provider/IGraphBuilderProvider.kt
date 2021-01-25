@@ -5,6 +5,6 @@ import com.pt.core1.data.SideEffect
 import com.pt.core1.data.State
 import com.pt.core1.state.manager.StateMachine
 
-interface GraphBuilderProvider {
+interface IGraphBuilderProvider {
     fun provideGraphBuilder(): StateMachine.GraphBuilder<State, Event, SideEffect>
 }

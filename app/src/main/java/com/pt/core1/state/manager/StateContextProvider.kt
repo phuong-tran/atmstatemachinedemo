@@ -4,17 +4,17 @@ import com.pt.core1.data.Event
 import com.pt.core1.data.SideEffect
 import com.pt.core1.data.State
 import com.pt.core1.data.TransitionData
-import com.pt.core1.state.provider.DefaultStateProvider
-import com.pt.core1.state.provider.GraphBuilderProvider
-import com.pt.core1.state.provider.StateContextProvider
-import com.pt.core1.state.provider.TransactionActionProvider
+import com.pt.core1.state.provider.IDefaultStateProvider
+import com.pt.core1.state.provider.IGraphBuilderProvider
+import com.pt.core1.state.provider.IStateContextProvider
+import com.pt.core1.state.provider.ITransactionActionProvider
 import java.util.concurrent.atomic.AtomicReference
 
-class StateContextProviderImpl(
-    private val defaultStateProvider: DefaultStateProvider,
-    private val graphBuilderProvider: GraphBuilderProvider,
-    private val transactionActionProvider: TransactionActionProvider
-) : StateContextProvider {
+class StateContextProvider private constructor(
+    private val defaultStateProvider: IDefaultStateProvider,
+    private val graphBuilderProvider: IGraphBuilderProvider,
+    private val transactionActionProvider: ITransactionActionProvider
+) : IStateContextProvider {
 
     init {
         createStateMachineDefaultStateThenSetToHolder()
@@ -91,4 +91,18 @@ class StateContextProviderImpl(
     }
 
     override fun defaultState(): State = defaultStateProvider.defaultState()
+
+    companion object {
+        fun createStateContextProvider(
+            defaultStateProvider: IDefaultStateProvider,
+            graphBuilderProvider: IGraphBuilderProvider,
+            transactionActionProvider: ITransactionActionProvider
+        ): StateContextProvider {
+            return StateContextProvider(
+                defaultStateProvider = defaultStateProvider,
+                graphBuilderProvider = graphBuilderProvider,
+                transactionActionProvider = transactionActionProvider
+            )
+        }
+    }
 }
