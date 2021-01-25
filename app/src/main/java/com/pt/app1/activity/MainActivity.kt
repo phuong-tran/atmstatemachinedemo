@@ -2,14 +2,9 @@ package com.pt.app1.activity
 
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.viewModels
 import com.pt.app1.graph.event.Events
 import com.pt.app1.graph.provideGraph
 import com.pt.app1.graph.state.States
-import com.pt.app1.viewmodel.factory.createFactory
-import com.pt.app1.viewmodel.factory.createFactorySafe
-import com.pt.app1.viewmodel.factory.createViewModelFactory
-import com.pt.app1.viewmodel.template.simple.SimpleStateSupportTemplateViewModel
 import com.pt.core1.controller.activity.simple.SimpleStateActivity2
 import com.pt.core1.data.Event
 import com.pt.core1.data.SideEffect
