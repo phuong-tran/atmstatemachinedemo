@@ -6,6 +6,8 @@ import androidx.activity.viewModels
 import com.pt.app1.graph.event.Events
 import com.pt.app1.graph.provideGraph
 import com.pt.app1.graph.state.States
+import com.pt.app1.viewmodel.factory.createFactory
+import com.pt.app1.viewmodel.factory.createFactorySafe
 import com.pt.app1.viewmodel.factory.createViewModelFactory
 import com.pt.app1.viewmodel.template.simple.SimpleStateSupportTemplateViewModel
 import com.pt.core1.controller.activity.simple.SimpleStateActivity2
@@ -22,29 +24,6 @@ class MainActivity : SimpleStateActivity2() {
 
     override val stateContext =
         StateContextProvider.createStateContextProvider(this, this, this)
-
-/*    val viewModel by viewModels<SimpleStateSupportTemplateViewModel> {
-       createViewModelFactory {
-           SimpleStateSupportTemplateViewModel(stateContext)
-       }
-    }*/
-
-    val viewModel by viewModels<SimpleStateSupportTemplateViewModel> {
-      /*  createViewModelFactory {
-            SimpleStateSupportTemplateViewModel(stateContext)
-        }*/
-
-        createViewModelFactory {
-            SimpleStateSupportTemplateViewModel(stateContext)
-        }
-    }
-
-
-    /*val viewModel2: SimpleStateSupportTemplateViewModel by viewModels {
-        ViewModelFactory1.createFactory<SimpleStateSupportTemplateViewModel> {
-            SimpleStateSupportTemplateViewModel(stateContext)
-        }
-    }*/
 
 
     override fun provideGraphBuilder(): StateMachine.GraphBuilder<State, Event, SideEffect> =
