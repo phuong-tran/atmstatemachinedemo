@@ -13,7 +13,7 @@ import com.pt.core1.state.helper.saveTransitionDataToToSavedStateHandler
 interface IStateContextProvider : IStateMachineCreatorProvider, ISaveStateToBundleProvider,
     ISaveStateToSavedHandlerProvider, IStateTransitionProvider, ICurrentStateGetter, ICurrentStateSetter {
 
-    //fun transactionActionProvider(): ITransactionActionProvider
+    fun transactionActionProvider(): ITransactionActionProvider
 
     override fun saveStateToBundle(bundle: Bundle, state: State) {
         bundle.saveCurrentStateToBundle(state)
