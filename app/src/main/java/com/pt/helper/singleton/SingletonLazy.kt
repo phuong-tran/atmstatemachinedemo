@@ -1,4 +1,4 @@
-package com.pt.app.state.singleton
+package com.pt.helper.singleton
 
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.properties.ReadOnlyProperty

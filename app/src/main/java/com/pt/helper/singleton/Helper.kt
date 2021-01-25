@@ -1,4 +1,4 @@
-package com.pt.app.state.singleton
+package com.pt.helper.singleton
 
 inline fun <reified T : Any> singletonLazy(noinline block: () -> T): SingletonLazy<T> =
     SingletonLazy(block, T::class.java)

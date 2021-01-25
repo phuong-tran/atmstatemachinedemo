@@ -1,4 +1,4 @@
-package com.pt.app.fragment.helper
+package com.pt.helper.fragment
 
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment

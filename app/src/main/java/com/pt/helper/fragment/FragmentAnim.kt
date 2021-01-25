@@ -1,4 +1,4 @@
-package com.pt.app.fragment.helper
+package com.pt.helper.fragment
 
 import androidx.annotation.AnimRes
 import androidx.annotation.AnimatorRes

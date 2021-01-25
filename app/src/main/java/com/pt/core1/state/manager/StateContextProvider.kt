@@ -15,24 +15,18 @@ class StateContextProvider private constructor(
     private val graphBuilderProvider: IGraphBuilderProvider,
     private val transactionActionProvider: ITransactionActionProvider
 ) : IStateContextProvider {
-
-    init {
-        createStateMachineDefaultStateThenSetToHolder()
-    }
-
-    private val stateMachineHolder: AtomicReference<StateMachine<State, Event, SideEffect>> =
-        AtomicReference()
+    private val stateMachineHolder = AtomicReference<StateMachine<State, Event, SideEffect>>()
 
     private fun getStateMachine(): StateMachine<State, Event, SideEffect> = stateMachineHolder.get()
 
     private val stateHolder: AtomicReference<State> =
         AtomicReference(defaultStateProvider.defaultState())
+
     private val dataTransitionDataHolder = AtomicReference<TransitionData>()
 
     override fun getCurrentState(): State = stateHolder.get()
 
     override fun getCurrentTransitionData(): TransitionData = dataTransitionDataHolder.get()
-
 
     override fun setCurrentState(state: State) {
         stateHolder.set(state)
@@ -42,7 +36,7 @@ class StateContextProvider private constructor(
         dataTransitionDataHolder.set(transitionData)
     }
 
-     override fun transactionActionProvider() = transactionActionProvider
+    override fun transactionActionProvider() = transactionActionProvider
 
 
     override fun createStateMachine(
@@ -91,6 +85,10 @@ class StateContextProvider private constructor(
     }
 
     override fun defaultState(): State = defaultStateProvider.defaultState()
+
+    init {
+        createStateMachineDefaultStateThenSetToHolder()
+    }
 
     companion object {
         fun createStateContextProvider(

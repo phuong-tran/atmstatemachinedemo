@@ -7,16 +7,17 @@ import com.pt.core1.state.provider.IGraphBuilderProvider
 import com.pt.core1.state.provider.IStateContextProvider
 import com.pt.core1.state.provider.ITransactionActionProvider
 import com.pt.core1.state.helper.getStateFromBundle
+import com.pt.core1.state.helper.getTransitionDataFromBundle
 
-abstract class BasicStateActivity : AppCompatActivity(), IGraphBuilderProvider,
+abstract class SimpleStateActivity : AppCompatActivity(), IGraphBuilderProvider,
     ITransactionActionProvider, IDefaultStateProvider {
 
     abstract val TAG: String
-    abstract val stateContextProvider: IStateContextProvider
+    abstract val stateContext: IStateContextProvider
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        with(stateContextProvider) {
+        with(stateContext) {
             saveAllCurrentStateToBundle(outState, getCurrentState(), getCurrentTransitionData())
         }
     }
@@ -24,9 +25,15 @@ abstract class BasicStateActivity : AppCompatActivity(), IGraphBuilderProvider,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState != null) {
-            //val transitionData = savedInstanceState.getTransitionDataFromBundle()
-            savedInstanceState.getStateFromBundle()?.let {
-                stateContextProvider.setNewState(it)
+            with(stateContext) {
+                savedInstanceState.getStateFromBundle()?.let {
+                    setCurrentState(it)
+                    setNewState(it)
+
+                }
+                savedInstanceState.getTransitionDataFromBundle()?.let {
+                    setTransitionData(it)
+                }
             }
         }
     }

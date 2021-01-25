@@ -3,9 +3,10 @@ package com.pt.app.activity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
-import com.pt.app.state.manager.event.Events
+
 import com.pt.app.state.manager.provideGraph
 import com.pt.app.state.manager.state.States
+import com.pt.app.state.manager.event.Events
 import com.pt.app.viewmodel.SupportNavigationViewModelWithSavedHandler
 import com.pt.core.data.Event
 import com.pt.core.data.SideEffect
@@ -83,7 +84,7 @@ class MainActivity : AdvancedStateSupportBaseActivity() {
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
             givenState(States.IDLE)
-            transition(Events.InsertCard)
+            transition(com.pt.app.state.manager.event.Events.InsertCard)
             Log.d(TAG, "currentStateA = ${viewModel.getCurrentState()}")
             Log.d(TAG, "currentTransactionDataA = ${viewModel.getCurrentTransitionData()}")
         } else {
