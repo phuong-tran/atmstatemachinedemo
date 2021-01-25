@@ -1,4 +1,4 @@
-package com.pt.core1.controller.viewmodel
+package com.pt.core1.controller.viewmodel.base
 
 import androidx.lifecycle.ViewModel
 

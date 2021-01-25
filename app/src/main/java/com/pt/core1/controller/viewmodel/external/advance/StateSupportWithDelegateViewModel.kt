@@ -1,7 +1,7 @@
-package com.pt.core1.controller.viewmodel.advance
+package com.pt.core1.controller.viewmodel.external.advance
 
 import androidx.lifecycle.SavedStateHandle
-import com.pt.core1.controller.viewmodel.simple.SimpleStateSupportWithDelegateViewModel
+import com.pt.core1.controller.viewmodel.external.simple.SimpleStateSupportWithDelegateViewModel
 import com.pt.core1.data.State
 import com.pt.core1.data.TransitionData
 import com.pt.core1.state.provider.ISaveStateViaSavedHandler

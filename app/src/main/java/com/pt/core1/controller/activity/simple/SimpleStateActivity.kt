@@ -12,7 +12,7 @@ import com.pt.core1.state.helper.getTransitionDataFromBundle
 
 abstract class SimpleStateActivity : ActivityWithTag(), IGraphBuilderProvider,
     ITransactionActionProvider, IDefaultStateProvider {
-    abstract val stateContext: IStateContextProvider
+    protected abstract val stateContext: IStateContextProvider
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

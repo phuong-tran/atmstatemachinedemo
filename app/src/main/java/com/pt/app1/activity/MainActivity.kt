@@ -16,11 +16,9 @@ import com.pt.core1.state.manager.StateMachine
 import com.pt.dig.atm.R
 
 class MainActivity : SimpleStateActivity2() {
-
     override val stateContext =
         StateContextProvider.createStateContextProvider(this, this, this)
-
-    override val TAG = "PHUONGTRAN"
+    override val TAG = "MainActivity"
 
 
     override fun provideGraphBuilder(): StateMachine.GraphBuilder<State, Event, SideEffect> =
