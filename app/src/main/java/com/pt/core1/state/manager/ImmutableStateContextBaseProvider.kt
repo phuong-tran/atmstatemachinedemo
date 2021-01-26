@@ -6,38 +6,29 @@ import com.pt.core1.data.State
 import com.pt.core1.data.TransitionData
 import com.pt.core1.state.provider.IDefaultStateProvider
 import com.pt.core1.state.provider.IGraphBuilderProvider
-import com.pt.core1.state.provider.context.IStateContextProvider
 import com.pt.core1.state.provider.ITransactionActionProvider
+import com.pt.core1.state.provider.context.template.IImmutableStateContextProvider
 import java.util.concurrent.atomic.AtomicReference
 
-class StateContextProvider private constructor(
-    private val defaultStateProvider: IDefaultStateProvider,
-    private val graphBuilderProvider: IGraphBuilderProvider,
-    private val transactionActionProvider: ITransactionActionProvider
-) : IStateContextProvider {
+abstract class ImmutableStateContextBaseProvider(
+    protected val defaultStateProvider: IDefaultStateProvider,
+    protected val graphBuilderProvider: IGraphBuilderProvider,
+    protected val transactionActionProvider: ITransactionActionProvider
+) : IImmutableStateContextProvider {
+    protected abstract val isWritable: Boolean
+
+    override fun transactionActionProvider(): ITransactionActionProvider = transactionActionProvider
+
     private val stateMachineHolder = AtomicReference<StateMachine<State, Event, SideEffect>>()
 
-    private fun getStateMachine(): StateMachine<State, Event, SideEffect> = stateMachineHolder.get()
-
-    private val stateHolder: AtomicReference<State> =
-        AtomicReference(defaultStateProvider.defaultState())
-
+    private val stateHolder: AtomicReference<State> = AtomicReference(defaultState())
     private val dataTransitionDataHolder = AtomicReference<TransitionData>()
+
+    private fun getStateMachine(): StateMachine<State, Event, SideEffect> = stateMachineHolder.get()
 
     override fun getCurrentState(): State = stateHolder.get()
 
     override fun getCurrentTransitionData(): TransitionData = dataTransitionDataHolder.get()
-
-    override fun setCurrentState(state: State) {
-        stateHolder.set(state)
-    }
-
-    override fun setTransitionData(transitionData: TransitionData) {
-        dataTransitionDataHolder.set(transitionData)
-    }
-
-    override fun transactionActionProvider() = transactionActionProvider
-
 
     override fun createStateMachine(
         initState: State,
@@ -53,8 +44,6 @@ class StateContextProvider private constructor(
                 toState = toState,
                 sideEffect = sideEffect
             )
-            setCurrentState(toState)
-            setTransitionData(transitionData)
             transactionActionProvider.onTransaction(transitionData)
         }
     }
@@ -75,7 +64,6 @@ class StateContextProvider private constructor(
         getStateMachine().with {
             initialState(state)
         }.also {
-            setCurrentState(state)
             stateMachineHolder.set(it)
         }
     }
@@ -84,24 +72,21 @@ class StateContextProvider private constructor(
         getStateMachine().transition(event)
     }
 
-    override fun defaultState(): State = defaultStateProvider.defaultState()
+    final override fun defaultState(): State = defaultStateProvider.defaultState()
 
-    // Call this at last moment, don't ever move this to the top
-    init {
-        createStateMachineDefaultStateThenSetToHolder()
+    final override fun setCurrentState(state: State) {
+        if (isWritable) {
+            stateHolder.set(state)
+        } else {
+            throw IllegalAccessError("Not Supported")
+        }
     }
 
-    companion object {
-        fun createStateContextProvider(
-            defaultStateProvider: IDefaultStateProvider,
-            graphBuilderProvider: IGraphBuilderProvider,
-            transactionActionProvider: ITransactionActionProvider
-        ): StateContextProvider {
-            return StateContextProvider(
-                defaultStateProvider = defaultStateProvider,
-                graphBuilderProvider = graphBuilderProvider,
-                transactionActionProvider = transactionActionProvider
-            )
+    final override fun setTransitionData(transitionData: TransitionData) {
+        if (isWritable) {
+            dataTransitionDataHolder.set(transitionData)
+        } else {
+            throw IllegalAccessError("Not Supported")
         }
     }
 }

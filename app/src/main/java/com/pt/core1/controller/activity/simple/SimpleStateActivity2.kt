@@ -7,11 +7,11 @@ import com.pt.core1.data.TransitionData
 import com.pt.core1.state.manager.StateMachine
 import com.pt.core1.state.provider.IDefaultStateProvider
 import com.pt.core1.state.provider.IGraphBuilderProvider
-import com.pt.core1.state.provider.context.IStateContextProvider
+import com.pt.core1.state.provider.context.template.IStateContextDefaultProvider
 import com.pt.core1.state.provider.ITransactionActionProvider
 
 abstract class SimpleStateActivity2 : SimpleStateActivity(), IGraphBuilderProvider,
-    ITransactionActionProvider, IDefaultStateProvider, IStateContextProvider {
+    ITransactionActionProvider, IDefaultStateProvider, IStateContextDefaultProvider {
 
     final override fun transactionActionProvider(): ITransactionActionProvider =
         stateContext.transactionActionProvider()

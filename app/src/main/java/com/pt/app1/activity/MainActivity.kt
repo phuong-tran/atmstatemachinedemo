@@ -10,7 +10,7 @@ import com.pt.core1.data.Event
 import com.pt.core1.data.SideEffect
 import com.pt.core1.data.State
 import com.pt.core1.data.TransitionData
-import com.pt.core1.state.manager.StateContextProvider
+import com.pt.core1.state.manager.StateContextDefaultProvider
 import com.pt.core1.state.manager.StateMachine
 import com.pt.dig.atm.R
 
@@ -18,7 +18,8 @@ class MainActivity : SimpleStateActivity2() {
     override val TAG = "MainActivity"
 
     override val stateContext =
-        StateContextProvider.createStateContextProvider(this, this, this)
+        StateContextDefaultProvider.createStateContextProvider(this, this, this)
+
 
 
     override fun provideGraphBuilder(): StateMachine.GraphBuilder<State, Event, SideEffect> =

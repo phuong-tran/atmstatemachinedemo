@@ -5,11 +5,11 @@ import com.pt.core1.controller.viewmodel.external.simple.SimpleStateSupportWithD
 import com.pt.core1.data.State
 import com.pt.core1.data.TransitionData
 import com.pt.core1.state.provider.ISaveStateViaSavedHandler
-import com.pt.core1.state.provider.context.IStateContextProvider
+import com.pt.core1.state.provider.context.template.IStateContextDefaultProvider
 
 abstract class StateSupportWithDelegateViewModel(
     private val savedStateHandle: SavedStateHandle,
-    stateContext: IStateContextProvider
+    stateContext: IStateContextDefaultProvider
 ) : SimpleStateSupportWithDelegateViewModel(stateContext), ISaveStateViaSavedHandler {
 
     final override fun saveStateToSavedStateHandler(

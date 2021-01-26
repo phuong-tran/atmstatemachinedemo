@@ -2,11 +2,11 @@ package com.pt.app1.viewmodel.template.advance
 
 import androidx.lifecycle.SavedStateHandle
 import com.pt.core1.controller.viewmodel.external.advance.StateSupportViewModel
-import com.pt.core1.state.provider.context.IStateContextProvider
+import com.pt.core1.state.provider.context.template.IStateContextDefaultProvider
 
 class StateSupportTemplateViewModel(
     savedStateHandle: SavedStateHandle,
-    stateContext: IStateContextProvider
+    stateContext: IStateContextDefaultProvider
 ) : StateSupportViewModel(savedStateHandle, stateContext) {
     override val TAG = "StateSupportTemplateViewModel"
 

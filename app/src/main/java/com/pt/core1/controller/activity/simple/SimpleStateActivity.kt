@@ -4,14 +4,14 @@ import android.os.Bundle
 import com.pt.core1.controller.activity.ActivityWithTag
 import com.pt.core1.state.provider.IDefaultStateProvider
 import com.pt.core1.state.provider.IGraphBuilderProvider
-import com.pt.core1.state.provider.context.IStateContextProvider
+import com.pt.core1.state.provider.context.template.IStateContextDefaultProvider
 import com.pt.core1.state.provider.ITransactionActionProvider
 import com.pt.core1.state.helper.getStateFromBundle
 import com.pt.core1.state.helper.getTransitionDataFromBundle
 
 abstract class SimpleStateActivity : ActivityWithTag(), IGraphBuilderProvider,
     ITransactionActionProvider, IDefaultStateProvider {
-    protected abstract val stateContext: IStateContextProvider
+    protected abstract val stateContext: IStateContextDefaultProvider
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

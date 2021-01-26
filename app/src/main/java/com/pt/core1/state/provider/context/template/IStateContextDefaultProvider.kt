@@ -1,4 +1,4 @@
-package com.pt.core1.state.provider.context
+package com.pt.core1.state.provider.context.template
 
 import android.os.Bundle
 import androidx.lifecycle.SavedStateHandle
@@ -9,14 +9,8 @@ import com.pt.core1.data.TransitionData
 import com.pt.core1.state.helper.*
 import com.pt.core1.state.provider.*
 
-interface IStateContextProvider : IStateMachineCreatorProvider,
-    ISaveStateToBundleProvider,
-    ISaveStateToSavedHandlerProvider,
-    IStateTransitionProvider,
-    ICurrentStateGetterProvider,
-    ICurrentStateSetterProvider {
-
-    fun transactionActionProvider(): ITransactionActionProvider
+interface IStateContextDefaultProvider : IMutableStateContextSupportBundleStorageProvider,
+    ISaveStateToSavedHandlerProvider {
 
     override fun saveStateToBundle(bundle: Bundle, state: State) {
         bundle.saveCurrentStateToBundle(state)
