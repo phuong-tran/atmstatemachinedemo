@@ -1,12 +1,8 @@
 package com.pt.app1.viewmodel.template.advance
 
-import android.os.Bundle
-import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.savedstate.SavedStateRegistryOwner
 import com.pt.core1.controller.viewmodel.external.advance.StateSupportViewModel
-import com.pt.core1.state.provider.IStateContextProvider
+import com.pt.core1.state.provider.context.IStateContextProvider
 
 class StateSupportTemplateViewModel(
     savedStateHandle: SavedStateHandle,

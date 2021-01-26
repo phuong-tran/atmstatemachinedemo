@@ -5,7 +5,7 @@ import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
-import com.pt.core1.state.provider.IStateContextProvider
+import com.pt.core1.state.provider.context.IStateContextProvider
 
 class SavedStateViewModelFactory(
     owner: SavedStateRegistryOwner,

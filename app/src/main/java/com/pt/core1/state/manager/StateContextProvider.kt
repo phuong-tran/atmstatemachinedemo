@@ -6,7 +6,7 @@ import com.pt.core1.data.State
 import com.pt.core1.data.TransitionData
 import com.pt.core1.state.provider.IDefaultStateProvider
 import com.pt.core1.state.provider.IGraphBuilderProvider
-import com.pt.core1.state.provider.IStateContextProvider
+import com.pt.core1.state.provider.context.IStateContextProvider
 import com.pt.core1.state.provider.ITransactionActionProvider
 import java.util.concurrent.atomic.AtomicReference
 

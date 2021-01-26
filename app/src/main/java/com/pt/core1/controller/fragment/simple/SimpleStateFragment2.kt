@@ -2,7 +2,7 @@ package com.pt.core1.controller.fragment.simple
 
 import android.content.Context
 import com.pt.core1.controller.fragment.FragmentWithTag
-import com.pt.core1.state.provider.IStateContextProvider
+import com.pt.core1.state.provider.context.IStateContextProvider
 import java.lang.IllegalArgumentException
 
 abstract class SimpleStateFragment2 : FragmentWithTag() {
