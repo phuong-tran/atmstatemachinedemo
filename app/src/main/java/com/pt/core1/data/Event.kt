@@ -2,7 +2,9 @@ package com.pt.core1.data
 
 import android.os.Parcelable
 
-sealed class Event : Parcelable
+
+sealed class EventBase : Parcelable
 
 // Hack
-abstract class EventBase : Event()
+abstract class Event : EventBase()
+

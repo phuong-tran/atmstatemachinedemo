@@ -1,13 +1,14 @@
 package com.pt.app1.graph.state
 
 
+import com.pt.core1.data.State
 import com.pt.core1.data.StateBase
 import kotlinx.android.parcel.Parcelize
 
 class States {
 
     @Parcelize
-    object IDLE : StateBase() {
+    object IDLE : State() {
         override fun toString(): String {
             return "STATE IDLE"
         }
@@ -15,7 +16,7 @@ class States {
 
 
     @Parcelize
-    object VerifyCart : StateBase() {
+    object VerifyCart : State() {
         override fun toString(): String {
             return "STATE VerifyCart"
         }
@@ -23,7 +24,7 @@ class States {
 
 
     @Parcelize
-    object InputPin : StateBase() {
+    object InputPin : State() {
         override fun toString(): String {
             return "STATE InputPin"
         }
