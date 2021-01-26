@@ -6,10 +6,3 @@ sealed class SideEffectBase : Parcelable
 
 // Hack
 abstract class SideEffect : SideEffectBase()
-
-
-/*
-abstract class SideEffectBase : Parcelable
-
-// Hack
-sealed class SideEffect : SideEffectBase()*/

@@ -7,4 +7,3 @@ sealed class EventBase : Parcelable
 
 // Hack
 abstract class Event : EventBase()
-
