@@ -9,8 +9,11 @@ import com.pt.core1.data.TransitionData
 import com.pt.core1.state.helper.*
 import com.pt.core1.state.provider.*
 
-interface IStateContextProvider : IStateMachineCreatorProvider, ISaveStateToBundleProvider,
-    ISaveStateToSavedHandlerProvider, IStateTransitionProvider, ICurrentStateGetterProvider,
+interface IStateContextProvider : IStateMachineCreatorProvider,
+    ISaveStateToBundleProvider,
+    ISaveStateToSavedHandlerProvider,
+    IStateTransitionProvider,
+    ICurrentStateGetterProvider,
     ICurrentStateSetterProvider {
 
     fun transactionActionProvider(): ITransactionActionProvider
