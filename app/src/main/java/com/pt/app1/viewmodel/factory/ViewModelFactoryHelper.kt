@@ -22,7 +22,17 @@ import androidx.lifecycle.ViewModelProvider
         }
     }*/
 
-inline fun <reified VM : ViewModel> createFactorySafe(noinline initializer: () -> ViewModel): ViewModelProvider.Factory {
+inline fun createDefaultViewModelFactory(crossinline initializer: () -> ViewModel): ViewModelProvider.Factory {
+    return object : ViewModelProvider.Factory {
+        @Suppress("UNCHECKED_CAST")
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return initializer() as T
+        }
+    }
+}
+
+
+inline fun <reified VM : ViewModel> createDefaultViewModelFactorySafe(noinline initializer: () -> ViewModel): ViewModelProvider.Factory {
     val vmClass = VM::class.java
     return object : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
@@ -35,14 +45,6 @@ inline fun <reified VM : ViewModel> createFactorySafe(noinline initializer: () -
     }
 }
 
-inline fun createFactory(crossinline initializer: () -> ViewModel): ViewModelProvider.Factory {
-    return object : ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return initializer() as T
-        }
-    }
-}
 
 inline fun <reified T : ViewModel> createViewModelFactory(crossinline initializer: () -> T): ViewModelProvider.Factory {
     return ViewModelFactory {

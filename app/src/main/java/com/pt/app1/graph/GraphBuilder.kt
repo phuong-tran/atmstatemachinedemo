@@ -25,6 +25,10 @@ fun provideGraph(withState: State? = null) = buildGraph(withState) {
         on<Events.VerifyCartFailure> {
             transitionTo(States.IDLE, SideEffects.VerifyCardFailure)
         }
+
+        on<Events.EjectCart> {
+            transitionTo(States.IDLE)
+        }
     }
 
     state<States.InputPin> {

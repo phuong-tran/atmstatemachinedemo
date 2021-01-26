@@ -9,9 +9,8 @@ import com.pt.core1.state.provider.context.IStateContextProvider
 
 class SavedStateViewModelFactory(
     owner: SavedStateRegistryOwner,
-    private val stateContext: IStateContextProvider,
-    private val initializer: (savedStateHandle: SavedStateHandle, stateContext: IStateContextProvider) -> ViewModel,
     defaultArgs: Bundle? = null,
+    val initializer: (savedStateHandle: SavedStateHandle) -> ViewModel,
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(
@@ -19,6 +18,6 @@ class SavedStateViewModelFactory(
         modelClass: Class<T>,
         handle: SavedStateHandle
     ): T {
-        return initializer(handle, stateContext) as T
+        return initializer(handle) as T
     }
 }
