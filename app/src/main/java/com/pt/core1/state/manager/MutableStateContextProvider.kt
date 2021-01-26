@@ -9,7 +9,7 @@ import com.pt.core1.state.provider.IGraphBuilderProvider
 import com.pt.core1.state.provider.ITransactionActionProvider
 import com.pt.core1.state.provider.context.template.IMutableStateContextProvider
 
-open class MutableStateContextProvider(
+class MutableStateContextProvider private constructor(
     defaultStateProvider: IDefaultStateProvider,
     graphBuilderProvider: IGraphBuilderProvider,
     transactionActionProvider: ITransactionActionProvider,
@@ -18,7 +18,7 @@ open class MutableStateContextProvider(
     graphBuilderProvider = graphBuilderProvider,
     transactionActionProvider = transactionActionProvider
 ), IMutableStateContextProvider {
-    final override val isWritable = true
+    override val isWritable = true
 
     override fun createStateMachine(
         initState: State,
@@ -37,6 +37,20 @@ open class MutableStateContextProvider(
             setCurrentState(toState)
             setTransitionData(transitionData)
             transactionActionProvider.onTransaction(transitionData)
+        }
+    }
+
+    companion object {
+        fun create(
+            defaultStateProvider: IDefaultStateProvider,
+            graphBuilderProvider: IGraphBuilderProvider,
+            transactionActionProvider: ITransactionActionProvider
+        ): IMutableStateContextProvider {
+            return MutableStateContextProvider(
+                defaultStateProvider = defaultStateProvider,
+                graphBuilderProvider = graphBuilderProvider,
+                transactionActionProvider = transactionActionProvider
+            )
         }
     }
 }
