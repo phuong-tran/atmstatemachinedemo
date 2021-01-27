@@ -16,6 +16,21 @@ class StateContextBundleStorageProviderTemplate private constructor(
         defaultStateProvider = defaultStateProvider,
         graphBuilderProvider = graphBuilderProvider,
         transactionActionProvider = transactionActionProvider
-    )
+    ) {
+    companion object {
+        fun create(
+            defaultStateProvider: DefaultStateProvider,
+            graphBuilderProvider: GraphBuilderProvider,
+            transactionActionProvider: TransactionActionProvider
+        ): StateContextBundleStorageProvider {
+            return StateContextBundleStorageProviderTemplate.create(
+                defaultStateProvider = defaultStateProvider,
+                graphBuilderProvider = graphBuilderProvider,
+                transactionActionProvider = transactionActionProvider
+            )
+        }
+    }
+}
+
 
 
