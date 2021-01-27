@@ -16,6 +16,6 @@ class StateContextBundleStorageProviderTemplate private constructor(
         defaultStateProvider = defaultStateProvider,
         graphBuilderProvider = graphBuilderProvider,
         transactionActionProvider = transactionActionProvider
-    ), SaveStateToBundleProvider by SaveStateToBundleProviderTemplate
+    )
 
 

@@ -1,6 +1,8 @@
 package com.pt.core1.state.manager
 
-import com.pt.core1.state.provider.*
+import com.pt.core1.state.provider.DefaultStateProvider
+import com.pt.core1.state.provider.GraphBuilderProvider
+import com.pt.core1.state.provider.TransactionActionProvider
 import com.pt.core1.state.provider.context.template.DefaultStateContextProvider
 import com.pt.core1.state.provider.context.template.StateContextReadWriteProvider
 
@@ -13,11 +15,7 @@ class DefaultStateContextProviderTemplate private constructor(
         defaultStateProvider,
         graphBuilderProvider,
         transactionActionProvider
-    ),
-
-    SaveStateToBundleProvider by SaveStateToBundleProviderTemplate,
-    SaveStateToSavedHandlerProvider by SaveStateToSavedHandlerProviderTemplate {
-
+    ) {
     companion object {
         fun create(
             defaultStateProvider: DefaultStateProvider,

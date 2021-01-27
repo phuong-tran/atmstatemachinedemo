@@ -1,13 +1,25 @@
 package com.pt.app1.activity
 
+
+import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.pt.dig.atm.R
+import com.pt.helper.delegate.BundleDelegate
+import com.pt.helper.delegate.asDelegate
+import com.pt.helper.delegate.bundleDelegate
 
 class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
+
     //override val TAG = "MainActivity"
 
     /*override val stateContext =
         StateContextDefaultProvider.createStateContextProvider(this, this, this)*/
-
 
 
     /*override fun provideGraphBuilder(): StateMachine.GraphBuilder<State, Event, SideEffect> =
