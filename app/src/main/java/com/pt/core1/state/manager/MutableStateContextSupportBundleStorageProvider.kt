@@ -13,24 +13,9 @@ class MutableStateContextSupportBundleStorageProvider private constructor(
     transactionActionProvider: ITransactionActionProvider,
 ) : IMutableStateContextSupportBundleStorageProvider,
     IMutableStateContextProvider by MutableStateContextProvider.create(
-        defaultStateProvider,
-        graphBuilderProvider,
-        transactionActionProvider
-    ),
-    ISaveStateToBundleProvider by SaveStateToBundleProvider {
-    companion object {
-        fun create(
-            defaultStateProvider: IDefaultStateProvider,
-            graphBuilderProvider: IGraphBuilderProvider,
-            transactionActionProvider: ITransactionActionProvider
-        ) {
-            MutableStateContextSupportBundleStorageProvider(
-                defaultStateProvider = defaultStateProvider,
-                graphBuilderProvider = graphBuilderProvider,
-                transactionActionProvider = transactionActionProvider
-            )
-        }
-    }
-}
+        defaultStateProvider = defaultStateProvider,
+        graphBuilderProvider = graphBuilderProvider,
+        transactionActionProvider = transactionActionProvider
+    ), ISaveStateToBundleProvider by SaveStateToBundleProvider
 
 

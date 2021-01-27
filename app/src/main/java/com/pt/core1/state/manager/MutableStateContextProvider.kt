@@ -6,21 +6,22 @@ import com.pt.core1.data.State
 import com.pt.core1.data.TransitionData
 import com.pt.core1.state.provider.IDefaultStateProvider
 import com.pt.core1.state.provider.IGraphBuilderProvider
+import com.pt.core1.state.provider.IStateMachineProvider
 import com.pt.core1.state.provider.ITransactionActionProvider
 import com.pt.core1.state.provider.context.template.IMutableStateContextProvider
 
-class MutableStateContextProvider private constructor(
+open class MutableStateContextProvider(
     defaultStateProvider: IDefaultStateProvider,
-    graphBuilderProvider: IGraphBuilderProvider,
-    transactionActionProvider: ITransactionActionProvider,
-) : ImmutableStateContextBaseProvider(
-    defaultStateProvider = defaultStateProvider,
-    graphBuilderProvider = graphBuilderProvider,
-    transactionActionProvider = transactionActionProvider
-), IMutableStateContextProvider {
-    override val isWritable = true
+    private val graphBuilderProvider: IGraphBuilderProvider,
+    private val transactionActionProvider: ITransactionActionProvider
+) : IMutableStateContextProvider,
+    IStateMachineProvider by StateMachineProvider.create(
+        graphBuilderProvider = graphBuilderProvider,
+        transactionActionProvider = transactionActionProvider,
+        defaultStateProvider = defaultStateProvider
+    ) {
 
-    override fun createStateMachine(
+/*    final override fun createStateMachine(
         initState: State,
     ): StateMachine<State, Event, SideEffect> {
         return StateMachine.createWithDelegate(
@@ -38,7 +39,7 @@ class MutableStateContextProvider private constructor(
             setTransitionData(transitionData)
             transactionActionProvider.onTransaction(transitionData)
         }
-    }
+    }*/
 
     companion object {
         fun create(
@@ -54,4 +55,3 @@ class MutableStateContextProvider private constructor(
         }
     }
 }
-

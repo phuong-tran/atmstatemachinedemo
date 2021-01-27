@@ -10,6 +10,7 @@ import com.pt.core1.state.provider.IGraphBuilderProvider
 import com.pt.core1.state.provider.context.template.IStateContextDefaultProvider
 import com.pt.core1.state.provider.ITransactionActionProvider
 
+/*
 abstract class SimpleStateActivity2 : SimpleStateActivity(), IGraphBuilderProvider,
     ITransactionActionProvider, IDefaultStateProvider, IStateContextDefaultProvider {
 
@@ -49,4 +50,4 @@ abstract class SimpleStateActivity2 : SimpleStateActivity(), IGraphBuilderProvid
     final override fun setTransitionData(transitionData: TransitionData) {
         stateContext.setTransitionData(transitionData)
     }
-}
+}*/

@@ -1,28 +1,16 @@
 package com.pt.app1.activity
 
-import android.os.Bundle
-import android.util.Log
-import com.pt.app1.graph.event.Events
-import com.pt.app1.graph.provideGraph
-import com.pt.app1.graph.state.States
-import com.pt.core1.controller.activity.simple.SimpleStateActivity2
-import com.pt.core1.data.Event
-import com.pt.core1.data.SideEffect
-import com.pt.core1.data.State
-import com.pt.core1.data.TransitionData
-import com.pt.core1.state.manager.StateContextDefaultProvider
-import com.pt.core1.state.manager.StateMachine
-import com.pt.dig.atm.R
+import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : SimpleStateActivity2() {
-    override val TAG = "MainActivity"
+class MainActivity : AppCompatActivity() {
+    //override val TAG = "MainActivity"
 
-    override val stateContext =
-        StateContextDefaultProvider.createStateContextProvider(this, this, this)
+    /*override val stateContext =
+        StateContextDefaultProvider.createStateContextProvider(this, this, this)*/
 
 
 
-    override fun provideGraphBuilder(): StateMachine.GraphBuilder<State, Event, SideEffect> =
+    /*override fun provideGraphBuilder(): StateMachine.GraphBuilder<State, Event, SideEffect> =
         provideGraph()
 
     override fun onTransaction(transitionData: TransitionData) {
@@ -68,5 +56,5 @@ class MainActivity : SimpleStateActivity2() {
                 " currentStateTransitionDataB = " + stateContext.getCurrentTransitionData()
             )
         }
-    }
+    }*/
 }
