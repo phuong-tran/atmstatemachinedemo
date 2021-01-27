@@ -1,4 +1,4 @@
-package com.pt.app1.viewmodel.factory
+package com.pt.core1.navigator.viewmodel.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

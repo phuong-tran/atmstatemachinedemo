@@ -1,4 +1,4 @@
-package com.pt.app1.viewmodel.factory
+package com.pt.core1.navigator.viewmodel.factory
 
 import android.os.Bundle
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
