@@ -9,8 +9,8 @@ import com.pt.core1.data.TransitionData
 import com.pt.core1.state.helper.*
 import com.pt.core1.state.provider.*
 
-interface IStateContextDefaultProvider : IMutableStateContextSupportBundleStorageProvider,
-    ISaveStateToSavedHandlerProvider {
+interface StateContextDefaultProvider : StateContextBundleStorageProvider,
+    SaveStateToSavedHandlerProvider {
 
     override fun saveStateToBundle(bundle: Bundle, state: State) {
         bundle.saveCurrentStateToBundle(state)

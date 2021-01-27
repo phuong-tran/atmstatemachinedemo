@@ -4,13 +4,13 @@ import androidx.lifecycle.SavedStateHandle
 import com.pt.core1.controller.viewmodel.external.simple.SimpleStateSupportWithDelegateViewModel
 import com.pt.core1.data.State
 import com.pt.core1.data.TransitionData
-import com.pt.core1.state.provider.ISaveStateViaSavedHandler
-import com.pt.core1.state.provider.context.template.IStateContextDefaultProvider
+import com.pt.core1.state.provider.SaveStateViaSavedHandler
+import com.pt.core1.state.provider.context.template.StateContextDefaultProvider
 
 abstract class StateSupportWithDelegateViewModel(
     private val savedStateHandle: SavedStateHandle,
-    stateContext: IStateContextDefaultProvider
-) : SimpleStateSupportWithDelegateViewModel(stateContext), ISaveStateViaSavedHandler {
+    stateContext: StateContextDefaultProvider
+) : SimpleStateSupportWithDelegateViewModel(stateContext), SaveStateViaSavedHandler {
 
     final override fun saveStateToSavedStateHandler(
         savedStateHandle: SavedStateHandle,

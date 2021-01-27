@@ -4,7 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import com.pt.core1.data.State
 import com.pt.core1.data.TransitionData
 
-interface ISaveStateToSavedHandlerProvider {
+interface SaveStateToSavedHandlerProvider {
     fun saveStateToSavedStateHandler(savedStateHandle: SavedStateHandle, state: State)
 
     fun saveTransitionDataToSavedStateHandler(

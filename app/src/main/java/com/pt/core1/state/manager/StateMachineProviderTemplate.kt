@@ -7,11 +7,11 @@ import com.pt.core1.data.TransitionData
 import com.pt.core1.state.provider.*
 import java.util.concurrent.atomic.AtomicReference
 
-class StateMachineProvider private constructor(
-    private val graphBuilderProvider: IGraphBuilderProvider,
-    private val transactionActionProvider: ITransactionActionProvider,
-    private val defaultStateProvider: IDefaultStateProvider,
-) : IStateMachineProvider {
+class StateMachineProviderTemplate private constructor(
+    private val graphBuilderProvider: GraphBuilderProvider,
+    private val transactionActionProvider: TransactionActionProvider,
+    private val defaultStateProvider: DefaultStateProvider,
+) : StateMachineProvider {
 
     private val stateMachineHolder = AtomicReference<StateMachine<State, Event, SideEffect>>()
 
@@ -75,8 +75,6 @@ class StateMachineProvider private constructor(
         stateMachineHolder.set(createStateMachineDefaultState())
     }
 
-
-
     override fun setNewState(state: State) {
         getStateMachine().with {
             initialState(state)
@@ -107,11 +105,11 @@ class StateMachineProvider private constructor(
 
     companion object {
         fun create(
-            graphBuilderProvider: IGraphBuilderProvider,
-            transactionActionProvider: ITransactionActionProvider,
-            defaultStateProvider: IDefaultStateProvider
-        ): IStateMachineProvider {
-            return StateMachineProvider(
+            graphBuilderProvider: GraphBuilderProvider,
+            transactionActionProvider: TransactionActionProvider,
+            defaultStateProvider: DefaultStateProvider
+        ): StateMachineProvider {
+            return StateMachineProviderTemplate(
                 graphBuilderProvider = graphBuilderProvider,
                 transactionActionProvider = transactionActionProvider,
                 defaultStateProvider = defaultStateProvider

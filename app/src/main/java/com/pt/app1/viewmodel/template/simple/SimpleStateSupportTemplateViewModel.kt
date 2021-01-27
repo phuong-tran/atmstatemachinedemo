@@ -1,9 +1,9 @@
 package com.pt.app1.viewmodel.template.simple
 
 import com.pt.core1.controller.viewmodel.external.simple.SimpleStateSupportViewModel
-import com.pt.core1.state.provider.context.template.IStateContextDefaultProvider
+import com.pt.core1.state.provider.context.template.StateContextDefaultProvider
 
-class SimpleStateSupportTemplateViewModel(stateContext: IStateContextDefaultProvider) :
+class SimpleStateSupportTemplateViewModel(stateContext: StateContextDefaultProvider) :
     SimpleStateSupportViewModel(stateContext) {
     override val TAG: String = "SimpleStateSupportTemplateViewModel"
 

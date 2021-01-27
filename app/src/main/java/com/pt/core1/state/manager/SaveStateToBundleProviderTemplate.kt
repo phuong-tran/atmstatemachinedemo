@@ -6,9 +6,9 @@ import com.pt.core1.data.TransitionData
 import com.pt.core1.state.helper.saveAllCurrentStateToBundle
 import com.pt.core1.state.helper.saveCurrentStateToBundle
 import com.pt.core1.state.helper.saveCurrentTransitionDataToBundle
-import com.pt.core1.state.provider.ISaveStateToBundleProvider
+import com.pt.core1.state.provider.SaveStateToBundleProvider
 
-object SaveStateToBundleProvider : ISaveStateToBundleProvider {
+object SaveStateToBundleProviderTemplate : SaveStateToBundleProvider {
     override fun saveStateToBundle(bundle: Bundle, state: State) {
         bundle.saveCurrentStateToBundle(state)
     }

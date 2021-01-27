@@ -4,14 +4,14 @@ import android.os.Bundle
 import com.pt.core1.controller.fragment.FragmentWithTag
 import com.pt.core1.state.helper.getStateFromBundle
 import com.pt.core1.state.helper.getTransitionDataFromBundle
-import com.pt.core1.state.provider.IDefaultStateProvider
-import com.pt.core1.state.provider.IGraphBuilderProvider
-import com.pt.core1.state.provider.context.template.IStateContextDefaultProvider
-import com.pt.core1.state.provider.ITransactionActionProvider
+import com.pt.core1.state.provider.DefaultStateProvider
+import com.pt.core1.state.provider.GraphBuilderProvider
+import com.pt.core1.state.provider.context.template.StateContextDefaultProvider
+import com.pt.core1.state.provider.TransactionActionProvider
 
 abstract class SimpleStateFragment : FragmentWithTag(),
-    IGraphBuilderProvider, ITransactionActionProvider, IDefaultStateProvider {
-    abstract val stateContext: IStateContextDefaultProvider
+    GraphBuilderProvider, TransactionActionProvider, DefaultStateProvider {
+    abstract val stateContext: StateContextDefaultProvider
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

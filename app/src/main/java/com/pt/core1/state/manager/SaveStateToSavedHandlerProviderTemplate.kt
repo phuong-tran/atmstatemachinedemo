@@ -6,9 +6,9 @@ import com.pt.core.state.TRANSITION_DATA
 import com.pt.core1.data.State
 import com.pt.core1.data.TransitionData
 import com.pt.core1.state.helper.saveAllCurrentStateToSavedStateHandler
-import com.pt.core1.state.provider.ISaveStateToSavedHandlerProvider
+import com.pt.core1.state.provider.SaveStateToSavedHandlerProvider
 
-object SaveStateToSavedHandlerProvider : ISaveStateToSavedHandlerProvider {
+object SaveStateToSavedHandlerProviderTemplate : SaveStateToSavedHandlerProvider {
     override fun saveStateToSavedStateHandler(savedStateHandle: SavedStateHandle, state: State) {
         savedStateHandle.set(STATE, state)
     }
