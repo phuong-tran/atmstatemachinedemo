@@ -7,7 +7,7 @@ import com.pt.core.state.provider.template.StateContextReadWriteProvider
 import com.pt.core.state.provider.template.StateContextSavedHandlerProvider
 
 
-class StateContextSavedHandlerProviderTemplate(
+class StateContextSavedHandlerTemplate(
     defaultStateProvider: DefaultStateProvider,
     graphBuilderProvider: GraphBuilderProvider,
     transactionActionProvider: TransactionActionProvider,
@@ -23,7 +23,7 @@ class StateContextSavedHandlerProviderTemplate(
             graphBuilderProvider: GraphBuilderProvider,
             transactionActionProvider: TransactionActionProvider
         ): StateContextSavedHandlerProvider {
-            return StateContextSavedHandlerProviderTemplate(
+            return StateContextSavedHandlerTemplate(
                 defaultStateProvider = defaultStateProvider,
                 graphBuilderProvider = graphBuilderProvider,
                 transactionActionProvider = transactionActionProvider
