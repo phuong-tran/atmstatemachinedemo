@@ -1,4 +1,4 @@
-package com.pt.core.controller.fragment.standalone
+package com.pt.core.controller.fragment.standalone.basic
 
 import android.os.Bundle
 import com.pt.core.controller.fragment.StateBaseFragment
