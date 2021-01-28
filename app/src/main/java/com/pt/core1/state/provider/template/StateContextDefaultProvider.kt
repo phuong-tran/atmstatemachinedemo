@@ -1,4 +1,4 @@
-package com.pt.core1.state.provider.context.template
+package com.pt.core1.state.provider.template
 
 import android.os.Bundle
 import androidx.lifecycle.SavedStateHandle

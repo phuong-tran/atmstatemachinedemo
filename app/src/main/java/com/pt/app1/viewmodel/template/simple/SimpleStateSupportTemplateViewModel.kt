@@ -1,7 +1,7 @@
 package com.pt.app1.viewmodel.template.simple
 
 import com.pt.core1.controller.viewmodel.external.simple.SimpleStateSupportViewModel
-import com.pt.core1.state.provider.context.template.StateContextDefaultProvider
+import com.pt.core1.state.provider.template.StateContextDefaultProvider
 
 class SimpleStateSupportTemplateViewModel(stateContext: StateContextDefaultProvider) :
     SimpleStateSupportViewModel(stateContext) {

@@ -2,7 +2,7 @@ package com.pt.core1.navigator.fragment.basic.readonly
 
 import android.content.Context
 import com.pt.core1.navigator.fragment.BaseFragment
-import com.pt.core1.state.provider.context.template.StateContextReadOnlyProvider
+import com.pt.core1.state.provider.template.StateContextReadOnlyProvider
 
 abstract class StateReadOnlyActivityAndParentFragment : BaseFragment() {
     protected var stateContextActivity: StateContextReadOnlyProvider? = null

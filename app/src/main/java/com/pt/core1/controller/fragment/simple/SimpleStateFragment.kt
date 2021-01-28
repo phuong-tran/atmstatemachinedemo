@@ -6,7 +6,7 @@ import com.pt.core1.state.helper.getStateFromBundle
 import com.pt.core1.state.helper.getTransitionDataFromBundle
 import com.pt.core1.state.provider.DefaultStateProvider
 import com.pt.core1.state.provider.GraphBuilderProvider
-import com.pt.core1.state.provider.context.template.StateContextDefaultProvider
+import com.pt.core1.state.provider.template.StateContextDefaultProvider
 import com.pt.core1.state.provider.TransactionActionProvider
 
 abstract class SimpleStateFragment : FragmentWithTag(),

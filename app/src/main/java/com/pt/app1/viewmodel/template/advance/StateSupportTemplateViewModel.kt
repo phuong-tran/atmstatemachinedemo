@@ -2,7 +2,7 @@ package com.pt.app1.viewmodel.template.advance
 
 import androidx.lifecycle.SavedStateHandle
 import com.pt.core1.controller.viewmodel.external.advance.StateSupportViewModel
-import com.pt.core1.state.provider.context.template.StateContextDefaultProvider
+import com.pt.core1.state.provider.template.StateContextDefaultProvider
 
 class StateSupportTemplateViewModel(
     savedStateHandle: SavedStateHandle,

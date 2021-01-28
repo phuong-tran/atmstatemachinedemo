@@ -1,3 +1,3 @@
-package com.pt.core1.state.provider.context.template
+package com.pt.core1.state.provider.template
 
 interface StateContextReadWriteProvider : StateContextProvider

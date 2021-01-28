@@ -2,7 +2,7 @@ package com.pt.core1.navigator.activity.basic
 
 import com.pt.core1.navigator.activity.StateBaseActivity
 import com.pt.core1.state.manager.StateContextReadOnlyProviderTemplate
-import com.pt.core1.state.provider.context.template.StateContextReadOnlyProvider
+import com.pt.core1.state.provider.template.StateContextReadOnlyProvider
 
 abstract class StateReadOnlyActivityController : StateBaseActivity() {
     override val TAG = "StateReadOnlyActivityController"

@@ -6,7 +6,7 @@ import com.pt.core1.state.provider.DefaultStateProvider
 import com.pt.core1.state.provider.GraphBuilderProvider
 import com.pt.core1.state.provider.StateMachineProvider
 import com.pt.core1.state.provider.TransactionActionProvider
-import com.pt.core1.state.provider.context.template.StateContextReadOnlyProvider
+import com.pt.core1.state.provider.template.StateContextReadOnlyProvider
 import java.lang.IllegalStateException
 
 class StateContextReadOnlyProviderTemplate(

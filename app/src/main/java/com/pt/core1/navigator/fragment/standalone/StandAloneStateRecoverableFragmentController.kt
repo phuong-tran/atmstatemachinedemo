@@ -5,7 +5,7 @@ import com.pt.core1.navigator.fragment.StateBaseFragment
 import com.pt.core1.state.helper.getStateFromBundle
 import com.pt.core1.state.helper.getTransitionDataFromBundle
 import com.pt.core1.state.manager.StateContextBundleStorageProviderTemplate
-import com.pt.core1.state.provider.context.template.StateContextBundleStorageProvider
+import com.pt.core1.state.provider.template.StateContextBundleStorageProvider
 
 abstract class StandAloneStateRecoverableFragmentController : StateBaseFragment() {
     protected val stateContext: StateContextBundleStorageProvider by lazy {

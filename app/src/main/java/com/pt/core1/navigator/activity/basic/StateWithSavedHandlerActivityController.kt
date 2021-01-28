@@ -2,7 +2,7 @@ package com.pt.core1.navigator.activity.basic
 
 import com.pt.core1.navigator.activity.StateBaseActivity
 import com.pt.core1.state.manager.StateContextSavedHandlerStorageTemplate
-import com.pt.core1.state.provider.context.template.StateContextSavedHandler
+import com.pt.core1.state.provider.template.StateContextSavedHandler
 
 abstract class StateWithSavedHandlerActivityController : StateBaseActivity() {
     override val TAG = "StateSupportSavedHandlerStorageActivityController"
