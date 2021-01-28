@@ -9,6 +9,7 @@ import com.pt.core.state.provider.CurrentStateGetterProvider
 import com.pt.core.state.provider.SaveStateToSavedHandlerProvider
 
 
+/*
 class StateSavedHandlerViewModelImpl(
     savedStateHandle: SavedStateHandle,
     currentState: CurrentStateGetterProvider,
@@ -23,3 +24,4 @@ class StateSavedHandlerViewModelImpl(
         transitionMutableLiveData.postValue(transitionData)
     }
 }
+*/

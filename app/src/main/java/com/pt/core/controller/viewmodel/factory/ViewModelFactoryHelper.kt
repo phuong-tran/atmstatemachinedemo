@@ -4,25 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.pt.core.controller.viewmodel.readonly.StateReadOnlyViewModelController
 
-/* val viewModel by viewModels<SimpleStateSupportTemplateViewModel> {
-        createFactorySafe<SimpleStateSupportTemplateViewModel> {
-            SimpleStateSupportTemplateViewModel(stateContext)
-        }
-    }
-
-
-    val viewModel2 by viewModels<SimpleStateSupportTemplateViewModel> {
-       createFactory {
-           SimpleStateSupportTemplateViewModel(stateContext)
-       }
-    }
-
-    val viewModel3 by viewModels<SimpleStateSupportTemplateViewModel> {
-        createViewModelFactory {
-            SimpleStateSupportTemplateViewModel(stateContext)
-        }
-    }*/
-
 inline fun createDefaultViewModelFactory(crossinline initializer: () -> ViewModel): ViewModelProvider.Factory {
     return object : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
@@ -70,12 +51,6 @@ inline fun <reified VM : ViewModel> createStateBasicViewModelFactorySafe(noinlin
 
 
 inline fun <reified T : ViewModel> createViewModelFactory(crossinline initializer: () -> T): ViewModelProvider.Factory {
-    return ViewModelFactory {
-        initializer()
-    }
-}
-
-inline fun <reified T : StateReadOnlyViewModelController> createStateBasicFactory(crossinline initializer: () -> T): ViewModelProvider.Factory {
     return ViewModelFactory {
         initializer()
     }
