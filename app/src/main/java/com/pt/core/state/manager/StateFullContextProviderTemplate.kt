@@ -3,14 +3,14 @@ package com.pt.core.state.manager
 import com.pt.core.state.provider.DefaultStateProvider
 import com.pt.core.state.provider.GraphBuilderProvider
 import com.pt.core.state.provider.TransactionActionProvider
-import com.pt.core.state.provider.template.FullStateContextProvider
+import com.pt.core.state.provider.template.StateFullContextProvider
 import com.pt.core.state.provider.template.StateContextReadWriteProvider
 
-class FullStateContextProviderTemplate private constructor(
+class StateFullContextProviderTemplate private constructor(
     defaultStateProvider: DefaultStateProvider,
     graphBuilderProvider: GraphBuilderProvider,
     transactionActionProvider: TransactionActionProvider,
-) : FullStateContextProvider,
+) : StateFullContextProvider,
     StateContextReadWriteProvider by StateContextReadWriteProviderTemplate.create(
         defaultStateProvider,
         graphBuilderProvider,
@@ -21,8 +21,8 @@ class FullStateContextProviderTemplate private constructor(
             defaultStateProvider: DefaultStateProvider,
             graphBuilderProvider: GraphBuilderProvider,
             transactionActionProvider: TransactionActionProvider
-        ): FullStateContextProvider {
-            return FullStateContextProviderTemplate(
+        ): StateFullContextProvider {
+            return StateFullContextProviderTemplate(
                 defaultStateProvider = defaultStateProvider,
                 graphBuilderProvider = graphBuilderProvider,
                 transactionActionProvider = transactionActionProvider

@@ -1,14 +1,12 @@
 package com.pt.core.controller.activity.viewmodel
 
 import androidx.annotation.CallSuper
-import com.pt.core.data.TransitionData
 import com.pt.core.controller.activity.basic.StateReadWriteActivityController
 import com.pt.core.controller.viewmodel.readwrite.StateReadWriteViewModelController
+import com.pt.core.data.TransitionData
 
-abstract class StateRecoverableActivityWithViewModelController :
-    StateReadWriteActivityController() {
+abstract class StateReadWriteActivityWithViewModelController : StateReadWriteActivityController() {
     protected abstract val viewModel: StateReadWriteViewModelController
-    override val TAG = "StateSupportBundleStorageActivityWithViewModelController"
 
     @CallSuper
     override fun onTransaction(transitionData: TransitionData) {

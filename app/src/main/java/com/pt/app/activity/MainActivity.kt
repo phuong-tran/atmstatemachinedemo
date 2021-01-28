@@ -10,11 +10,11 @@ import com.pt.core.data.Event
 import com.pt.core.data.SideEffect
 import com.pt.core.data.State
 import com.pt.core.data.TransitionData
-import com.pt.core.controller.activity.basic.FullStateActivityController
+import com.pt.core.controller.activity.basic.StateFullActivityController
 import com.pt.core.state.manager.StateMachine
 import com.pt.dig.atm.R
 
-class MainActivity : FullStateActivityController() {
+class MainActivity : StateFullActivityController() {
     override val TAG = "MainActivity"
 
     override fun provideGraphBuilder(): StateMachine.GraphBuilder<State, Event, SideEffect> {

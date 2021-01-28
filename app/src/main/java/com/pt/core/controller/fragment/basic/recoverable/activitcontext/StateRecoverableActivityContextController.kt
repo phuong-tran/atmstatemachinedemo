@@ -7,5 +7,4 @@ abstract class StateRecoverableActivityContextController :
     StateRecoverableExternalContextController() {
     override val TAG = "StateRecoverableActivityContextController"
     final override fun providerContext(): Context? = activity
-
 }

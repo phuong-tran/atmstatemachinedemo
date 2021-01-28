@@ -2,12 +2,12 @@ package com.pt.core.controller.activity.viewmodel
 
 import androidx.annotation.CallSuper
 import com.pt.core.data.TransitionData
-import com.pt.core.controller.activity.basic.FullStateActivityController
-import com.pt.core.controller.viewmodel.savedstatehandle.StateSavedHandlerViewModelController
+import com.pt.core.controller.activity.basic.StateFullActivityController
+import com.pt.core.controller.viewmodel.full.StateFullContextViewModelController
 
-abstract class FullStateActivityWithViewModelController : FullStateActivityController() {
+abstract class StateFullActivityWithViewModelController : StateFullActivityController() {
     override val TAG = "StateDefaultActivityWithViewModelController"
-    protected abstract val viewModel: StateSavedHandlerViewModelController
+    protected abstract val viewModel: StateFullContextViewModelController
 
     @CallSuper
     override fun onTransaction(transitionData: TransitionData) {
