@@ -1,18 +1,18 @@
-package com.pt.core.controller.fragment.basic.readonly
+package com.pt.core.controller.fragment.basic.readwrite
 
 import android.content.Context
 import com.pt.core.controller.fragment.BaseFragment
-import com.pt.core.state.provider.template.StateContextReadOnlyProvider
+import com.pt.core.state.provider.template.StateContextReadWriteProvider
 
-abstract class StateReadOnlyExternalContextController : BaseFragment() {
-    protected var stateContext: StateContextReadOnlyProvider? = null
+abstract class StateReadWriteExternalContextController : BaseFragment() {
+    protected var stateContext: StateContextReadWriteProvider? = null
         private set
 
     abstract fun providerContext(): Context?
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (providerContext() as? StateContextReadOnlyProvider)?.let {
+        (providerContext() as? StateContextReadWriteProvider)?.let {
             stateContext = it
         }
             ?: throw IllegalArgumentException("Context must be implemented StateContextReadOnlyProvider")
@@ -22,4 +22,5 @@ abstract class StateReadOnlyExternalContextController : BaseFragment() {
         super.onDetach()
         stateContext = null
     }
+
 }

@@ -4,7 +4,7 @@ import android.content.Context
 import com.pt.core.controller.fragment.BaseFragment
 import com.pt.core.state.provider.template.StateContextReadOnlyProvider
 
-abstract class StateReadOnlyActivityAndParentFragment : BaseFragment() {
+abstract class StateReadOnlyActivityAndParentFragmentController : BaseFragment() {
     protected var stateContextActivity: StateContextReadOnlyProvider? = null
         private set
 
