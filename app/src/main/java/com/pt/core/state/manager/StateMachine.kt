@@ -1,8 +1,11 @@
 package com.pt.core.state.manager
 
+import com.pt.core.data.Event
+import com.pt.core.data.SideEffect
+import com.pt.core.data.State
 import java.util.concurrent.atomic.AtomicReference
 
-class StateMachine<STATE : Any, EVENT : Any, SIDE_EFFECT : Any> private constructor(
+class StateMachine<STATE : State, EVENT : Event, SIDE_EFFECT : SideEffect> private constructor(
     private val graph: Graph<STATE, EVENT, SIDE_EFFECT>
 ) {
 
@@ -223,13 +226,13 @@ class StateMachine<STATE : Any, EVENT : Any, SIDE_EFFECT : Any> private construc
     }
 
     companion object {
-        fun <STATE : Any, EVENT : Any, SIDE_EFFECT : Any> create(
+        fun <STATE : State, EVENT : Event, SIDE_EFFECT : SideEffect> create(
             init: GraphBuilder<STATE, EVENT, SIDE_EFFECT>.() -> Unit
         ): StateMachine<STATE, EVENT, SIDE_EFFECT> {
             return create(null, init)
         }
 
-        private fun <STATE : Any, EVENT : Any, SIDE_EFFECT : Any> create(
+        private fun <STATE : State, EVENT : Event, SIDE_EFFECT : SideEffect> create(
             graph: Graph<STATE, EVENT, SIDE_EFFECT>?,
             init: GraphBuilder<STATE, EVENT, SIDE_EFFECT>.() -> Unit
         ): StateMachine<STATE, EVENT, SIDE_EFFECT> {
@@ -239,13 +242,13 @@ class StateMachine<STATE : Any, EVENT : Any, SIDE_EFFECT : Any> private construc
         /**
          * @author : Phuong Tran, start edited
          */
-        fun <STATE : Any, EVENT : Any, SIDE_EFFECT : Any> create(
+        fun <STATE : State, EVENT : Event, SIDE_EFFECT : SideEffect> create(
             graphBuilder: GraphBuilder<STATE, EVENT, SIDE_EFFECT>
         ): StateMachine<STATE, EVENT, SIDE_EFFECT> {
             return StateMachine(graphBuilder.build())
         }
 
-        fun <STATE : Any, EVENT : Any, SIDE_EFFECT : Any> createWithDelegate(
+        fun <STATE : State, EVENT : Event, SIDE_EFFECT : SideEffect> createWithDelegate(
             graphBuilder: GraphBuilder<STATE, EVENT, SIDE_EFFECT>,
             onTransitionDelegate: (fromState: STATE, event: EVENT, toState: STATE, sideEffect: SIDE_EFFECT?) -> Unit
         ): StateMachine<STATE, EVENT, SIDE_EFFECT> {
@@ -257,14 +260,14 @@ class StateMachine<STATE : Any, EVENT : Any, SIDE_EFFECT : Any> private construc
             )
         }
 
-        fun <STATE : Any, EVENT : Any, SIDE_EFFECT : Any> createGraphWithDelegate(
+        fun <STATE : State, EVENT : Event, SIDE_EFFECT : SideEffect> createGraphWithDelegate(
             graphBuilder: GraphBuilder<STATE, EVENT, SIDE_EFFECT>,
             onTransitionDelegate: (fromState: STATE, event: EVENT, toState: STATE, sideEffect: SIDE_EFFECT?) -> Unit
         ): Graph<STATE, EVENT, SIDE_EFFECT> {
             return createGraphBuilderWithDelegate(graphBuilder, onTransitionDelegate).build()
         }
 
-        private fun <STATE : Any, EVENT : Any, SIDE_EFFECT : Any> createGraphBuilderWithDelegate(
+        private fun <STATE : State, EVENT : Event, SIDE_EFFECT : SideEffect> createGraphBuilderWithDelegate(
             graphBuilder: GraphBuilder<STATE, EVENT, SIDE_EFFECT>,
             onTransitionDelegate: (fromState: STATE, event: EVENT, toState: STATE, sideEffect: SIDE_EFFECT?) -> Unit
         ): GraphBuilder<STATE, EVENT, SIDE_EFFECT> {

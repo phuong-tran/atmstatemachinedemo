@@ -2,7 +2,7 @@ package com.pt.core.data
 
 import android.os.Parcelable
 
-sealed class SideEffect : Parcelable
+sealed class SideEffectBase : Parcelable
 
 // Hack
-abstract class SideEffectBase : SideEffect()
+abstract class SideEffect : SideEffectBase()

@@ -1,4 +1,5 @@
-package com.pt.app.fragment
+/*
+package com.pt.app1.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -43,4 +44,4 @@ class IntroFragment : AdvancedStateSupportBaseFragment() {
     ) {
 
     }
-}
+}*/
