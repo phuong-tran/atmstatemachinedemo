@@ -43,30 +43,6 @@ class StateMachineProviderTemplate private constructor(
         }
     }
 
-    /*override fun createStateMachine(
-        initState: State,
-    ): StateMachine<State, Event, SideEffect> {
-        return StateMachine.createWithDelegate(
-            graphBuilderProvider.provideGraphBuilder().apply {
-                initialState(initState)
-            }
-        ) { fromState, event, toState, sideEffect ->
-            val transitionData = TransitionData(
-                fromState = fromState,
-                event = event,
-                toState = toState,
-                sideEffect = sideEffect
-            )
-            transactionActionProvider.onTransaction(transitionData)
-        }
-    }*/
-
-    /* private fun createStateMachineThenSetToHolder(initState: State) {
-         stateMachineHolder.set(createStateMachine(initState))
-     }*/
-
-    /* override fun defaultState(): State = defaultStateProvider.defaultState()*/
-
     private fun createStateMachineDefaultState(): StateMachine<State, Event, SideEffect> {
         return createStateMachine(defaultStateProvider.provideDefaultState())
     }
