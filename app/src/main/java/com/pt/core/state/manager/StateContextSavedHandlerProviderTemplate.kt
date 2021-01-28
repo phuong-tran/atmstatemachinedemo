@@ -4,14 +4,14 @@ import com.pt.core.state.provider.DefaultStateProvider
 import com.pt.core.state.provider.GraphBuilderProvider
 import com.pt.core.state.provider.TransactionActionProvider
 import com.pt.core.state.provider.template.StateContextReadWriteProvider
-import com.pt.core.state.provider.template.StateContextSavedHandler
+import com.pt.core.state.provider.template.StateContextSavedHandlerProvider
 
 
-class StateContextSavedHandlerStorageTemplate(
+class StateContextSavedHandlerProviderTemplate(
     defaultStateProvider: DefaultStateProvider,
     graphBuilderProvider: GraphBuilderProvider,
     transactionActionProvider: TransactionActionProvider,
-) : StateContextSavedHandler,
+) : StateContextSavedHandlerProvider,
     StateContextReadWriteProvider by StateContextReadWriteProviderTemplate.create(
         defaultStateProvider,
         graphBuilderProvider,
@@ -22,8 +22,8 @@ class StateContextSavedHandlerStorageTemplate(
             defaultStateProvider: DefaultStateProvider,
             graphBuilderProvider: GraphBuilderProvider,
             transactionActionProvider: TransactionActionProvider
-        ): StateContextSavedHandler {
-            return StateContextSavedHandlerStorageTemplate(
+        ): StateContextSavedHandlerProvider {
+            return StateContextSavedHandlerProviderTemplate(
                 defaultStateProvider = defaultStateProvider,
                 graphBuilderProvider = graphBuilderProvider,
                 transactionActionProvider = transactionActionProvider

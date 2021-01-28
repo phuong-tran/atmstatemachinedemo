@@ -1,12 +1,12 @@
 package com.pt.core.controller.activity.basic
 
 import com.pt.core.controller.activity.StateBaseActivity
-import com.pt.core.state.manager.StateContextSavedHandlerStorageTemplate
-import com.pt.core.state.provider.template.StateContextSavedHandler
+import com.pt.core.state.manager.StateContextSavedHandlerProviderTemplate
+import com.pt.core.state.provider.template.StateContextSavedHandlerProvider
 
 abstract class StateWithSavedHandlerActivityController : StateBaseActivity() {
     override val TAG = "StateSupportSavedHandlerStorageActivityController"
-    protected val stateContext: StateContextSavedHandler by lazy {
-        StateContextSavedHandlerStorageTemplate.create(this, this, this)
+    protected val stateContext: StateContextSavedHandlerProvider by lazy {
+        StateContextSavedHandlerProviderTemplate.create(this, this, this)
     }
 }
