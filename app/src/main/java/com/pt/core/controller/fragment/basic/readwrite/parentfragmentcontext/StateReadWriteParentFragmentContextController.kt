@@ -7,5 +7,5 @@ abstract class StateReadWriteParentFragmentContextController :
     StateReadWriteExternalContextController() {
     override val TAG = "StateReadWriteParentFragmentContextController"
 
-    override fun providerContext(): Context? = parentFragment?.requireContext()
+    final override fun providerContext(): Context? = parentFragment?.requireContext()
 }

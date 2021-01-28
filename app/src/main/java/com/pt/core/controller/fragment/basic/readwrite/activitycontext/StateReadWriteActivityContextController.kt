@@ -6,5 +6,5 @@ import com.pt.core.controller.fragment.basic.readwrite.StateReadWriteExternalCon
 abstract class StateReadWriteActivityContextController : StateReadWriteExternalContextController() {
     override val TAG = "StateReadWriteActivityContextController"
 
-    override fun providerContext(): Context? = activity
+    final override fun providerContext(): Context? = activity
 }
