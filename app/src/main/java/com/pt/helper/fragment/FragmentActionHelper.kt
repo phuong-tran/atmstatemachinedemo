@@ -122,7 +122,8 @@ fun FragmentManager.replaceThenCommit(
         fragmentTag,
         false,
         isAddToBackStack,
-        stackName
+        stackName,
+        animation
     ).commit()
 }
 
