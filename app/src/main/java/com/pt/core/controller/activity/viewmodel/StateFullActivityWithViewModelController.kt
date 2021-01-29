@@ -2,10 +2,10 @@ package com.pt.core.controller.activity.viewmodel
 
 import androidx.annotation.CallSuper
 import com.pt.core.data.TransitionData
-import com.pt.core.controller.activity.standalone.StateFullActivityController
+import com.pt.core.controller.activity.standalone.StandAloneStateFullActivityController
 import com.pt.core.controller.viewmodel.full.StateFullContextViewModelController
 
-abstract class StateFullActivityWithViewModelController : StateFullActivityController() {
+abstract class StateFullActivityWithViewModelController : StandAloneStateFullActivityController() {
     override val TAG = "StateDefaultActivityWithViewModelController"
     protected abstract val viewModel: StateFullContextViewModelController
 

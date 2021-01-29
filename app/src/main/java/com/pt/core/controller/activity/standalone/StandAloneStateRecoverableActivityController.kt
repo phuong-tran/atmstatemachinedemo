@@ -7,7 +7,7 @@ import com.pt.core.state.helper.getTransitionDataFromBundle
 import com.pt.core.state.manager.StateContextBundleStorageProviderTemplate
 import com.pt.core.state.provider.template.StateContextBundleStorageProvider
 
-abstract class StateRecoverableActivityController : StateBaseActivity() {
+abstract class StandAloneStateRecoverableActivityController : StateBaseActivity() {
     override val TAG = "StateRecoverableActivityController"
     protected open val stateContext: StateContextBundleStorageProvider by lazy {
         StateContextBundleStorageProviderTemplate.create(this, this, this)
