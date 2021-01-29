@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.pt.core.controller.viewmodel.readonly.StateReadOnlyViewModelController
 
+/*
 inline fun createDefaultViewModelFactory(crossinline initializer: () -> ViewModel): ViewModelProvider.Factory {
     return object : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
@@ -48,6 +49,7 @@ inline fun <reified VM : ViewModel> createStateBasicViewModelFactorySafe(noinlin
         }
     }
 }
+*/
 
 
 inline fun <reified T : ViewModel> createViewModelFactory(crossinline initializer: () -> T): ViewModelProvider.Factory {

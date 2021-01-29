@@ -6,6 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 
+/*
 inline fun createDefaultSavedStateViewModelFactory(
     owner: SavedStateRegistryOwner,
     defaultArgs: Bundle? = null,
@@ -43,6 +44,7 @@ inline fun <reified VM : ViewModel> createDefaultSavedStateViewModelFactorySafe(
         }
     }
 }
+*/
 
 inline fun <T : ViewModel> createSavedStateViewModelFactory(
     owner: SavedStateRegistryOwner,
