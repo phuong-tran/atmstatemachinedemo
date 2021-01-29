@@ -59,10 +59,6 @@ class MainActivity : StandAloneStateFullActivityController() {
             )
         } else {
             Log.d(TAG, " currentStateB = " + stateContext.getCurrentState())
-            Log.d(
-                TAG,
-                " currentStateTransitionDataB = " + stateContext.getCurrentTransitionData()
-            )
         }
     }
 }

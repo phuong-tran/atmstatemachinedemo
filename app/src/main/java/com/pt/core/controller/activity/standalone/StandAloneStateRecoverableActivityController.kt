@@ -5,7 +5,7 @@ import com.pt.core.controller.activity.StateBaseActivity
 import com.pt.core.state.helper.getStateFromBundle
 import com.pt.core.state.helper.getTransitionDataFromBundle
 import com.pt.core.state.manager.StateContextBundleStorageProviderTemplate
-import com.pt.core.state.provider.template.StateContextBundleStorageProvider
+import com.pt.core.state.provider.template.recoverable.StateContextBundleStorageProvider
 
 abstract class StandAloneStateRecoverableActivityController : StateBaseActivity() {
     protected open val stateContext: StateContextBundleStorageProvider by lazy {
@@ -15,7 +15,7 @@ abstract class StandAloneStateRecoverableActivityController : StateBaseActivity(
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         with(stateContext) {
-            saveAllCurrentStateToBundle(outState, getCurrentState(), getCurrentTransitionData())
+            saveStateToBundle(outState, getCurrentState())
         }
     }
 
@@ -24,11 +24,7 @@ abstract class StandAloneStateRecoverableActivityController : StateBaseActivity(
         if (savedInstanceState != null) {
             with(stateContext) {
                 savedInstanceState.getStateFromBundle()?.let {
-                    setCurrentState(it)
                     setNewState(it)
-                }
-                savedInstanceState.getTransitionDataFromBundle()?.let {
-                    setTransitionData(it)
                 }
             }
         }

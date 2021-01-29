@@ -17,12 +17,12 @@ abstract class StateFullActivityAndParentFragmentContextController : BaseFragmen
         (activity as? StateFullContextProvider)?.let {
             stateContextActivity = it
         }
-            ?: throw IllegalArgumentException("Activity must be implemented StateContextReadWriteProvider")
+            ?: throw IllegalArgumentException("Activity must be implemented StateFullContextProvider")
 
         (parentFragment as? StateFullContextProvider)?.let {
             stateContextParentFragment = it
         }
-            ?: throw IllegalArgumentException("ParentFragment must be implemented StateContextReadWriteProvider")
+            ?: throw IllegalArgumentException("ParentFragment must be implemented StateFullContextProvider")
 
 
     }

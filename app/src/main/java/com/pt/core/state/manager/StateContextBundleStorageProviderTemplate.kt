@@ -2,16 +2,16 @@ package com.pt.core.state.manager
 
 import com.pt.core.state.provider.DefaultStateProvider
 import com.pt.core.state.provider.GraphBuilderProvider
-import com.pt.core.state.provider.TransactionActionProvider
-import com.pt.core.state.provider.template.StateContextReadWriteProvider
-import com.pt.core.state.provider.template.StateContextBundleStorageProvider
+import com.pt.core.state.provider.transition.StateTransactionDataProvider
+import com.pt.core.state.provider.template.changeable.StateContextChangeableProvider
+import com.pt.core.state.provider.template.recoverable.StateContextBundleStorageProvider
 
 class StateContextBundleStorageProviderTemplate private constructor(
     defaultStateProvider: DefaultStateProvider,
     graphBuilderProvider: GraphBuilderProvider,
-    transactionActionProvider: TransactionActionProvider,
+    transactionActionProvider: StateTransactionDataProvider,
 ) : StateContextBundleStorageProvider,
-    StateContextReadWriteProvider by StateContextReadWriteProviderTemplate.create(
+    StateContextChangeableProvider by StateContexChangeableProviderTemplate.create(
         defaultStateProvider = defaultStateProvider,
         graphBuilderProvider = graphBuilderProvider,
         transactionActionProvider = transactionActionProvider
@@ -20,7 +20,7 @@ class StateContextBundleStorageProviderTemplate private constructor(
         fun create(
             defaultStateProvider: DefaultStateProvider,
             graphBuilderProvider: GraphBuilderProvider,
-            transactionActionProvider: TransactionActionProvider
+            transactionActionProvider: StateTransactionDataProvider
         ): StateContextBundleStorageProvider {
             return StateContextBundleStorageProviderTemplate(
                 defaultStateProvider = defaultStateProvider,

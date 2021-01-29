@@ -1,7 +1,7 @@
-package com.pt.core.state.provider
+package com.pt.core.state.provider.transition
 
 import com.pt.core.data.TransitionData
 
-interface TransactionActionProvider {
+interface StateTransactionDataProvider {
     fun onTransaction(transitionData: TransitionData)
 }

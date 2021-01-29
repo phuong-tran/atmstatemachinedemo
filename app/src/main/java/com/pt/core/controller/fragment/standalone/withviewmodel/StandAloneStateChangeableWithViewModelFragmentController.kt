@@ -3,11 +3,11 @@ package com.pt.core.controller.fragment.standalone.withviewmodel
 import androidx.annotation.CallSuper
 import com.pt.core.controller.fragment.standalone.withoutviewmodel.StandAloneStateRecoverableFragmentController
 import com.pt.core.data.TransitionData
-import com.pt.core.controller.viewmodel.readwrite.StateReadWriteViewModelController
+import com.pt.core.controller.viewmodel.changeable.StateChangeableViewModelController
 
-abstract class StandAloneStateReadWriteWithViewModelFragmentController :
+abstract class StandAloneStateChangeableWithViewModelFragmentController :
     StandAloneStateRecoverableFragmentController() {
-    abstract val viewModel: StateReadWriteViewModelController
+    abstract val viewModel: StateChangeableViewModelController
 
     @CallSuper
     override fun onTransaction(transitionData: TransitionData) {

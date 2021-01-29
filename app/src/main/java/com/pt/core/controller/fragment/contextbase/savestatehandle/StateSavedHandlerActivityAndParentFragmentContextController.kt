@@ -17,12 +17,12 @@ abstract class StateSavedHandlerActivityAndParentFragmentContextController : Bas
         (activity as? StateContextSavedHandlerProvider)?.let {
             stateContextActivity = it
         }
-            ?: throw IllegalArgumentException("Activity must be implemented StateContextReadWriteProvider")
+            ?: throw IllegalArgumentException("Activity must be implemented StateContextSavedHandlerProvider")
 
         (parentFragment as? StateContextSavedHandlerProvider)?.let {
             stateContextParentFragment = it
         }
-            ?: throw IllegalArgumentException("ParentFragment must be implemented StateContextReadWriteProvider")
+            ?: throw IllegalArgumentException("ParentFragment must be implemented StateContextSavedHandlerProvider")
 
 
     }

@@ -1,5 +1,5 @@
 package com.pt.core.controller.viewmodel
 
-import com.pt.core.state.provider.TransactionActionProvider
+import com.pt.core.state.provider.transition.StateTransactionDataProvider
 
-abstract class ViewModelBaseWithTransitionListener: ViewModelBase(), TransactionActionProvider
+abstract class ViewModelBaseWithTransitionListener: ViewModelBase(), StateTransactionDataProvider

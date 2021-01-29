@@ -2,7 +2,7 @@ package com.pt.core.controller.fragment.contextbase.recoverable
 
 import android.content.Context
 import com.pt.core.controller.fragment.BaseFragment
-import com.pt.core.state.provider.template.StateContextBundleStorageProvider
+import com.pt.core.state.provider.template.recoverable.StateContextBundleStorageProvider
 
 abstract class StateRecoverableActivityAndParentFragmentContextController : BaseFragment() {
     protected var stateContextActivity: StateContextBundleStorageProvider? = null
@@ -17,12 +17,12 @@ abstract class StateRecoverableActivityAndParentFragmentContextController : Base
         (activity as? StateContextBundleStorageProvider)?.let {
             stateContextActivity = it
         }
-            ?: throw IllegalArgumentException("Activity must be implemented StateContextReadWriteProvider")
+            ?: throw IllegalArgumentException("Activity must be implemented StateContextBundleStorageProvider")
 
         (parentFragment as? StateContextBundleStorageProvider)?.let {
             stateContextParentFragment = it
         }
-            ?: throw IllegalArgumentException("ParentFragment must be implemented StateContextReadWriteProvider")
+            ?: throw IllegalArgumentException("ParentFragment must be implemented StateContextBundleStorageProvider")
 
 
     }

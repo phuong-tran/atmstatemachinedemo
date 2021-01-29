@@ -1,9 +1,8 @@
-package com.pt.core.state.provider
+package com.pt.core.state.provider.transition
 
 import com.pt.core.data.Event
 import com.pt.core.data.State
 
 interface StateTransitionProvider {
-    fun setNewState(state: State)
     fun transition(event: Event)
 }

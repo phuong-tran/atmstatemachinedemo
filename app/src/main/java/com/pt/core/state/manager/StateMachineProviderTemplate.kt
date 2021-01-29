@@ -5,13 +5,18 @@ import com.pt.core.data.SideEffect
 import com.pt.core.data.State
 import com.pt.core.data.TransitionData
 import com.pt.core.state.provider.*
+import com.pt.core.state.provider.template.changeable.StateContextChangeableProvider
+import com.pt.core.state.provider.template.changeable.StateContextChangeableStateMachineProvider
+import com.pt.core.state.provider.template.readonly.StateContextReadOnlyStateMachineProvider
+import com.pt.core.state.provider.transition.ChangeStateProvider
+import com.pt.core.state.provider.transition.StateTransactionDataProvider
 import java.util.concurrent.atomic.AtomicReference
 
 class StateMachineProviderTemplate private constructor(
     private val graphBuilderProvider: GraphBuilderProvider,
-    private val transactionActionProvider: TransactionActionProvider,
+    private val transactionActionProvider: StateTransactionDataProvider,
     private val defaultStateProvider: DefaultStateProvider,
-) : StateMachineProvider {
+) : StateContextChangeableStateMachineProvider, CurrentStateSetterProvider {
 
     private val stateMachineHolder = AtomicReference<StateMachine<State, Event, SideEffect>>()
 
@@ -53,7 +58,9 @@ class StateMachineProviderTemplate private constructor(
 
     override fun setNewState(state: State) {
         getStateMachine().with {
-            initialState(state)
+            initialState(state).also {
+                stateHolder.set(state)
+            }
         }.also {
             stateMachineHolder.set(it)
         }
@@ -80,12 +87,36 @@ class StateMachineProviderTemplate private constructor(
     }
 
     companion object {
-        fun create(
+        private inline fun <reified T> create(
             graphBuilderProvider: GraphBuilderProvider,
-            transactionActionProvider: TransactionActionProvider,
+            transactionActionProvider: StateTransactionDataProvider,
             defaultStateProvider: DefaultStateProvider
-        ): StateMachineProvider {
+        ): T {
             return StateMachineProviderTemplate(
+                graphBuilderProvider = graphBuilderProvider,
+                transactionActionProvider = transactionActionProvider,
+                defaultStateProvider = defaultStateProvider
+            ) as T
+        }
+
+        fun createForReadOnly(
+            graphBuilderProvider: GraphBuilderProvider,
+            transactionActionProvider: StateTransactionDataProvider,
+            defaultStateProvider: DefaultStateProvider
+        ): StateContextReadOnlyStateMachineProvider {
+            return create(
+                graphBuilderProvider = graphBuilderProvider,
+                transactionActionProvider = transactionActionProvider,
+                defaultStateProvider = defaultStateProvider
+            )
+        }
+
+        fun createForChangeable(
+            graphBuilderProvider: GraphBuilderProvider,
+            transactionActionProvider: StateTransactionDataProvider,
+            defaultStateProvider: DefaultStateProvider
+        ): StateContextChangeableProvider {
+            return create(
                 graphBuilderProvider = graphBuilderProvider,
                 transactionActionProvider = transactionActionProvider,
                 defaultStateProvider = defaultStateProvider

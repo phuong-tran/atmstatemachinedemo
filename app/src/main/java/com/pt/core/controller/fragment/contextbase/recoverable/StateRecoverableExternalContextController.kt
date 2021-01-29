@@ -2,7 +2,7 @@ package com.pt.core.controller.fragment.contextbase.recoverable
 
 import android.content.Context
 import com.pt.core.controller.fragment.BaseFragment
-import com.pt.core.state.provider.template.StateContextBundleStorageProvider
+import com.pt.core.state.provider.template.recoverable.StateContextBundleStorageProvider
 
 abstract class StateRecoverableExternalContextController : BaseFragment() {
     protected var stateContext: StateContextBundleStorageProvider? = null
@@ -15,7 +15,7 @@ abstract class StateRecoverableExternalContextController : BaseFragment() {
         (providerContext() as? StateContextBundleStorageProvider)?.let {
             stateContext = it
         }
-            ?: throw IllegalArgumentException("Context must be implemented StateContextReadOnlyProvider")
+            ?: throw IllegalArgumentException("Context must be implemented StateContextBundleStorageProvider")
     }
 
     override fun onDetach() {

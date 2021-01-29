@@ -15,7 +15,7 @@ abstract class StateSavedHandlerExternalContextController : BaseFragment() {
         (providerContext() as? StateContextSavedHandlerProvider)?.let {
             stateContext = it
         }
-            ?: throw IllegalArgumentException("Context must be implemented StateContextReadOnlyProvider")
+            ?: throw IllegalArgumentException("Context must be implemented StateContextSavedHandlerProvider")
     }
 
     override fun onDetach() {
