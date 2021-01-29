@@ -1,8 +1,7 @@
-package com.pt.core.controller.fragment.standalone.viewmodel
+package com.pt.core.controller.fragment.standalone.withviewmodel
 
 import androidx.annotation.CallSuper
-import com.pt.core.controller.fragment.standalone.basic.StandAloneStateRecoverableFragmentController
-import com.pt.core.controller.viewmodel.readwrite.StateReadWriteViewModelController
+import com.pt.core.controller.fragment.standalone.withoutviewmodel.StandAloneStateRecoverableFragmentController
 import com.pt.core.controller.viewmodel.recoverable.StateRecoverableViewModelController
 import com.pt.core.data.TransitionData
 

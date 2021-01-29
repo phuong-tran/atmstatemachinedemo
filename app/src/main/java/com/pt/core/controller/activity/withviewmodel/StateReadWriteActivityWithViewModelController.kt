@@ -1,4 +1,4 @@
-package com.pt.core.controller.activity.viewmodel
+package com.pt.core.controller.activity.withviewmodel
 
 import androidx.annotation.CallSuper
 import com.pt.core.controller.activity.standalone.StandAloneStateReadWriteActivityController

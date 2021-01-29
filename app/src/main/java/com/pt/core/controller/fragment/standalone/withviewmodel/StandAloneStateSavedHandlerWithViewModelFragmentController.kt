@@ -1,6 +1,6 @@
-package com.pt.core.controller.fragment.standalone.viewmodel
+package com.pt.core.controller.fragment.standalone.withviewmodel
 
-import com.pt.core.controller.fragment.standalone.basic.StandAloneStateSavedHandlerFragmentController
+import com.pt.core.controller.fragment.standalone.withoutviewmodel.StandAloneStateSavedHandlerFragmentController
 import com.pt.core.controller.viewmodel.savedstatehandle.StateSavedHandlerViewModelController
 
 abstract class StandAloneStateSavedHandlerWithViewModelFragmentController :

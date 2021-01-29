@@ -1,4 +1,4 @@
-package com.pt.core.controller.fragment.standalone.basic
+package com.pt.core.controller.fragment.standalone.withoutviewmodel
 
 import com.pt.core.controller.fragment.StateBaseFragment
 import com.pt.core.state.manager.StateFullContextProviderTemplate

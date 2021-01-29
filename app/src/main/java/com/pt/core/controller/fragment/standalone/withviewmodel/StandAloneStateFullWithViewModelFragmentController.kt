@@ -1,7 +1,7 @@
-package com.pt.core.controller.fragment.standalone.viewmodel
+package com.pt.core.controller.fragment.standalone.withviewmodel
 
 import androidx.annotation.CallSuper
-import com.pt.core.controller.fragment.standalone.basic.StandAloneStateFullFragmentController
+import com.pt.core.controller.fragment.standalone.withoutviewmodel.StandAloneStateFullFragmentController
 import com.pt.core.controller.viewmodel.statefull.StateFullContextViewModelController
 import com.pt.core.data.TransitionData
 
