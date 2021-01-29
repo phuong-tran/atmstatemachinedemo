@@ -1,4 +1,4 @@
-package com.pt.core.controller.activity.basic
+package com.pt.core.controller.activity.standalone
 
 import android.os.Bundle
 import com.pt.core.controller.activity.StateBaseActivity

@@ -1,4 +1,4 @@
-package com.pt.core.controller.activity.basic
+package com.pt.core.controller.activity.standalone
 
 import com.pt.core.state.manager.StateFullContextProviderTemplate
 import com.pt.core.state.provider.template.StateFullContextProvider

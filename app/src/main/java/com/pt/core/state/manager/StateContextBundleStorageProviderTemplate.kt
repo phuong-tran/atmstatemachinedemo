@@ -22,7 +22,7 @@ class StateContextBundleStorageProviderTemplate private constructor(
             graphBuilderProvider: GraphBuilderProvider,
             transactionActionProvider: TransactionActionProvider
         ): StateContextBundleStorageProvider {
-            return StateContextBundleStorageProviderTemplate.create(
+            return StateContextBundleStorageProviderTemplate(
                 defaultStateProvider = defaultStateProvider,
                 graphBuilderProvider = graphBuilderProvider,
                 transactionActionProvider = transactionActionProvider

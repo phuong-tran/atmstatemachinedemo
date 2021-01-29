@@ -1,4 +1,4 @@
-package com.pt.core.controller.activity.basic
+package com.pt.core.controller.activity.standalone
 
 import com.pt.core.controller.activity.StateBaseActivity
 import com.pt.core.state.manager.StateContextReadOnlyProviderTemplate

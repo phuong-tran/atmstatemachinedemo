@@ -10,7 +10,7 @@ import com.pt.core.data.Event
 import com.pt.core.data.SideEffect
 import com.pt.core.data.State
 import com.pt.core.data.TransitionData
-import com.pt.core.controller.activity.basic.StateFullActivityController
+import com.pt.core.controller.activity.standalone.StateFullActivityController
 import com.pt.core.state.manager.StateMachine
 import com.pt.dig.atm.R
 
