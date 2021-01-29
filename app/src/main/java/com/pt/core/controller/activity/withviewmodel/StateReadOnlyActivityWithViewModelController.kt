@@ -7,7 +7,6 @@ import com.pt.core.controller.viewmodel.readonly.StateReadOnlyViewModelControlle
 
 abstract class StateReadOnlyActivityWithViewModelController : StandAloneStateReadOnlyActivityController() {
     protected abstract val viewModel: StateReadOnlyViewModelController
-    override val TAG = "StateReadOnlyActivityWithViewModelController"
 
     @CallSuper
     override fun onTransaction(transitionData: TransitionData) {

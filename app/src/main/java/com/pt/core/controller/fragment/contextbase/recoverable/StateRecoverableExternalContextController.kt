@@ -5,7 +5,6 @@ import com.pt.core.controller.fragment.BaseFragment
 import com.pt.core.state.provider.template.StateContextBundleStorageProvider
 
 abstract class StateRecoverableExternalContextController : BaseFragment() {
-    override val TAG: String = "StateRecoverableExternalContextController"
     protected var stateContext: StateContextBundleStorageProvider? = null
         private set
 

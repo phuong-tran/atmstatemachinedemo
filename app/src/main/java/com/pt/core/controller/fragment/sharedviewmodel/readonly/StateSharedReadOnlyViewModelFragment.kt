@@ -6,7 +6,6 @@ import com.pt.core.controller.viewmodel.factory.createViewModelFactory
 import com.pt.core.controller.viewmodel.readonly.StateReadOnlyViewModelController
 
 abstract class StateSharedReadOnlyViewModelFragment : BaseFragment() {
-    override val TAG = "StateSharedReadOnlyViewModelFragment"
     abstract fun provideSharedViewModel(): StateReadOnlyViewModelController
 
     protected val viewModel: StateReadOnlyViewModelController by activityViewModels {

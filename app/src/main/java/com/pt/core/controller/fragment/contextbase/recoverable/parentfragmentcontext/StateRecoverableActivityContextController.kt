@@ -5,6 +5,5 @@ import com.pt.core.controller.fragment.contextbase.statefull.StateFullExternalCo
 
 abstract class StateRecoverableActivityContextController :
     StateFullExternalContextController() {
-    override val TAG = "StateRecoverableParentFragmentContextController"
     final override fun providerContext(): Context? = parentFragment?.requireContext()
 }

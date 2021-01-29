@@ -7,7 +7,6 @@ import com.pt.core.controller.viewmodel.readwrite.StateReadWriteViewModelControl
 
 abstract class StandAloneStateReadWriteWithViewModelFragmentController :
     StandAloneStateRecoverableFragmentController() {
-    override val TAG = "StandAloneStateRecoverableWithViewModelFragmentController"
     abstract val viewModel: StateReadWriteViewModelController
 
     @CallSuper

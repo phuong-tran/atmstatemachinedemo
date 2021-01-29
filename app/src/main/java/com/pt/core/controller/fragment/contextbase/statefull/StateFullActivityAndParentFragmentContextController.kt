@@ -4,9 +4,7 @@ import android.content.Context
 import com.pt.core.controller.fragment.BaseFragment
 import com.pt.core.state.provider.template.StateFullContextProvider
 
-class StateFullActivityAndParentFragmentContextController : BaseFragment() {
-
-    override val TAG = "StateRecoverableActivityAndParentFragmentContextController"
+abstract class StateFullActivityAndParentFragmentContextController : BaseFragment() {
     protected var stateContextActivity: StateFullContextProvider? = null
         private set
 

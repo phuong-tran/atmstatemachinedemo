@@ -7,7 +7,6 @@ import com.pt.core.controller.viewmodel.savedstatehandle.StateSavedHandlerViewMo
 
 abstract class StateWithSavedHandlerActivityWithViewModelController :
     StandAloneStateWithSavedHandlerActivityController() {
-    override val TAG = "StateSupportSavedHandlerStorageActivityWithViewModelController"
     protected abstract val viewModel: StateSavedHandlerViewModelController
 
     @CallSuper

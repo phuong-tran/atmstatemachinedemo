@@ -4,7 +4,5 @@ import android.content.Context
 import com.pt.core.controller.fragment.contextbase.readwrite.StateReadWriteExternalContextController
 
 abstract class StateReadWriteActivityContextController : StateReadWriteExternalContextController() {
-    override val TAG = "StateReadWriteActivityContextController"
-
     final override fun providerContext(): Context? = activity
 }

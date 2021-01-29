@@ -5,7 +5,6 @@ import com.pt.core.controller.fragment.BaseFragment
 import com.pt.core.state.provider.template.StateContextBundleStorageProvider
 
 abstract class StateRecoverableActivityAndParentFragmentContextController : BaseFragment() {
-    override val TAG = "StateRecoverableActivityAndParentFragmentContextController"
     protected var stateContextActivity: StateContextBundleStorageProvider? = null
         private set
 

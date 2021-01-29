@@ -5,7 +5,6 @@ import com.pt.core.controller.fragment.BaseFragment
 import com.pt.core.state.provider.template.StateContextSavedHandlerProvider
 
 abstract class StateFullExternalContextController : BaseFragment() {
-    override val TAG: String = "StateRecoverableExternalContextController"
     protected var stateContext: StateContextSavedHandlerProvider? = null
         private set
 

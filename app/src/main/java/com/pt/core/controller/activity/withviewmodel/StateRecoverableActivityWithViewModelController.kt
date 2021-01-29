@@ -8,7 +8,6 @@ import com.pt.core.controller.viewmodel.readwrite.StateReadWriteViewModelControl
 abstract class StateRecoverableActivityWithViewModelController :
     StandAloneStateReadWriteActivityController() {
     protected abstract val viewModel: StateReadWriteViewModelController
-    override val TAG = "StateSupportBundleStorageActivityWithViewModelController"
 
     @CallSuper
     override fun onTransaction(transitionData: TransitionData) {

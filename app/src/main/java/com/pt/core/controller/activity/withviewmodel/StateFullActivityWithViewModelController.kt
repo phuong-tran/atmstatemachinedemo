@@ -6,7 +6,6 @@ import com.pt.core.controller.activity.standalone.StandAloneStateFullActivityCon
 import com.pt.core.controller.viewmodel.statefull.StateFullContextViewModelController
 
 abstract class StateFullActivityWithViewModelController : StandAloneStateFullActivityController() {
-    override val TAG = "StateDefaultActivityWithViewModelController"
     protected abstract val viewModel: StateFullContextViewModelController
 
     @CallSuper

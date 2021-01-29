@@ -8,7 +8,6 @@ import com.pt.core.state.manager.StateContextBundleStorageProviderTemplate
 import com.pt.core.state.provider.template.StateContextBundleStorageProvider
 
 abstract class StandAloneStateReadWriteActivityController : StateBaseActivity() {
-    override val TAG = "StateRecoverableActivityController"
     protected open val stateContext: StateContextBundleStorageProvider by lazy {
         StateContextBundleStorageProviderTemplate.create(this, this, this)
     }

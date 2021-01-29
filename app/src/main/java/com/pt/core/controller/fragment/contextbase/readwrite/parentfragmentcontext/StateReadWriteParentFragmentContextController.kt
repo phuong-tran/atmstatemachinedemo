@@ -5,7 +5,5 @@ import com.pt.core.controller.fragment.contextbase.readwrite.StateReadWriteExter
 
 abstract class StateReadWriteParentFragmentContextController :
     StateReadWriteExternalContextController() {
-    override val TAG = "StateReadWriteParentFragmentContextController"
-
     final override fun providerContext(): Context? = parentFragment?.requireContext()
 }
