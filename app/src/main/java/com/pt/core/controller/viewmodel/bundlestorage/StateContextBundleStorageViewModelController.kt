@@ -5,5 +5,3 @@ import com.pt.core.state.provider.template.recoverable.StateContextBundleStorage
 
 abstract class StateContextBundleStorageViewModelController(stateContext: StateContextBundleStorageProvider) :
     ViewModelBaseWithTransitionListener(), StateContextBundleStorageProvider by stateContext
-
-
