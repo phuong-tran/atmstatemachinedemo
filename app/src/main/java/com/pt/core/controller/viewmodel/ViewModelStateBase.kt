@@ -5,5 +5,4 @@ import com.pt.core.state.provider.GraphBuilderProvider
 import com.pt.core.state.provider.transition.StateTransactionDataProvider
 
 abstract class ViewModelStateBase : ViewModelBase(), GraphBuilderProvider,
-    StateTransactionDataProvider, DefaultStateProvider {
-}
+    StateTransactionDataProvider, DefaultStateProvider
