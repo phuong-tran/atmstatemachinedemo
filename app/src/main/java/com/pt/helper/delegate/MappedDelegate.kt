@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
+/*
 private class MappedDelegate<In, Out, T>(
     private val source: ReadWriteProperty<In, T>,
     private val postWrite: ((Out, In) -> Unit)? = null,
@@ -56,4 +57,4 @@ fun <T> Bundle.asDelegate(default: T? = null): ReadWriteProperty<Any?, T> =
 
 private val Intent.ensureExtras get() = extras ?: putExtras(Bundle()).let { extras!! }
 
-private val Fragment.ensureArgs get() = arguments ?: Bundle().also(::setArguments)
+private val Fragment.ensureArgs get() = arguments ?: Bundle().also(::setArguments)*/

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/mn_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:orderInCategory="1"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/mn_category"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:orderInCategory="2"
+        android:title="Categories" />
+
+    <item
+        android:id="@+id/mn_bag"
+        android:orderInCategory="3"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Bag" />
+
+    <item
+        android:id="@+id/mn_wishlist"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:orderInCategory="4"
+        android:title="Wishlist" />
+
+    <item
+        android:id="@+id/mn_account"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:orderInCategory="5"
+        android:title="Account" />
+</menu>

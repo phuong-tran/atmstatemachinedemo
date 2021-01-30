@@ -2,6 +2,7 @@ package com.pt.helper.delegate
 // https://proandroiddev.com/kotlin-delegation-by-inception-61f8beaae0db
 // https://proandroiddev.com/kotlin-delegation-by-inception-61f8beaae0db
 
+/*
 import android.os.Bundle
 import androidx.core.os.bundleOf
 import kotlin.properties.ReadWriteProperty
@@ -21,4 +22,4 @@ class BundleDelegate<T>(
 
     override fun setValue(thisRef: Bundle, property: KProperty<*>, value: T) =
         thisRef.putAll(bundleOf(property.name to value))
-}
+}*/
