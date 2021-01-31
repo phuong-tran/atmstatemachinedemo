@@ -2,7 +2,6 @@ package com.pt.app.fragment.myaccount
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.pt.app.Model
 import com.pt.app.fragment.MyOrdersFragment
