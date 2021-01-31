@@ -1,10 +1,15 @@
 package com.pt.core.controller.fragment.contextbase.changeable
 
 import android.content.Context
+import android.os.Bundle
+import android.util.Log
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
+import com.pt.backstackcontroller.navigation.StackFragment
 import com.pt.core.controller.fragment.BaseFragment
 import com.pt.core.state.provider.template.changeable.StateContextChangeableProvider
 
-abstract class StateChangeableExternalContextController : BaseFragment() {
+abstract class StateChangeableExternalContextController(@LayoutRes layoutId: Int = 0) : BaseFragment(layoutId) {
     protected var stateContext: StateContextChangeableProvider? = null
         private set
 

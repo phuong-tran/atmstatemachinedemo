@@ -8,5 +8,6 @@ data class TransitionData(
     val fromState: State,
     val event: Event,
     val toState: State,
-    val sideEffect: SideEffect?
+    val sideEffect: SideEffect?,
+    val currentState: State = toState,
 ): Parcelable
