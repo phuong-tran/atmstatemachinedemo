@@ -8,9 +8,9 @@ import com.pt.core.state.provider.template.changeable.StateContextChangeableProv
 import com.pt.dig.atm.R
 import com.pt.dig.atm.databinding.LoginLayoutBinding
 
-class LoginFragment(
-    private val stateContext: StateContextChangeableProvider
-) : Fragment(R.layout.login_layout) {
+class LoginFragment : Fragment(R.layout.login_layout) {
+
+    var stateContext: StateContextChangeableProvider? = null
     lateinit var binding: LoginLayoutBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -19,17 +19,19 @@ class LoginFragment(
         with(binding) {
             loginButton.setOnClickListener {
                 Model.isLogin = true
-
-                with(stateContext.getCurrentTransitionData()) {
-                  when(sideEffect) {
-                      is MyAccount.SideEffects.MyOrderSideEffect -> {
-                          stateContext.transition(MyAccount.Events.LoginSuccessGoToMyOrder)
-                      }
-                      else -> {
-                          stateContext.transition(MyAccount.Events.LoginSuccess)
-                      }
-                  }
+                stateContext?.let {
+                    with(it.getCurrentTransitionData()) {
+                        when (sideEffect) {
+                            is MyAccount.SideEffects.MyOrderSideEffect -> {
+                                it.transition(MyAccount.Events.LoginSuccessGoToMyOrder)
+                            }
+                            else -> {
+                                it.transition(MyAccount.Events.LoginSuccess)
+                            }
+                        }
+                    }
                 }
+
             }
         }
     }
@@ -37,6 +39,8 @@ class LoginFragment(
     companion object {
         fun newInstance(
             stateContext: StateContextChangeableProvider
-        ) = LoginFragment(stateContext)
+        ) = LoginFragment().apply {
+            this.stateContext = stateContext
+        }
     }
 }

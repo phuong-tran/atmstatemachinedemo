@@ -1,7 +1,9 @@
 package com.pt.app.fragment.myaccount
 
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.pt.app.Model
 import com.pt.app.fragment.MyOrdersFragment
@@ -64,11 +66,14 @@ class MyAccountFragment :
 
 
     override fun onTransaction(transitionData: TransitionData) {
+        Log.d("PHUONGTRAN", "trandata $transitionData")
+
         with(transitionData) {
             when (currentState) {
                 is MyAccount.States.DefaultState -> {
                     when (sideEffect) {
                         is MyAccount.SideEffects.MyOrderSideEffect -> {
+                            navigator.pop()
                             navigator.push(MyOrdersFragment.newInstance())
                         }
                         is MyAccount.SideEffects.LoginSuccessSideEffect -> {
@@ -98,6 +103,30 @@ class MyAccountFragment :
 
     override fun provideDefaultState(): State = MyAccount.States.DefaultState
 
+   /* override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.d("PHUONGTRAN", "onAttach")
+    }*/
+
+   /* override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d("PHUONGTRAN", "onCreate")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d("PHUONGTRAN", "onDestroyView")
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        Log.d("PHUONGTRAN", "onViewStateRestored")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.d("PHUONGTRAN", "onDetach")
+    }*/
 
     companion object {
         fun newInstance(tabIndex: Int) = MyAccountFragment().apply {

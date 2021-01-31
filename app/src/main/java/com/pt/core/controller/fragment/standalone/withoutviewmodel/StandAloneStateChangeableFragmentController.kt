@@ -9,4 +9,9 @@ abstract class StandAloneStateChangeableFragmentController(@LayoutRes layoutId: 
     protected val stateContext: StateContextChangeableProvider by lazy {
         StateContexChangeableProviderTemplate.create(this, this, this)
     }
+
+   /* override fun onAttach(context: Context) {
+        super.onAttach(context)
+        stateContext.setNewState(provideDefaultState())
+    }*/
 }
