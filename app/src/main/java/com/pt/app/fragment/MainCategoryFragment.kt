@@ -9,7 +9,7 @@ import com.pt.helper.fragment.FragmentAnim
 
 class MainCategoryFragment: BaseRouteFragment(R.layout.main_category_layout) {
 
-    lateinit var binding: MainCategoryLayoutBinding
+    private lateinit var binding: MainCategoryLayoutBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

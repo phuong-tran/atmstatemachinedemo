@@ -103,7 +103,6 @@ class MyAccount {
                     transitionTo(States.DefaultState, SideEffects.LoginSuccessSideEffect)
                 }
             }
-
         }
     }
 }
