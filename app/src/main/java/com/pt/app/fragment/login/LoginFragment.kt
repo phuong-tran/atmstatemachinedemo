@@ -36,6 +36,8 @@ class LoginFragment : StateRecoverableParentFragmentContextController(R.layout.l
 
     override fun onDestroy() {
         super.onDestroy()
+        // In case of canceling by user we should set state to previous state
+        // It makes sense
         stateContext?.apply {
             setCurrentState(getCurrentTransitionData().fromState)
         }
