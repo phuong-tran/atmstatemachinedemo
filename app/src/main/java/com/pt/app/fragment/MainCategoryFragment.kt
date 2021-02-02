@@ -5,6 +5,7 @@ import android.view.View
 import com.pt.app.fragment.base.BaseRouteFragment
 import com.pt.dig.atm.R
 import com.pt.dig.atm.databinding.MainCategoryLayoutBinding
+import com.pt.helper.fragment.FragmentAnim
 
 class MainCategoryFragment: BaseRouteFragment(R.layout.main_category_layout) {
 
@@ -15,11 +16,11 @@ class MainCategoryFragment: BaseRouteFragment(R.layout.main_category_layout) {
         binding = MainCategoryLayoutBinding.bind(view)
         with(binding) {
             clothingButton.setOnClickListener {
-                navigator.push(SubCategoryFragment.newInstance())
+                navigator.push(SubCategoryFragment.newInstance(), FragmentAnim.PopSlideLeftRightAnim)
             }
 
             shoesButton.setOnClickListener {
-                navigator.push(SubCategoryFragment.newInstance())
+                navigator.push(SubCategoryFragment.newInstance(), FragmentAnim.PopSlideLeftRightAnim)
             }
         }
     }

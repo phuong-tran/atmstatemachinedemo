@@ -1,9 +1,13 @@
 package com.pt.core.controller.fragment.contextbase.savestatehandle.parentfragmentcontext
 
-import android.content.Context
+import androidx.annotation.LayoutRes
 import com.pt.core.controller.fragment.contextbase.savestatehandle.StateSavedHandlerExternalContextController
+import com.pt.core.state.provider.template.StateContextSavedHandlerProvider
 
-abstract class StateSavedHandlerParentFragmentContextController :
-    StateSavedHandlerExternalContextController() {
-    final override fun providerContext(): Context? = activity
+abstract class StateSavedHandlerParentFragmentContextController(@LayoutRes layoutId: Int = 0) :
+    StateSavedHandlerExternalContextController(layoutId) {
+
+    override fun getStateProviderOnAttach(): StateContextSavedHandlerProvider? {
+        return (parentFragment as? StateContextSavedHandlerProvider)
+    }
 }

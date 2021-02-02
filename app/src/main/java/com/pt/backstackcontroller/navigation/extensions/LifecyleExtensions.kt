@@ -1,4 +1,4 @@
-package com.pt.backstackcontroller.navigation
+package com.pt.backstackcontroller.navigation.extensions
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver

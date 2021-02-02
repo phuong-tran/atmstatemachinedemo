@@ -1,9 +1,13 @@
 package com.pt.core.controller.fragment.contextbase.readonly.parentfragmentcontext
 
-import android.content.Context
 import com.pt.core.controller.fragment.contextbase.readonly.StateReadOnlyExternalContextController
+import com.pt.core.state.provider.template.readonly.StateContextReadOnlyProvider
 
 abstract class StateReadOnlyParentFragmentContextController :
     StateReadOnlyExternalContextController() {
-    final override fun providerContext(): Context? = parentFragment?.requireContext()
+
+    override fun getStateProviderOnAttach(): StateContextReadOnlyProvider? {
+        return parentFragment as? StateContextReadOnlyProvider
+    }
+
 }

@@ -1,21 +1,23 @@
 package com.pt.core.controller.fragment.contextbase.readonly
 
 import android.content.Context
+import androidx.annotation.LayoutRes
 import com.pt.core.controller.fragment.BaseFragment
-import com.pt.core.state.provider.template.readonly.StateContextReadOnlyStateMachineProvider
+import com.pt.core.state.provider.template.readonly.StateContextReadOnlyProvider
 
-abstract class StateReadOnlyExternalContextController : BaseFragment() {
-    protected var stateContext: StateContextReadOnlyStateMachineProvider? = null
-        private set
+abstract class StateReadOnlyExternalContextController(@LayoutRes layoutId: Int = 0) :
+    BaseFragment(layoutId) {
+    protected var stateContext: StateContextReadOnlyProvider? = null
 
-    abstract fun providerContext(): Context?
+    protected abstract fun getStateProviderOnAttach(): StateContextReadOnlyProvider?
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (providerContext() as? StateContextReadOnlyStateMachineProvider)?.let {
+
+        getStateProviderOnAttach()?.let {
             stateContext = it
         }
-            ?: throw IllegalArgumentException("Context must be implemented StateContextReadOnlyStateMachineProvider")
+            ?: throw IllegalArgumentException("Context must be implemented StateContextReadOnlyProvider")
     }
 
     override fun onDetach() {

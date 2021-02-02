@@ -1,4 +1,4 @@
-package com.pt.backstackcontroller.navigation
+package com.pt.backstackcontroller.navigation.extensions
 
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
+import com.pt.backstackcontroller.navigation.Navigator
 
 internal val Bundle?.hashString: String
     get() = if (this == null) ""

@@ -2,11 +2,10 @@ package com.pt.backstackcontroller.navigation
 
 import android.util.Log
 import androidx.annotation.IdRes
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.commit
+import androidx.fragment.app.*
+import com.pt.backstackcontroller.navigation.coroutines.SuspendingStackNavigator
+import com.pt.helper.fragment.FragmentAnim
+import com.pt.helper.fragment.setFragmentAnimation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -15,9 +14,10 @@ fun Fragment.childStackNavigationController(@IdRes containerId: Int): Lazy<Stack
 }
 
 @Suppress("unused")
-fun FragmentActivity.stackNavigationController(@IdRes containerId: Int): Lazy<StackNavigator> = lazy {
-    StackNavigator(supportFragmentManager, containerId)
-}
+fun FragmentActivity.stackNavigationController(@IdRes containerId: Int): Lazy<StackNavigator> =
+    lazy {
+        StackNavigator(supportFragmentManager, containerId)
+    }
 
 /**
  * A class that keeps track of the fragments [Fragment] in a [FragmentManager], and enforces that
@@ -56,13 +56,16 @@ class StackNavigator constructor(
         get() = name?.run { this.removePrefix(split("-").first() + "-") }
 
     private val baskStackEntries
-        get() = fragmentManager.run { (0 until backStackEntryCount).map(this::getBackStackEntryAt).filter { it.inContainer } }
+        get() = fragmentManager.run {
+            (0 until backStackEntryCount).map(this::getBackStackEntryAt).filter { it.inContainer }
+        }
 
     internal val fragmentTags
         get() = baskStackEntries.map { it.tag }
 
     init {
-        fragmentManager.registerFragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
+        fragmentManager.registerFragmentLifecycleCallbacks(object :
+            FragmentManager.FragmentLifecycleCallbacks() {
             override fun onFragmentResumed(fm: FragmentManager, f: Fragment) = auditFragment(f)
         }, false)
     }
@@ -78,7 +81,29 @@ class StackNavigator constructor(
      * @return true if the a fragment provided will be shown, false if the fragment instance already
      * exists and will be restored instead.
      */
-    override fun push(fragment: Fragment, tag: String): Boolean {
+    /* override fun push(fragment: Fragment, tag: String): Boolean {
+         val tags = fragmentTags
+         val currentFragmentTag = tags.lastOrNull()
+         if (currentFragmentTag != null && currentFragmentTag == tag) return false
+
+         val fragmentAlreadyExists = tags.contains(tag)
+
+         val fragmentShown = !fragmentAlreadyExists
+
+         val fragmentToShow =
+             (if (fragmentAlreadyExists) fragmentManager.findFragmentByTag(tag)
+             else fragment) ?: throw NullPointerException(MSG_DODGY_FRAGMENT)
+
+         fragmentManager.commit {
+             transactionModifier?.invoke(this, fragment)
+             this.setFragmentAnimation(FragmentAnim.defaultFragmentAnim)
+             replace(containerId, fragmentToShow, tag)
+             addToBackStack(tag.toEntry)
+         }
+         return fragmentShown
+     }*/
+
+    override fun push(fragment: Fragment, tag: String, anim: FragmentAnim?): Boolean {
         val tags = fragmentTags
         val currentFragmentTag = tags.lastOrNull()
         if (currentFragmentTag != null && currentFragmentTag == tag) return false
@@ -92,12 +117,18 @@ class StackNavigator constructor(
             else fragment) ?: throw NullPointerException(MSG_DODGY_FRAGMENT)
 
         fragmentManager.commit {
-            transactionModifier?.invoke(this, fragment)
+            anim?.let {
+                this.setFragmentAnimation(it)
+            } ?: transactionModifier?.invoke(this, fragment)
+
             replace(containerId, fragmentToShow, tag)
             addToBackStack(tag.toEntry)
         }
-
         return fragmentShown
+    }
+
+    override fun push(fragment: Fragment, tag: String): Boolean {
+        return push(fragment, tag, null)
     }
 
     override val previous: Fragment?
@@ -113,12 +144,18 @@ class StackNavigator constructor(
     override fun clear(upToTag: String?, includeMatch: Boolean) {
         // Empty string will be treated as a no-op internally
         val tag = upToTag?.toEntry ?: baskStackEntries.firstOrNull()?.name ?: ""
-        fragmentManager.popBackStack(tag, if (includeMatch) FragmentManager.POP_BACK_STACK_INCLUSIVE else 0)
+        fragmentManager.popBackStack(
+            tag,
+            if (includeMatch) FragmentManager.POP_BACK_STACK_INCLUSIVE else 0
+        )
     }
 
     override fun find(tag: String): Fragment? = fragmentManager.findFragmentByTag(tag)
 
-    fun performConsecutively(scope: CoroutineScope, block: suspend SuspendingStackNavigator.() -> Unit) {
+    fun performConsecutively(
+        scope: CoroutineScope,
+        block: suspend SuspendingStackNavigator.() -> Unit
+    ) {
         scope.launch {
             block(SuspendingStackNavigator(this@StackNavigator))
         }
@@ -131,17 +168,22 @@ class StackNavigator constructor(
 
         // Make sure every fragment created is added to the back stack
         if (!fragmentTags.contains(fragment.tag)) {
-            Log.d("StackNavigator", MSG_FRAGMENT_NOT_ADDED_TO_BACKSTACK
-                + "\n Fragment Attached: " + fragment.toString()
-                + "\n Fragment Tag: " + fragment.tag
-                + "\n Backstack Entry Count: " + baskStackEntries.size
-                + "\n Tracked Fragments: " + fragmentTags)
+            Log.d(
+                "StackNavigator", MSG_FRAGMENT_NOT_ADDED_TO_BACKSTACK
+                        + "\n Fragment Attached: " + fragment.toString()
+                        + "\n Fragment Tag: " + fragment.tag
+                        + "\n Backstack Entry Count: " + baskStackEntries.size
+                        + "\n Tracked Fragments: " + fragmentTags
+            )
         }
     }
 
     companion object {
-        internal const val MSG_FRAGMENT_NOT_ADDED_TO_BACKSTACK = "A fragment cannot be added to a FragmentManager managed by StackNavigator without adding it to the back stack"
-        internal const val MSG_FRAGMENT_HAS_NO_TAG = "A fragment cannot be added to a FragmentManager managed by StackNavigator without a Tag"
-        private const val MSG_DODGY_FRAGMENT = "Tag exists in StackNavigator but not in FragmentManager"
+        internal const val MSG_FRAGMENT_NOT_ADDED_TO_BACKSTACK =
+            "A fragment cannot be added to a FragmentManager managed by StackNavigator without adding it to the back stack"
+        internal const val MSG_FRAGMENT_HAS_NO_TAG =
+            "A fragment cannot be added to a FragmentManager managed by StackNavigator without a Tag"
+        private const val MSG_DODGY_FRAGMENT =
+            "Tag exists in StackNavigator but not in FragmentManager"
     }
 }

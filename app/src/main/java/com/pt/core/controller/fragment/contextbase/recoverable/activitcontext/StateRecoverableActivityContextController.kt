@@ -1,9 +1,12 @@
 package com.pt.core.controller.fragment.contextbase.recoverable.activitcontext
 
-import android.content.Context
 import com.pt.core.controller.fragment.contextbase.recoverable.StateRecoverableExternalContextController
+import com.pt.core.state.provider.template.recoverable.StateContextBundleStorageProvider
 
 abstract class StateRecoverableActivityContextController :
     StateRecoverableExternalContextController() {
-    final override fun providerContext(): Context? = activity
+
+    override fun getStateProviderOnAttach(): StateContextBundleStorageProvider? {
+       return activity as? StateContextBundleStorageProvider
+    }
 }

@@ -1,32 +1,27 @@
 package com.pt.app.fragment.myaccount
 
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.pt.app.Model
-import com.pt.app.fragment.MyOrdersFragment
-import com.pt.app.fragment.login.LoginFragment
 import com.pt.app.fragment.login.MyAccount
-import com.pt.backstackcontroller.navigation.MultiStackNavigator
-import com.pt.backstackcontroller.navigation.activityNavigatorController
+import com.pt.backstackcontroller.navigation.Navigator
 import com.pt.backstackcontroller.navigation.delegate.fragmentArgs
-import com.pt.core.controller.fragment.standalone.withoutviewmodel.StandAloneStateChangeableFragmentController
-import com.pt.core.data.Event
-import com.pt.core.data.SideEffect
-import com.pt.core.data.State
-import com.pt.core.data.TransitionData
-import com.pt.core.state.manager.StateMachine
+import com.pt.core.controller.fragment.contextbase.recoverable.parentfragmentcontext.StateRecoverableParentFragmentContextController
 import com.pt.dig.atm.R
 import com.pt.dig.atm.databinding.MyAccountLayoutBinding
 
 class MyAccountFragment :
-    StandAloneStateChangeableFragmentController(R.layout.my_account_layout) {
-    var tabIndex: Int by fragmentArgs()
-    override val TAG = "MyAccountFragment"
+    StateRecoverableParentFragmentContextController(R.layout.my_account_layout),
+    Navigator.TagProvider {
 
-    private val navigator by activityNavigatorController<MultiStackNavigator>()
+    var tabIndex: Int by fragmentArgs()
+    var fragmentID: String by fragmentArgs()
+
+    override val stableTag: String
+        get() = "${javaClass.simpleName}-$TAG-$fragmentID"
+
+    override val TAG = "MyAccountFragment"
 
     lateinit var binding: MyAccountLayoutBinding
     private fun updateButtons() {
@@ -51,86 +46,19 @@ class MyAccountFragment :
                 updateButtons()
             }
             loginButton.setOnClickListener {
-                stateContext.transition(MyAccount.Events.LoginEvent)
+                stateContext?.transition(MyAccount.Events.LoginEvent)
             }
 
             myOrdersButton.setOnClickListener {
-                stateContext.transition(MyAccount.Events.MyOrderEvent)
+                stateContext?.transition(MyAccount.Events.MyOrderEvent)
             }
         }
     }
-
-    override fun provideGraphBuilder(): StateMachine.GraphBuilder<State, Event, SideEffect> {
-        return MyAccount.createGraph(MyAccount.States.DefaultState)
-    }
-
-
-    override fun onTransaction(transitionData: TransitionData) {
-        Log.d("PHUONGTRAN", "trandata $transitionData")
-
-        with(transitionData) {
-            when (currentState) {
-                is MyAccount.States.DefaultState -> {
-                    when (sideEffect) {
-                        is MyAccount.SideEffects.MyOrderSideEffect -> {
-                            navigator.pop()
-                            navigator.push(MyOrdersFragment.newInstance())
-                        }
-                        is MyAccount.SideEffects.LoginSuccessSideEffect -> {
-                            navigator.pop()
-                        }
-                        else -> {
-
-                        }
-                    }
-
-                }
-                is MyAccount.States.LoginState -> {
-                    (sideEffect as? MyAccount.SideEffects.TriggerLogin)?.let {
-                        navigator.push(LoginFragment.newInstance(stateContext))
-                    }
-
-                    (sideEffect as? MyAccount.SideEffects.MyOrderSideEffect)?.let {
-                        navigator.push(LoginFragment.newInstance(stateContext))
-                    }
-                }
-
-                else -> {
-                }
-            }
-        }
-    }
-
-    override fun provideDefaultState(): State = MyAccount.States.DefaultState
-
-   /* override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Log.d("PHUONGTRAN", "onAttach")
-    }*/
-
-   /* override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d("PHUONGTRAN", "onCreate")
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.d("PHUONGTRAN", "onDestroyView")
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        Log.d("PHUONGTRAN", "onViewStateRestored")
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        Log.d("PHUONGTRAN", "onDetach")
-    }*/
 
     companion object {
-        fun newInstance(tabIndex: Int) = MyAccountFragment().apply {
+        fun newInstance(tabIndex: Int, fragmentID: String) = MyAccountFragment().apply {
             this.tabIndex = tabIndex
+            this.fragmentID = fragmentID
         }
     }
 }

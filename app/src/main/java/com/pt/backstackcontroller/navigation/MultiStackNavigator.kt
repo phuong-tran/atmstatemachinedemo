@@ -14,9 +14,12 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
 import androidx.fragment.app.commitNow
 import androidx.lifecycle.Lifecycle
+import com.pt.backstackcontroller.navigation.coroutines.SuspendingMultiStackNavigator
 import com.pt.backstackcontroller.navigation.delegate.fragmentArgs
 import com.pt.backstackcontroller.savedstate.LifecycleSavedStateContainer
 import com.pt.backstackcontroller.savedstate.savedStateFor
+import com.pt.helper.fragment.FragmentAnim
+import com.pt.helper.fragment.setFragmentAnimation
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -30,7 +33,10 @@ fun Fragment.childMultiStackNavigationController(
 ): Lazy<MultiStackNavigator> = lazy {
     MultiStackNavigator(
         stackCount,
-        savedStateFor(this@childMultiStackNavigationController, "$MULTI_STACK_NAVIGATOR-$containerId"),
+        savedStateFor(
+            this@childMultiStackNavigationController,
+            "$MULTI_STACK_NAVIGATOR-$containerId"
+        ),
         childFragmentManager,
         containerId, rootFunction
     )
@@ -59,7 +65,8 @@ class MultiStackNavigator(
     stateContainer: LifecycleSavedStateContainer,
     private val fragmentManager: FragmentManager,
     @IdRes override val containerId: Int,
-    private val rootFunction: (Int) -> Fragment) : Navigator {
+    private val rootFunction: (Int) -> Fragment
+) : Navigator {
 
     /**
      * A callback that will be invoked when a stack is selected, either by the user selecting it,
@@ -97,11 +104,13 @@ class MultiStackNavigator(
 
     internal val activeFragment: StackFragment
         get() = stackFragments
-            .sortedWith(compareBy(
-                stackVisitor::isAt,
-                StackFragment::isAttached,
-                StackFragment::isResumed
-            ))
+            .sortedWith(
+                compareBy(
+                    stackVisitor::isAt,
+                    StackFragment::isAttached,
+                    StackFragment::isResumed
+                )
+            )
             .last() // false come before true when comparing
 
     val activeIndex: Int
@@ -121,7 +130,7 @@ class MultiStackNavigator(
     /**
      * Show the stack at the specified index
      */
-    fun show(index: Int) = showInternal(index, true)
+    fun show(index: Int, anim: FragmentAnim? = null) = showInternal(index, true, anim)
 
     /**
      * Returns the [Navigator] at the specified index.
@@ -169,14 +178,19 @@ class MultiStackNavigator(
         activeNavigator.pop() ->
             true
         stackVisitor.leave(activeFragment.index) ->
-            showInternal(stackVisitor.currentHost(), false).let { true }
+            showInternal(stackVisitor.currentHost(), false, null).let { true }
         else ->
             false
     }
 
-    override fun clear(upToTag: String?, includeMatch: Boolean) = activeNavigator.clear(upToTag, includeMatch)
+    override fun clear(upToTag: String?, includeMatch: Boolean) =
+        activeNavigator.clear(upToTag, includeMatch)
 
-    override fun push(fragment: Fragment, tag: String): Boolean = activeNavigator.push(fragment, tag)
+    override fun push(fragment: Fragment, tag: String, anim: FragmentAnim?): Boolean =
+        activeNavigator.push(fragment, tag, anim)
+
+    override fun push(fragment: Fragment, tag: String): Boolean =
+        activeNavigator.push(fragment, tag)
 
     override fun find(tag: String): Fragment? = activeNavigator.find(tag)
         ?: stackFragments
@@ -186,24 +200,30 @@ class MultiStackNavigator(
             .map { it.find(tag) }
             .firstOrNull()
 
-    fun performConsecutively(scope: CoroutineScope, block: suspend SuspendingMultiStackNavigator.() -> Unit) {
+    fun performConsecutively(
+        scope: CoroutineScope,
+        block: suspend SuspendingMultiStackNavigator.() -> Unit
+    ) {
         scope.launch {
             block(SuspendingMultiStackNavigator(this@MultiStackNavigator))
         }
     }
 
-    private fun showInternal(index: Int, addTap: Boolean) = fragmentManager.commit {
-        val toShow = stackFragments[index]
-        if (addTap) stackVisitor.visit(toShow.index)
+    private fun showInternal(index: Int, addTap: Boolean, anim: FragmentAnim?) =
+        fragmentManager.commit {
+            val toShow = stackFragments[index]
+            if (addTap) stackVisitor.visit(toShow.index)
+            anim?.let {
+                this.setFragmentAnimation(it)
+            }
+            stackTransactionModifier?.invoke(this, index)
 
-        stackTransactionModifier?.invoke(this, index)
-
-        transactions@ for (fragment in stackFragments) when {
-            fragment.index == index && !fragment.isDetached -> continue@transactions
-            fragment.index == index && fragment.isDetached -> attach(fragment)
-            else -> if (!fragment.isDetached) detach(fragment)
+            transactions@ for (fragment in stackFragments) when {
+                fragment.index == index && !fragment.isDetached -> continue@transactions
+                fragment.index == index && fragment.isDetached -> attach(fragment)
+                else -> if (!fragment.isDetached) detach(fragment)
+            }
         }
-    }
 
     private fun FragmentTransaction.addStackFragments() {
         indices.forEach { index ->
@@ -216,7 +236,11 @@ class MultiStackNavigator(
 
     private inner class StackLifecycleCallback : FragmentManager.FragmentLifecycleCallbacks() {
 
-        override fun onFragmentCreated(fm: FragmentManager, fragment: Fragment, savedInstanceState: Bundle?) = fragment.run {
+        override fun onFragmentCreated(
+            fm: FragmentManager,
+            fragment: Fragment,
+            savedInstanceState: Bundle?
+        ) = fragment.run {
             if (id != this@MultiStackNavigator.containerId) return
             check(this is StackFragment) { "Only Stack Fragments may be added to a container View managed by a MultiStackNavigator" }
 
@@ -245,11 +269,16 @@ class StackFragment : Fragment() {
     internal val hasNoRoot get() = navigator.current == null
     internal val navigator by lazy { StackNavigator(childFragmentManager, containerId) }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? =
         FragmentContainerView(inflater.context).apply { id = containerId }
 
     companion object {
-        internal fun newInstance(index: Int) = StackFragment().apply { this.index = index; containerId = View.generateViewId() }
+        internal fun newInstance(index: Int) =
+            StackFragment().apply { this.index = index; containerId = View.generateViewId() }
     }
 }
 

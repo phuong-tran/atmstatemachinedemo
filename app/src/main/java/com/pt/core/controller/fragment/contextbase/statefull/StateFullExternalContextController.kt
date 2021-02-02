@@ -8,11 +8,10 @@ abstract class StateFullExternalContextController : BaseFragment() {
     protected var stateContext: StateContextSavedHandlerProvider? = null
         private set
 
-    abstract fun providerContext(): Context?
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (providerContext() as? StateContextSavedHandlerProvider)?.let {
+        getStateProviderOnAttach()?.let {
             stateContext = it
         }
             ?: throw IllegalArgumentException("Context must be implemented StateContextSavedHandlerProvider")
@@ -22,4 +21,6 @@ abstract class StateFullExternalContextController : BaseFragment() {
         super.onDetach()
         stateContext = null
     }
+
+    protected abstract fun getStateProviderOnAttach(): StateContextSavedHandlerProvider?
 }

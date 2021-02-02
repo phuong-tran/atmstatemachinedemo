@@ -1,10 +1,12 @@
 package com.pt.core.controller.fragment.contextbase.savestatehandle
 
 import android.content.Context
+import androidx.annotation.LayoutRes
 import com.pt.core.controller.fragment.BaseFragment
 import com.pt.core.state.provider.template.StateContextSavedHandlerProvider
 
-abstract class StateSavedHandlerActivityAndParentFragmentContextController : BaseFragment() {
+abstract class StateSavedHandlerActivityAndParentFragmentContextController(@LayoutRes layoutId: Int = 0) :
+    BaseFragment(layoutId) {
     protected var stateContextActivity: StateContextSavedHandlerProvider? = null
         private set
 

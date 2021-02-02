@@ -1,7 +1,8 @@
-package com.pt.backstackcontroller.navigation
+package com.pt.backstackcontroller.navigation.coroutines
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.whenResumed
+import com.pt.backstackcontroller.navigation.StackNavigator
 
 class SuspendingStackNavigator internal constructor(
     private val navigator: StackNavigator

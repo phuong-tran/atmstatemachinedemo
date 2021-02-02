@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.pt.backstackcontroller.navigation.extensions.navigatorTag
+import com.pt.helper.fragment.FragmentAnim
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
@@ -70,6 +72,7 @@ interface Navigator : ReadOnlyNavigator {
      * if an identical instance of it already exists in the [FragmentManager] under the specified
      * tag.
      */
+    fun push(fragment: Fragment, tag: String, anim: FragmentAnim?): Boolean
     fun push(fragment: Fragment, tag: String): Boolean
 
     /**
@@ -83,6 +86,7 @@ interface Navigator : ReadOnlyNavigator {
      * @see push
      */
     fun push(fragment: Fragment) = push(fragment, fragment.navigatorTag)
+    fun push(fragment: Fragment, anim: FragmentAnim?) = push(fragment, fragment.navigatorTag, anim)
 
     /**
      * An interface to provide unique tags for [Fragment]. Fragment implementers typically delegate

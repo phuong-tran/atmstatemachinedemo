@@ -1,18 +1,19 @@
 package com.pt.core.controller.fragment.contextbase.savestatehandle
 
 import android.content.Context
+import androidx.annotation.LayoutRes
 import com.pt.core.controller.fragment.BaseFragment
 import com.pt.core.state.provider.template.StateContextSavedHandlerProvider
 
-abstract class StateSavedHandlerExternalContextController : BaseFragment() {
+abstract class StateSavedHandlerExternalContextController(@LayoutRes layoutId: Int = 0) :
+    BaseFragment(layoutId) {
     protected var stateContext: StateContextSavedHandlerProvider? = null
-        private set
 
-    abstract fun providerContext(): Context?
+    protected abstract fun getStateProviderOnAttach(): StateContextSavedHandlerProvider?
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (providerContext() as? StateContextSavedHandlerProvider)?.let {
+        getStateProviderOnAttach()?.let {
             stateContext = it
         }
             ?: throw IllegalArgumentException("Context must be implemented StateContextSavedHandlerProvider")

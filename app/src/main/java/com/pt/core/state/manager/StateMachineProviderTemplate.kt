@@ -16,7 +16,7 @@ class StateMachineProviderTemplate private constructor(
     private val graphBuilderProvider: GraphBuilderProvider,
     private val transactionActionProvider: StateTransactionDataProvider,
     private val defaultStateProvider: DefaultStateProvider,
-) : StateContextChangeableStateMachineProvider, CurrentStateSetterProvider {
+) : StateContextChangeableStateMachineProvider {
 
     private val stateMachineHolder = AtomicReference<StateMachine<State, Event, SideEffect>>()
 

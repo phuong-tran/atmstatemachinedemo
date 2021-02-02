@@ -1,8 +1,9 @@
-package com.pt.backstackcontroller.navigation
+package com.pt.backstackcontroller.navigation.coroutines
 
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import com.pt.backstackcontroller.navigation.extensions.navigatorTag
 
 /**
  * A like for like API of a [Navigator] that returns suspending equivalents of the original
