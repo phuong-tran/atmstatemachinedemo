@@ -65,13 +65,14 @@ class MyAccountFragmentHolder :
                     }
                 }
                 is MyAccount.States.LoginState -> {
-                    (sideEffect as? MyAccount.SideEffects.TriggerLogin)?.let {
-                        addTosStack(LoginFragment.newInstance())
-                    }
+                    addTosStack(LoginFragment.newInstance())
+                    /* (sideEffect as? MyAccount.SideEffects.TriggerLogin)?.let {
+                         addTosStack(LoginFragment.newInstance())
+                     }
 
-                    (sideEffect as? MyAccount.SideEffects.MyOrderSideEffect)?.let {
-                        addTosStack(LoginFragment.newInstance())
-                    }
+                     (sideEffect as? MyAccount.SideEffects.MyOrderSideEffect)?.let {
+                         addTosStack(LoginFragment.newInstance())
+                     }*/
                 }
 
                 else -> {
