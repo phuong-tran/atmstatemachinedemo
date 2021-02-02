@@ -16,7 +16,7 @@ class StateContextReadOnlyProviderTemplate private constructor(
         graphBuilderProvider = graphBuilderProvider,
         transactionActionProvider = transactionActionProvider,
         defaultStateProvider = defaultStateProvider
-    ) {
+    ), DefaultStateProvider by defaultStateProvider {
     companion object {
         fun create(
             defaultStateProvider: DefaultStateProvider,

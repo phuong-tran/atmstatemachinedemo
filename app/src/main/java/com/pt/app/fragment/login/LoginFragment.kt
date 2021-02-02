@@ -34,6 +34,13 @@ class LoginFragment : StateRecoverableParentFragmentContextController(R.layout.l
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        stateContext?.apply {
+            setCurrentState(getCurrentTransitionData().fromState)
+        }
+    }
+
     companion object {
         fun newInstance() = LoginFragment()
     }
